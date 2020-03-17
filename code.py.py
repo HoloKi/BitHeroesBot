@@ -38,7 +38,7 @@ def leftUp():
     print ("left release")
 
 def mousePos(cord): 
-    win32api.SetCursorPos(x_pad + cord[0], y_pad + cord[1])
+    win32api.SetCursorPos((x_pad + cord[0], y_pad + cord[1]))
 
 def get_cords():
     x,y = win32api.GetCursorPos()
