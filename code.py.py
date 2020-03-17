@@ -1,7 +1,7 @@
 from PIL import Image, ImageGrab
 import os
 import time
-import win32api, win32com
+import win32api,win32con
 
 #assumo che il gioco sia alla risoluzione base di quando si inizia da 0 
 #metterlo in altro a sinistra in modo che l'angolo del gioco combaci con l'angolo dello schermo 
