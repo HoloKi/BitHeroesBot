@@ -15,6 +15,23 @@ def screenGrab():
     im = ImageGrab.grab(box)
     #im.save(os.getcwd() + '\\full_snap__' + str(int(time.time())) +'.png', 'PNG')
     return im
+
+def grab():
+    box = (x_pad+1,y_pad+1,x_pad+795,y_pad+598)
+    im = ImageOps.grayscale(ImageGrab.grab(box))
+    a = array(im.getcolors())
+    a = a.sum()
+    print (a)
+    return a
+
+def get_endraid():
+    box = (243,262,545,366)
+    im = ImageOps.grayscale(ImageGrab.grab(box))
+    a = array(im.getcolors())
+    a = a.sum()
+    print (a)
+    #im.save(os.getcwd() + '\\endraid_one__' + str(int(time.time())) + '.png', 'PNG')    
+    return a
  
 def main():
     pass
@@ -51,30 +68,47 @@ class Cord:
 
     f_raid = (39,351)
     f_raidshard = (362, 119)
+    f_finishraid = ()
+    
+class Blank:
+    bubble_1 = 2343
     
 def Raid():
     s = screenGrab()
     time.sleep(.1)
     while (s.getpixel(Cord.f_raidshard) != (179, 61, 150)):
-        #location del raid
-        mousePos((39,351))
-        leftClick()
-        time.sleep(2)
-     
-        #location di Evoca
-        mousePos((533,425))
-        leftClick()
-        time.sleep(2)
+        s1 = get_endraid()
+        while(s1 != Blank.bubble_1 ):
+            #location del raid
+            mousePos((39,351))
+            leftClick()
+            time.sleep(2)
          
-        #location di Eroico
-        mousePos((584,293))
-        leftClick()
-        time.sleep(2)
-         
-        #location per accettare il team
-        mousePos((511,518))
-        leftClick()
-        time.sleep(200)
+            #location di Evoca
+            mousePos((533,425))
+            leftClick()
+            time.sleep(2)
+             
+            #location di Eroico
+            mousePos((584,293))
+            leftClick()
+            time.sleep(2)
+             
+            #location per accettare il team
+            mousePos((511,518))
+            leftClick()
+            time.sleep(1)
 
-        #accertamento che non ci siano shard
-        s = screenGrab()
+            #accertamento che non ci siano shard
+            s = screenGrab()
+            while True:
+                s1 = get_endraid()
+                time.sleep(60)
+                y = s1
+                s2 = get_endraid()
+                if (s2 == y):
+                    break;
+            #location per terminare
+            mousePos((340, 426))
+            leftClick()
+            time.sleep(1)
