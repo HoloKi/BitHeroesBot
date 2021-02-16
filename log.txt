@@ -1,14 +1,16 @@
-2021-02-09 12:23:24.104596
-heroic,120
+2021-02-16 12:47:51.124158
+heroic,300
 raid
 run: 
-1
-Point(x=59, y=412)
+2
+Point(x=124, y=485)
 evoca: 
-Point(x=558, y=486)
+Point(x=624, y=559)
 difficulty: 
-Point(x=605, y=352)
+Point(x=671, y=425)
 accept: 
-Point(x=535, y=574)
+Point(x=601, y=647)
+rerun: 
+Point(x=558, y=546)
 yes: 
-Point(x=596, y=741)
+None

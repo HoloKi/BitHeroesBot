@@ -34,31 +34,38 @@ def menu():
     else:
         print("Non ci sono altre opzioni")
 
+def test(name,numero):
+    raidcord = pyautogui.locateCenterOnScreen(name,grayscale=False,confidence=numero)
+    print(raidcord)
+    pyautogui.click(raidcord)
+    return raidcord
+
+
 def Raid(run,difficult,duration):
     #run = numero di shard
     #difficult = difficoltà
     #duration = quanto dura in secondi una run
     log(f"{difficult},{duration}","a")
     log("raid","a")
-    time.sleep(1)
+    time.sleep(2)
     if(int(run)<1):
         log("run<1","a")
         pyautogui.alert(text='the number of raid runs must be 1 or greater',button='OK')
         exit()
     else:
-        raidcord = pyautogui.locateCenterOnScreen("test1.png",grayscale=False,confidence=0.5)
+        raidcord = pyautogui.locateCenterOnScreen("prova.png",grayscale=False,confidence=0.7)
         log("run: ","a")
         log(run,"a")
         log(raidcord,"a")
         if raidcord!=None:
             pyautogui.click(raidcord)
-            time.sleep(1)
+            time.sleep(2)
             evoca = pyautogui.locateCenterOnScreen("startraid.png",grayscale=False,confidence=0.5)
             log("evoca: ","a")
             log(evoca,"a")
             if evoca!=None:
                 pyautogui.click(evoca)
-                time.sleep(1)
+                time.sleep(2)
                 if difficult==hero:
                     difficulty = pyautogui.locateCenterOnScreen("eroic.png",grayscale=False,confidence=0.4)
                     print(difficulty)
@@ -75,7 +82,7 @@ def Raid(run,difficult,duration):
                 log(difficulty,"a")
                 if difficulty!=None:
                     pyautogui.click(difficulty)
-                    time.sleep(1)
+                    time.sleep(2)
                     accept = pyautogui.locateCenterOnScreen("accept.png",grayscale=False,confidence=0.5)
                     log("accept: ","a")
                     log(accept,"a")
@@ -89,9 +96,9 @@ def Raid(run,difficult,duration):
                                 yes = pyautogui.locateCenterOnScreen("yes.png",grayscale=False,confidence=0.5)
                                 log("yes: ","a")
                                 log(yes,"a")
-                                time.sleep(1)
+                                time.sleep(2)
                                 pyautogui.click(yes)
-                                time.sleep(1)
+                                time.sleep(2)
                                 xbutton = pyautogui.locateCenterOnScreen("xbutton.png",grayscale=False,confidence=0.5)
                                 pyautogui.click(xbutton)
                                 break
@@ -101,7 +108,7 @@ def Raid(run,difficult,duration):
                                 rerun = pyautogui.locateCenterOnScreen("rerun.png",grayscale=False,confidence=0.5)
                                 log("rerun: ","a")
                                 log(rerun,"a")
-                                time.sleep(1)
+                                time.sleep(2)
                                 pyautogui.click(rerun)
                                 time.sleep(int(duration))
                     else:
@@ -117,6 +124,48 @@ def Raid(run,difficult,duration):
             print("RaidError")
             exit
 
+
+def pvp(run):
+    log("--------pvp----------","a")
+    log("run: ","a")
+    log(run,"a")
+    if run==0:
+        pyautogui.allert(text="Run must be > 0",button="OK")
+        exit
+    pvp = pyautogui.locateCenterOnScreen("pvp.png",grayscale=False,confidence=0.5)
+    log("pvpbutton: ","a")
+    log(pvp,"a")
+    if(pvp != None):
+        pyautogui.click(pvp)
+        while True:
+            time.sleep(2)
+            play = pyautogui.locateCenterOnScreen("play.png",grayscale=False,confidence=0.5)
+            log("play: ","a")
+            log(play,"a")
+            pyautogui.click(play)
+            time.sleep(2)
+            battle = pyautogui.locateCenterOnScreen("battle1.png",grayscale=False,confidence=0.5)
+            log("battle: ","a")
+            log(battle,"a")
+            pyautogui.click(battle)
+            time.sleep(2)
+            accept = pyautogui.locateCenterOnScreen("accept.png",grayscale=False,confidence=0.5)
+            log("accept: ","a")
+            log(accept,"a")
+            pyautogui.click(accept)
+            time.sleep(100)
+            close = pyautogui.locateCenterOnScreen("close.png",grayscale=False,confidence=0.5)
+            log("close: ","a")
+            log(close,"a")
+            pyautogui.click(close)
+            time.sleep(2)
+            run = int(run) - 1
+            if int(run) == 0:
+                xbutton = pyautogui.locateCenterOnScreen("xbutton.png",grayscale=False,confidence=0.5)
+                pyautogui.click(xbutton)
+                break
+
+
 def main():
     d1 = datetime.now()
     log(d1,"w+")
@@ -125,7 +174,7 @@ def main():
     #print(b)
     #c = input("Inserisci il tempo impiegato per finire una run(in secondi). Attento...meglio dare qualche secondo in piu! \n")
     #Raid(a,str(b),c)
-    menu()
+    #menu()
 
 print("Start")
     
