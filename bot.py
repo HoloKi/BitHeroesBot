@@ -1,6 +1,7 @@
 import pyautogui
 import time
 from datetime import datetime
+import json
 
 
 def log(message, modo):
@@ -51,7 +52,7 @@ def Raid(run, difficult, duration):
     # duration = quanto dura in secondi una run
     log(f"{difficult},{duration}", "a")
     log("raid", "a")
-    time.sleep(2)
+    time.sleep(3)
     if (int(run) < 1):
         log("run<1", "a")
         pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
@@ -69,7 +70,7 @@ def Raid(run, difficult, duration):
             log(evoca, "a")
             if evoca != None:
                 pyautogui.click(evoca)
-                time.sleep(2)
+                time.sleep(3)
                 if difficult == hero:
                     difficulty = pyautogui.locateCenterOnScreen("eroic.png", grayscale=False, confidence=0.4)
                     print(difficulty)
@@ -101,9 +102,9 @@ def Raid(run, difficult, duration):
                                 yes = pyautogui.locateCenterOnScreen("yes.png", grayscale=False, confidence=0.5)
                                 log("yes: ", "a")
                                 log(yes, "a")
-                                time.sleep(2)
+                                time.sleep(3)
                                 pyautogui.click(yes)
-                                time.sleep(2)
+                                time.sleep(3)
                                 xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
                                 pyautogui.click(xbutton)
                                 break
@@ -113,7 +114,7 @@ def Raid(run, difficult, duration):
                                 rerun = pyautogui.locateCenterOnScreen("rerun.png", grayscale=False, confidence=0.5)
                                 log("rerun: ", "a")
                                 log(rerun, "a")
-                                time.sleep(2)
+                                time.sleep(3)
                                 pyautogui.click(rerun)
                                 time.sleep(int(duration))
                     else:
@@ -174,7 +175,8 @@ def pvp(run):
         log(pvp, "a")
         print("error")
 
-def cimento(run,tempo):
+
+def cimento(run, tempo):
     log("--------cimento----------", "a")
     log("run: ", "a")
     log(run, "a")
@@ -187,12 +189,12 @@ def cimento(run,tempo):
     if cimento is not None:
         pyautogui.click(cimento)
         while True:
-            time.sleep(2)
+            time.sleep(3)
             play = pyautogui.locateCenterOnScreen("play.png", grayscale=False, confidence=0.5)
             log("play: ", "a")
             log(play, "a")
             pyautogui.click(play)
-            time.sleep(2)
+            time.sleep(3)
             accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
             log("accept: ", "a")
             log(accept, "a")
@@ -202,7 +204,7 @@ def cimento(run,tempo):
             log("close: ", "a")
             log(close, "a")
             pyautogui.click(close)
-            time.sleep(2)
+            time.sleep(3)
             run = int(run) - 1
             if int(run) == 0:
                 xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
@@ -212,6 +214,42 @@ def cimento(run,tempo):
         log("problem with cimento.png. return = ", "a")
         log(cimento, "a")
         print("error")
+
+#potrei fare def setconfig(a,b,c)
+def setconfig():
+    f = open("data.json", "w")
+    #json_test = json.dump(test_dict,f)
+    #with open("data.json", "w") as write_file:
+    #    json.dump(test_dict,write_file)
+    a = input("Inserisci il numero di raid che puoi fare giornalmente\n")
+    print("Per ora la difficoltà sarà preimpostata su eroico per error runtime\n")
+    #diff = input("Inserisci la difficoltà del raid\n")
+    time = input("Inserisci il tempo medio che impieghi per un raid\n")
+    b = input("Inserisci il numero di run di pvp che puoi fare giornalmente\n")
+    c = input("Inserisci il numero di run di cimento che puoi fare giornalmente\n")
+    data_dict = {"name": "Utente", "raid": a, "difficolta": hero, "temporaid": time, "pvp": b, "cimento": c}
+    json_test = json.dump(data_dict,f)
+    #test_dict = {"name": "Arty", "test": "funziona"}
+    #json.dump(test_dict,f)
+    f.close()
+
+
+def daily():
+    f = open('data.json', "r")
+    data = json.loads(f.read())
+    raidshard = int(data['raid'])
+    tempo = int(data['temporaid'])
+    pvprun = int(data['pvp'])
+    cimentorun = int(data['cimento'])
+    print(raidshard)
+    Raid(int(raidshard), hero, int(tempo))
+    time.sleep(5)
+    pvp(int(pvprun))
+    cimento(int(cimentorun),200)
+    f.close()
+
+
+
 
 def main():
     d1 = datetime.now()
