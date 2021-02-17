@@ -1,16 +1,12 @@
-2021-02-16 12:47:51.124158
-heroic,300
-raid
+2021-02-17 11:06:24.771555
+--------cimento----------
 run: 
-2
-Point(x=124, y=485)
-evoca: 
-Point(x=624, y=559)
-difficulty: 
-Point(x=671, y=425)
+1
+cimentobutton: 
+Point(x=757, y=371)
+play: 
+Point(x=547, y=423)
 accept: 
-Point(x=601, y=647)
-rerun: 
-Point(x=558, y=546)
-yes: 
-None
+Point(x=515, y=607)
+close: 
+Point(x=397, y=594)
