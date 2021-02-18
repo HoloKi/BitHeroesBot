@@ -4,11 +4,24 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/HoloKi/BitHeroesBot)
 ![GitHub Repo stars](https://img.shields.io/github/stars/HoloKi/BitHeroesBot)
 
-#Bit Heroes Bot
+# Bit Heroes Bot
 >This bot is completely free, any sale is strictly prohibited
+>
 >This bot is a macro, so it performs the various operations by having the screen free with the game and the script open
 
-#Dipendencies
+## Dipendencies
 
 [Pyautogui](https://pyautogui.readthedocs.io/en/latest/)
 
+## Language
+
+>Italian
+>
+>English (planned)
+
+## Help me
+
+Support me with translate or with code.
+
+**Discord contact**
+>@HoloKi#
