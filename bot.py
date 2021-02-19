@@ -24,6 +24,7 @@ def menu():
     print(f"3)Per utilizzare la funzione cimento\n")
     print(f"4)Per modificare le impostazioni delle daily\n")
     print(f"5)Per autilizzare la funzione daily\n")
+    print(f"6)PEr utilizzare la funzione prova")
     print(f"0)Per chiudere il programma\n")
     a = input("Seleziona numero: \n")
     if int(a) == 1:
@@ -68,10 +69,15 @@ def menu():
                         daily()
                         return 1
                     else:
-                        if int(a) == 0:
-                            return 0
+                        if int(a) == 6:
+                            proverun = input("!uante run delle prove di Nynx vuoi fare?\n")
+                            promento = input("Quanto ci impieghi in secondi a finirne uno?\n Aggiungi del tempo in piu in caso!\n")
+                            prove(int(proverun), promento)
                         else:
-                            print("Non esiste un'opzione relativo a questo numero!")
+                            if int(a) == 0:
+                                return 0
+                            else:
+                                print("Non esiste un'opzione relativo a questo numero!")
 
 
 def test(name, numero):
@@ -96,82 +102,91 @@ def raid(run, difficult, duration):
     else:
         log("run: ", "a")
         log(run, "a")
-        raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
-        log(raidcord, "a")
-        if raidcord is not None:
-            pyautogui.click(raidcord)
-            time.sleep(2)
-            evoca = pyautogui.locateCenterOnScreen("startraid.png", grayscale=False, confidence=0.5)
-            log("evoca: ", "a")
-            log(evoca, "a")
-            if evoca is not None:
-                pyautogui.click(evoca)
-                time.sleep(3)
-                if difficult == hero:
-                    difficulty = pyautogui.locateCenterOnScreen("eroic.png", grayscale=False, confidence=0.4)
-                    print(difficulty)
-                if difficult == hard:
-                    difficulty = pyautogui.locateCenterOnScreen("hard.png", grayscale=False, confidence=0.5)
-                    print(difficulty)
-                if difficult == norm:
-                    difficulty = pyautogui.locateCenterOnScreen("normal.png", grayscale=False, confidence=0.5)
-                    print(difficulty)
-                #if difficult != norm and difficult != hard and difficult != hero:
-                #    print("error")
-                #    log("difficult error, probably not norm,hard or hero", "a")
-                #    exit()
-                log("difficulty: ", "a")
-                log(difficulty, "a")
-                if difficulty is not None:
-                    pyautogui.click(difficulty)
-                    time.sleep(2)
-                    accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
-                    log("accept: ", "a")
-                    log(accept, "a")
-                    if accept is not None:
-                        pyautogui.click(accept)
-                        # tempo dedicato al completamento del raid in auto
-                        time.sleep(int(duration))
-                        while True:
-                            if int(run) == 1:
-                                print(f"run debug = {run}")
-                                yes = pyautogui.locateCenterOnScreen("yes.png", grayscale=False, confidence=0.5)
-                                log("yes: ", "a")
-                                log(yes, "a")
-                                time.sleep(3)
-                                pyautogui.click(yes)
-                                time.sleep(3)
-                                xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
-                                pyautogui.click(xbutton)
-                                time.sleep(3)
-                                xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
-                                pyautogui.click(xbutton)
-                                break
-                            else:
-                                print(f"run debug = {run}")
-                                run = int(run) - 1
-                                rerun = pyautogui.locateCenterOnScreen("rerun.png", grayscale=False, confidence=0.5)
-                                log("rerun: ", "a")
-                                log(rerun, "a")
-                                time.sleep(3)
-                                pyautogui.click(rerun)
-                                time.sleep(int(duration))
+        shardcheck = pyautogui.locateCenterOnScreen("noshard.png", grayscale=False, confidence=0.5)
+        if shardcheck is not None:
+            raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
+            log(raidcord, "a")
+            if raidcord is not None:
+                pyautogui.click(raidcord)
+                time.sleep(2)
+                evoca = pyautogui.locateCenterOnScreen("startraid.png", grayscale=False, confidence=0.5)
+                log("evoca: ", "a")
+                log(evoca, "a")
+                if evoca is not None:
+                    pyautogui.click(evoca)
+                    time.sleep(3)
+                    if difficult == hero:
+                        difficulty = pyautogui.locateCenterOnScreen("eroic.png", grayscale=False, confidence=0.4)
+                        print(difficulty)
+                    if difficult == hard:
+                        difficulty = pyautogui.locateCenterOnScreen("hard.png", grayscale=False, confidence=0.5)
+                        print(difficulty)
+                    if difficult == norm:
+                        difficulty = pyautogui.locateCenterOnScreen("normal.png", grayscale=False, confidence=0.5)
+                        print(difficulty)
+                    #if difficult != norm and difficult != hard and difficult != hero:
+                    #    print("error")
+                    #    log("difficult error, probably not norm,hard or hero", "a")
+                    #    exit()
+                    log("difficulty: ", "a")
+                    log(difficulty, "a")
+                    if difficulty is not None:
+                        pyautogui.click(difficulty)
+                        time.sleep(2)
+                        accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
+                        log("accept: ", "a")
+                        log(accept, "a")
+                        if accept is not None:
+                            pyautogui.click(accept)
+                            # tempo dedicato al completamento del raid in auto
+                            time.sleep(int(duration))
+                            while True:
+                                if int(run) == 1:
+                                    print(f"run debug = {run}")
+                                    yes = pyautogui.locateCenterOnScreen("yes.png", grayscale=False, confidence=0.5)
+                                    log("yes: ", "a")
+                                    log(yes, "a")
+                                    time.sleep(3)
+                                    pyautogui.click(yes)
+                                    time.sleep(3)
+                                    xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                    pyautogui.click(xbutton)
+                                    time.sleep(3)
+                                    xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                    pyautogui.click(xbutton)
+                                    break
+                                else:
+                                    print(f"run debug = {run}")
+                                    run = int(run) - 1
+                                    rerun = pyautogui.locateCenterOnScreen("rerun.png", grayscale=False, confidence=0.5)
+                                    log("rerun: ", "a")
+                                    log(rerun, "a")
+                                    time.sleep(3)
+                                    pyautogui.click(rerun)
+                                    time.sleep(int(duration))
+                        else:
+                            print("AcceptError\n")
+                            log("Accept is None", "a")
+                            print("Please report this bug/error on github\n")
+                            exit()
                     else:
-                        print("AcceptError\n")
+                        print("DifficultError\n")
+                        log("Difficult is None", "a")
                         print("Please report this bug/error on github\n")
                         exit()
                 else:
-                    print("DifficultError\n")
-                    print("Please report this bug/error on github\n")
+                    print("EvocaError\n")
+                    log("Evoca is none", "a")
+                    print("Please report this bug/error on github")
                     exit()
             else:
-                print("EvocaError\n")
+                print("RaidError\n")
+                log("Raid is None", "a")
                 print("Please report this bug/error on github")
                 exit()
         else:
-            print("RaidError\n")
-            print("Please report this bug/error on github")
-            exit()
+            print("Shard non disponibili!")
+            log("No shard", "a")
 
 
 def pvp(run):
@@ -414,10 +429,10 @@ def main():
     # c = input("Inserisci il tempo impiegato per finire una run(in secondi). Attento...meglio dare qualche secondo in piu! \n")
     # Raid(a,str(b),c)
     print("Start")
-    # while True:
-    #    ciclo = menu()
-    #    if ciclo == 0:
-    #        exit()
+    while True:
+        ciclo = menu()
+        if ciclo == 0:
+            exit()
 
 
 if __name__ == '__main__':
