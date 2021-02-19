@@ -2,6 +2,7 @@ import pyautogui
 import time
 from datetime import datetime
 import json
+import cv2
 
 
 def log(message, modo):
