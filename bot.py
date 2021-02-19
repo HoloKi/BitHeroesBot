@@ -1,15 +1,8 @@
 import pyautogui
 import time
-from datetime import datetime
 import json
-import cv2
-
-
-def log(message, modo):
-    f = open("log.txt", modo)
-    f.write(str(message))
-    f.write("\n")
-    f.close()
+import cv2 as cv
+import logging
 
 
 hero = "heroic"
@@ -20,14 +13,15 @@ norm = "normal"
 def menu():
     print("\n\n\n\n\n")
     print(f"Digita il numero per selezionare l'opzione desiderato\n")
-    print(f"1)Per utilizzare la funzione Raid\n")
-    print(f"2)Per utilizzare la funzione raid\n")
+    print(f"1)Per utilizzare la funzione raid\n")
+    print(f"2)Per utilizzare la funzione pvp\n")
     print(f"3)Per utilizzare la funzione cimento\n")
     print(f"4)Per modificare le impostazioni delle daily\n")
     print(f"5)Per autilizzare la funzione daily\n")
     print(f"6)PEr utilizzare la funzione prova\n")
     print(f"0)Per chiudere il programma\n")
     a = input("Seleziona numero: \n")
+    logging.debug(f'Menu input = {a}')
     if int(a) == 1:
         b = input("Digita il numero di run: \n")
         c = input("Digita 1)normal 2)hard 3)heroic in base alla difficoltà che desideri\n")
@@ -38,7 +32,9 @@ def menu():
             return 1
         else:
             if int(c) == 2:
-                raid(b, hard, d)
+                supp = raid(b, hard, d)
+                if supp == 0:
+                    return 1
                 return 1
             else:
                 if int(c) == 3:
@@ -92,30 +88,23 @@ def test(name, numero):
 # difficult = difficoltà
 # duration = quanto dura in secondi una run
 def raid(run, difficult, duration):
-    print("RAID")
-    log(f"{difficult},{duration}", "a")
-    log("raid", "a")
+    logging.debug(f"run = {run}, difficoltà = {difficult}, durata = {duration}")
     time.sleep(3)
     if int(run) < 1:
-        log("run<1", "a")
+        logging.debug("duration < 1")
         pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
-        exit()
+        return 0
     else:
-        log("run: ", "a")
-        log(run, "a")
         raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
-        log("raid: ", "a")
-        log(raidcord, "a")
+        logging.debug(f"raid button = {raidcord}. To fix it, change position in the screen.")
         if raidcord is not None:
             pyautogui.click(raidcord)
             time.sleep(2)
             shardcheck = pyautogui.locateCenterOnScreen("noshard.png", grayscale=False, confidence=0.9)
-            log("shard=", "a")
-            log(shardcheck, "a")
+            logging.debug(f"shardcheck = {shardcheck}.")
             if shardcheck is None:
                 evoca = pyautogui.locateCenterOnScreen("startraid.png", grayscale=False, confidence=0.5)
-                log("evoca: ", "a")
-                log(evoca, "a")
+                logging.debug(f"evoca = {evoca}.")
                 if evoca is not None:
                     pyautogui.click(evoca)
                     time.sleep(3)
@@ -132,14 +121,12 @@ def raid(run, difficult, duration):
                     #    print("error")
                     #    log("difficult error, probably not norm,hard or hero", "a")
                     #    exit()
-                    log("difficulty: ", "a")
-                    log(difficulty, "a")
+                    logging.debug(f"difficult = {difficulty}.")
                     if difficulty is not None:
                         pyautogui.click(difficulty)
                         time.sleep(2)
                         accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
-                        log("accept: ", "a")
-                        log(accept, "a")
+                        logging.debug(f"accept = {accept}")
                         if accept is not None:
                             pyautogui.click(accept)
                             # tempo dedicato al completamento del raid in auto
@@ -148,8 +135,7 @@ def raid(run, difficult, duration):
                                 if int(run) == 1:
                                     print(f"run debug = {run}")
                                     yes = pyautogui.locateCenterOnScreen("yes.png", grayscale=False, confidence=0.5)
-                                    log("yes: ", "a")
-                                    log(yes, "a")
+                                    logging.debug(f"yes = {yes}")
                                     time.sleep(3)
                                     pyautogui.click(yes)
                                     time.sleep(3)
@@ -163,137 +149,126 @@ def raid(run, difficult, duration):
                                     print(f"run debug = {run}")
                                     run = int(run) - 1
                                     rerun = pyautogui.locateCenterOnScreen("rerun.png", grayscale=False, confidence=0.5)
-                                    log("rerun: ", "a")
-                                    log(rerun, "a")
+                                    logging.debug(f"rerun = {rerun}")
                                     time.sleep(3)
                                     pyautogui.click(rerun)
                                     time.sleep(int(duration))
+                            return 1
                         else:
                             print("AcceptError\n")
-                            log("Accept is None", "a")
+                            logging.error("AcceptError, please send this to github issue")
                             print("Please report this bug/error on github\n")
-                            exit()
+                            return 0
                     else:
                         print("DifficultError\n")
-                        log("Difficult is None", "a")
+                        logging.error("Difficult error, please send this to github issue")
                         print("Please report this bug/error on github\n")
-                        exit()
+                        return 0
                 else:
                     print("EvocaError\n")
-                    log("Evoca is none", "a")
+                    logging.debug("Evoca is none, please send this to github issue")
                     print("Please report this bug/error on github")
-                    exit()
+                    return 0
             else:
                 print("Shard non disponibili!")
-                log("No shard", "a")
+                logging.debug("No shard")
         else:
             print("RaidError\n")
-            log("Raid is None", "a")
+            logging.debug("Raid is None,please report this error on github")
             print("Please report this bug/error on github")
-            exit()
+            return 0
 
 
 def pvp(run):
+    logging.debug(f"run = {run}")
     print("PVP")
-    log("--------pvp----------", "a")
-    log("run: ", "a")
-    log(run, "a")
     if run <= 0:
         pyautogui.alert(text="Run must be > 0", button="OK")
+        logging.debug("run < 1")
         exit()
     pvp = pyautogui.locateCenterOnScreen("pvp.png", grayscale=False, confidence=0.5)
-    log("pvpbutton: ", "a")
-    log(pvp, "a")
+    logging.debug(f"pvp button = {pvp}")
     if pvp is not None:
         pyautogui.click(pvp)
         while True:
             time.sleep(2)
             play = pyautogui.locateCenterOnScreen("play.png", grayscale=False, confidence=0.5)
-            log("play: ", "a")
-            log(play, "a")
+            logging.debug(f"play = {play}")
             if play is not None:
                 pyautogui.click(play)
                 time.sleep(2)
                 battle = pyautogui.locateCenterOnScreen("battle1.png", grayscale=False, confidence=0.5)
-                log("battle: ", "a")
-                log(battle, "a")
+                logging.debug(f"battle = {battle}")
                 if battle is not None:
                     pyautogui.click(battle)
                     time.sleep(2)
                     accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
-                    log("accept: ", "a")
-                    log(accept, "a")
+                    logging.debug(f"battle = {battle}")
                     if accept is not None:
                         pyautogui.click(accept)
                         time.sleep(100)
                         close = pyautogui.locateCenterOnScreen("close.png", grayscale=False, confidence=0.5)
-                        log("close: ", "a")
-                        log(close, "a")
+                        logging.debug(f"close = {close}")
                         if close is not None:
                             pyautogui.click(close)
                             time.sleep(2)
                             run = int(run) - 1
                             if int(run) == 0:
                                 xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                logging.debug(f"xbutton = {xbutton}")
                                 if xbutton is not None:
                                     pyautogui.click(xbutton)
                                     break
                                 else:
-                                    log("log button is None", "a")
+                                    logging.error("log button is None")
                                     print("Please report this bug/error on github")
                                     break
                         else:
-                            log("close is None", "a")
+                            logging.error("close is None")
                             print("Please report this bug/error on github")
                             break
                     else:
-                        log("accept is None", "a")
+                        logging.error("accept is None")
                         print("Please report this bug/error on github")
                         break
                 else:
-                    log("battle is None", "a")
+                    logging.error("battle is None")
                     print("Please report this bug/error on github")
                     break
             else:
-                log("play is None", "a")
+                logging.error("play is None")
                 print("Please report this bug/error on github")
                 break
     else:
-        log("problem with pvp.png. return = ", "a")
-        log(pvp, "a")
+        logging.error(f"problem with pvp.png. pvp = {pvp}")
         print("Please report this bug/error on github")
 
 
 def cimento(run, tempo):
+    logging.debug(f"run = {run}, time = {tempo} seconds")
     print("CIMENTO")
-    log("--------cimento----------", "a")
-    log("run: ", "a")
-    log(run, "a")
     if run <= 0:
+        logging.debug("run < 1")
         pyautogui.alert(text="Run must be > 0", button="OK")
         exit(0)
     cimento = pyautogui.locateCenterOnScreen("cimento.png", grayscale=False, confidence=0.5)
-    log("cimentobutton: ", "a")
-    log(cimento, "a")
+    logging.debug(f"cimento button = {cimento}")
     if cimento is not None:
         pyautogui.click(cimento)
         while True:
             time.sleep(3)
             play = pyautogui.locateCenterOnScreen("play.png", grayscale=False, confidence=0.5)
-            log("play: ", "a")
-            log(play, "a")
+            logging.debug(f"play = {play}")
             if play is not None:
                 pyautogui.click(play)
                 time.sleep(3)
                 accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
-                log("accept: ", "a")
-                log(accept, "a")
+                logging.debug(f'accept = {play}')
                 if accept is not None:
                     pyautogui.click(accept)
                     time.sleep(int(tempo))
                     close = pyautogui.locateCenterOnScreen("close.png", grayscale=False, confidence=0.5)
-                    log("close: ", "a")
-                    log(close, "a")
+                    logging.debug(f'close = {close}')
                     if close is not None:
                         pyautogui.click(close)
                         time.sleep(3)
@@ -304,58 +279,52 @@ def cimento(run, tempo):
                                 pyautogui.click(xbutton)
                                 break
                             else:
-                                log(close, "a")
+                                logging.debug(f'close = {close}')
                                 print("Please report this bug/error on github")
                                 break
                     else:
-                        log("close is None", "a")
+                        logging.error("close is None")
                         print("Please report this bug/error on github")
                         break
                 else:
-                    log("accept is None", "a")
+                    logging.error("accept is None")
                     print("Please report this bug/error on github")
                     break
             else:
-                log("play is None", "a")
+                logging.error("play is None")
                 print("Please report this bug/error on github")
                 break
     else:
-        log("problem with cimento.png. return = ", "a")
-        log(cimento, "a")
+        logging.error(f'problem with cimento.png. return = {cimento}')
         print("Non trovo cimento o non funziona")
         return 0
 
 
 def prove(run, tempo):
     print("PROVE")
-    log("--------prove----------", "a")
-    log("run: ", "a")
-    log(run, "a")
+    logging.debug(f"run = {run}, time = {tempo}")
     if run <= 0:
+        logging.debug("Run < 1")
         pyautogui.alert(text="Run must be > 0", button="OK")
         exit(0)
     provebutton = pyautogui.locateCenterOnScreen("prove.png", grayscale=False, confidence=0.5)
-    log("provebutton: ", "a")
-    log(provebutton, "a")
+    logging.debug(f"bottone prove = {provebutton}")
     if provebutton is not None:
         pyautogui.click(provebutton)
         while True:
             time.sleep(3)
             play = pyautogui.locateCenterOnScreen("play.png", grayscale=False, confidence=0.5)
-            log("play: ", "a")
-            log(play, "a")
+            logging.debug(f"play = {play}")
             if play is not None:
                 pyautogui.click(play)
                 time.sleep(3)
                 accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
-                log("accept: ", "a")
-                log(accept, "a")
+                logging.debug(f"accept = {accept}")
                 if accept is not None:
                     pyautogui.click(accept)
                     time.sleep(int(tempo))
                     close = pyautogui.locateCenterOnScreen("close.png", grayscale=False, confidence=0.5)
-                    log("close: ", "a")
-                    log(close, "a")
+                    logging.debug(f"close = {close}")
                     if close is not None:
                         pyautogui.click(close)
                         time.sleep(3)
@@ -366,24 +335,23 @@ def prove(run, tempo):
                                 pyautogui.click(xbutton)
                                 break
                             else:
-                                log(close, "a")
+                                logging.debug(f"close = {close}")
                                 print("Please report this bug/error on github")
                                 break
                     else:
-                        log("close is None", "a")
+                        logging.debug("close is None")
                         print("Please report this bug/error on github")
                         break
                 else:
-                    log("accept is None", "a")
+                    logging.debug("accept is None")
                     print("Please report this bug/error on github")
                     break
             else:
-                log("play is None", "a")
+                logging.debug("play is None")
                 print("Please report this bug/error on github")
                 break
     else:
-        log("problem with prove.png. return = ", "a")
-        log(provebutton, "a")
+        logging.debug(f"problem with prove.png. return = {provebutton} ")
         print("Please report this bug/error on github")
         return 0
 
@@ -424,8 +392,7 @@ def daily():
 
 
 def main():
-    d1 = datetime.now()
-    log(d1, "w+")
+    logging.basicConfig(filename="latest.log", filemode="w", format='%(asctime)s - %(funcName)s :   %(message)s', level=logging.DEBUG)
     ciclo = 1
     # a = input("inserisci il numero di run del raid: \n")
     # b = input("inserisci il la difficoltà del raid scrivendo norm = normal, hard = hard o hero = heroic\n ")
@@ -437,6 +404,8 @@ def main():
         ciclo = menu()
         if ciclo == 0:
             exit()
+
+
 
 
 if __name__ == '__main__':
