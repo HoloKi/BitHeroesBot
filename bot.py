@@ -25,7 +25,7 @@ def menu():
     print(f"3)Per utilizzare la funzione cimento\n")
     print(f"4)Per modificare le impostazioni delle daily\n")
     print(f"5)Per autilizzare la funzione daily\n")
-    print(f"6)PEr utilizzare la funzione prova")
+    print(f"6)PEr utilizzare la funzione prova\n")
     print(f"0)Per chiudere il programma\n")
     a = input("Seleziona numero: \n")
     if int(a) == 1:
@@ -433,10 +433,10 @@ def main():
     # c = input("Inserisci il tempo impiegato per finire una run(in secondi). Attento...meglio dare qualche secondo in piu! \n")
     # Raid(a,str(b),c)
     print("Start")
-    #while True:
-    #    ciclo = menu()
-    #    if ciclo == 0:
-    #        exit()
+    while True:
+        ciclo = menu()
+        if ciclo == 0:
+            exit()
 
 
 if __name__ == '__main__':
