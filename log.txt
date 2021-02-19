@@ -1,43 +1,26 @@
-2021-02-19 11:01:05.417393
+2021-02-19 12:01:41.121461
 heroic,200
 raid
 run: 
 1
-Point(x=92, y=403)
+raid: 
+Point(x=98, y=426)
+shard=
+Point(x=458, y=195)
+No shard
+heroic,200
+raid
+run: 
+1
+raid: 
+Point(x=98, y=426)
+shard=
+None
 evoca: 
-Point(x=592, y=477)
+Point(x=598, y=500)
 difficulty: 
-Point(x=639, y=343)
+Point(x=645, y=366)
 accept: 
-Point(x=569, y=565)
+Point(x=575, y=588)
 yes: 
-Point(x=372, y=465)
---------pvp----------
-run: 
-1
-pvpbutton: 
-Point(x=90, y=190)
-play: 
-Point(x=600, y=376)
-battle: 
-Point(x=656, y=298)
-accept: 
-Point(x=569, y=565)
-close: 
-Point(x=451, y=549)
---------cimento----------
-run: 
-1
-cimentobutton: 
-None
-problem with cimento.png. return = 
-None
---------cimento----------
-run: 
-1
-provebutton: 
-Point(x=812, y=327)
-play: 
-Point(x=602, y=380)
-accept: 
-Point(x=354, y=553)
+Point(x=379, y=488)

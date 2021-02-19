@@ -102,13 +102,16 @@ def raid(run, difficult, duration):
     else:
         log("run: ", "a")
         log(run, "a")
-        shardcheck = pyautogui.locateCenterOnScreen("noshard.png", grayscale=False, confidence=0.5)
-        if shardcheck is not None:
-            raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
-            log(raidcord, "a")
-            if raidcord is not None:
-                pyautogui.click(raidcord)
-                time.sleep(2)
+        raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
+        log("raid: ", "a")
+        log(raidcord, "a")
+        if raidcord is not None:
+            pyautogui.click(raidcord)
+            time.sleep(2)
+            shardcheck = pyautogui.locateCenterOnScreen("noshard.png", grayscale=False, confidence=0.9)
+            log("shard=", "a")
+            log(shardcheck, "a")
+            if shardcheck is None:
                 evoca = pyautogui.locateCenterOnScreen("startraid.png", grayscale=False, confidence=0.5)
                 log("evoca: ", "a")
                 log(evoca, "a")
@@ -180,13 +183,13 @@ def raid(run, difficult, duration):
                     print("Please report this bug/error on github")
                     exit()
             else:
-                print("RaidError\n")
-                log("Raid is None", "a")
-                print("Please report this bug/error on github")
-                exit()
+                print("Shard non disponibili!")
+                log("No shard", "a")
         else:
-            print("Shard non disponibili!")
-            log("No shard", "a")
+            print("RaidError\n")
+            log("Raid is None", "a")
+            print("Please report this bug/error on github")
+            exit()
 
 
 def pvp(run):
@@ -429,10 +432,10 @@ def main():
     # c = input("Inserisci il tempo impiegato per finire una run(in secondi). Attento...meglio dare qualche secondo in piu! \n")
     # Raid(a,str(b),c)
     print("Start")
-    while True:
-        ciclo = menu()
-        if ciclo == 0:
-            exit()
+    #while True:
+    #    ciclo = menu()
+    #    if ciclo == 0:
+    #        exit()
 
 
 if __name__ == '__main__':
