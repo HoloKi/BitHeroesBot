@@ -68,7 +68,8 @@ def menu():
                     else:
                         if int(a) == 6:
                             proverun = input("!uante run delle prove di Nynx vuoi fare?\n")
-                            promento = input("Quanto ci impieghi in secondi a finirne uno?\n Aggiungi del tempo in piu in caso!\n")
+                            promento = input("Quanto ci impieghi in secondi a finirne uno?\n "
+                                             "Aggiungi del tempo in piu in caso!\n")
                             prove(int(proverun), promento)
                         else:
                             if int(a) == 0:
@@ -87,9 +88,11 @@ def test(name, numero):
 # run = numero di shard
 # difficult = difficoltà
 # duration = quanto dura in secondi una run
+#ritorna 1 se tutto va bene, in caso 0. il break va solo nel ciclo while
 def raid(run, difficult, duration):
     logging.debug(f"run = {run}, difficoltà = {difficult}, durata = {duration}")
     time.sleep(3)
+    #caso in cui le run sono minori di 1, ritorna 0
     if int(run) < 1:
         logging.debug("duration < 1")
         pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
@@ -137,14 +140,19 @@ def raid(run, difficult, duration):
                                     yes = pyautogui.locateCenterOnScreen("yes.png", grayscale=False, confidence=0.5)
                                     logging.debug(f"yes = {yes}")
                                     time.sleep(3)
-                                    pyautogui.click(yes)
-                                    time.sleep(3)
-                                    xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
-                                    pyautogui.click(xbutton)
-                                    time.sleep(3)
-                                    xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
-                                    pyautogui.click(xbutton)
-                                    break
+                                    if yes is not None:
+                                        pyautogui.click(yes)
+                                        time.sleep(3)
+                                        xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                        pyautogui.click(xbutton)
+                                        time.sleep(3)
+                                        xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                        pyautogui.click(xbutton)
+                                        break
+                                    else:
+                                        print("Tempo impostato non sufficiente!")
+                                        return 0
+
                                 else:
                                     print(f"run debug = {run}")
                                     run = int(run) - 1
@@ -154,6 +162,7 @@ def raid(run, difficult, duration):
                                     pyautogui.click(rerun)
                                     time.sleep(int(duration))
                             return 1
+
                         else:
                             print("AcceptError\n")
                             logging.error("AcceptError, please send this to github issue")
