@@ -47,14 +47,17 @@ def menu():
                     return 1
     else:
         if int(a) == 2:
-            pvprun = input("Quante run di pvp vuoi fare?\n ATTENTO:il bot selezioneràdi default il primo nella lista! \n")
+            pvprun = input(
+                "Quante run di pvp vuoi fare?\n ATTENTO:il bot selezioneràdi default il primo nella lista! \n")
             pvp(int(pvprun))
             return 1
         else:
             if int(a) == 3:
                 cimentorun = input("Quante run di cimento vuoi fare?\n")
                 timento = input("Quanto ci impieghi in secondi a finirne uno?\n Aggiungi del tempo in piu in caso!\n")
-                cimento(int(cimentorun), int(timento))
+                g = cimento(int(cimentorun), int(timento))
+                if g == 0:
+                    print("Non c'è cimento!")
                 return 1
             else:
                 if int(a) == 4:
@@ -78,21 +81,22 @@ def test(name, numero):
     return raidcord
 
 
+# run = numero di shard
+# difficult = difficoltà
+# duration = quanto dura in secondi una run
 def raid(run, difficult, duration):
-    # run = numero di shard
-    # difficult = difficoltà
-    # duration = quanto dura in secondi una run
+    print("RAID")
     log(f"{difficult},{duration}", "a")
     log("raid", "a")
     time.sleep(3)
-    if (int(run) < 1):
+    if int(run) < 1:
         log("run<1", "a")
         pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
         exit()
     else:
-        raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
         log("run: ", "a")
         log(run, "a")
+        raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
         log(raidcord, "a")
         if raidcord is not None:
             pyautogui.click(raidcord)
@@ -100,7 +104,7 @@ def raid(run, difficult, duration):
             evoca = pyautogui.locateCenterOnScreen("startraid.png", grayscale=False, confidence=0.5)
             log("evoca: ", "a")
             log(evoca, "a")
-            if evoca != None:
+            if evoca is not None:
                 pyautogui.click(evoca)
                 time.sleep(3)
                 if difficult == hero:
@@ -112,10 +116,10 @@ def raid(run, difficult, duration):
                 if difficult == norm:
                     difficulty = pyautogui.locateCenterOnScreen("normal.png", grayscale=False, confidence=0.5)
                     print(difficulty)
-                if difficult != norm and difficult != hard and difficult != hero:
-                    print("error")
-                    log("difficult error, probably not norm,hard or hero", "a")
-                    exit()
+                #if difficult != norm and difficult != hard and difficult != hero:
+                #    print("error")
+                #    log("difficult error, probably not norm,hard or hero", "a")
+                #    exit()
                 log("difficulty: ", "a")
                 log(difficulty, "a")
                 if difficulty is not None:
@@ -136,6 +140,9 @@ def raid(run, difficult, duration):
                                 log(yes, "a")
                                 time.sleep(3)
                                 pyautogui.click(yes)
+                                time.sleep(3)
+                                xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                pyautogui.click(xbutton)
                                 time.sleep(3)
                                 xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
                                 pyautogui.click(xbutton)
@@ -168,6 +175,7 @@ def raid(run, difficult, duration):
 
 
 def pvp(run):
+    print("PVP")
     log("--------pvp----------", "a")
     log("run: ", "a")
     log(run, "a")
@@ -238,6 +246,7 @@ def pvp(run):
 
 
 def cimento(run, tempo):
+    print("CIMENTO")
     log("--------cimento----------", "a")
     log("run: ", "a")
     log(run, "a")
@@ -294,8 +303,70 @@ def cimento(run, tempo):
     else:
         log("problem with cimento.png. return = ", "a")
         log(cimento, "a")
+        print("Non trovo cimento o non funziona")
+        return 0
+
+
+def prove(run, tempo):
+    print("PROVE")
+    log("--------prove----------", "a")
+    log("run: ", "a")
+    log(run, "a")
+    if run <= 0:
+        pyautogui.alert(text="Run must be > 0", button="OK")
+        exit(0)
+    provebutton = pyautogui.locateCenterOnScreen("prove.png", grayscale=False, confidence=0.5)
+    log("provebutton: ", "a")
+    log(provebutton, "a")
+    if provebutton is not None:
+        pyautogui.click(provebutton)
+        while True:
+            time.sleep(3)
+            play = pyautogui.locateCenterOnScreen("play.png", grayscale=False, confidence=0.5)
+            log("play: ", "a")
+            log(play, "a")
+            if play is not None:
+                pyautogui.click(play)
+                time.sleep(3)
+                accept = pyautogui.locateCenterOnScreen("accept.png", grayscale=False, confidence=0.5)
+                log("accept: ", "a")
+                log(accept, "a")
+                if accept is not None:
+                    pyautogui.click(accept)
+                    time.sleep(int(tempo))
+                    close = pyautogui.locateCenterOnScreen("close.png", grayscale=False, confidence=0.5)
+                    log("close: ", "a")
+                    log(close, "a")
+                    if close is not None:
+                        pyautogui.click(close)
+                        time.sleep(3)
+                        run = int(run) - 1
+                        if int(run) == 0:
+                            xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                            if xbutton is not None:
+                                pyautogui.click(xbutton)
+                                break
+                            else:
+                                log(close, "a")
+                                print("Please report this bug/error on github")
+                                break
+                    else:
+                        log("close is None", "a")
+                        print("Please report this bug/error on github")
+                        break
+                else:
+                    log("accept is None", "a")
+                    print("Please report this bug/error on github")
+                    break
+            else:
+                log("play is None", "a")
+                print("Please report this bug/error on github")
+                break
+    else:
+        log("problem with prove.png. return = ", "a")
+        log(provebutton, "a")
         print("Please report this bug/error on github")
-        exit()
+        return 0
 
 
 # potrei fare def setconfig(a,b,c)
@@ -325,24 +396,28 @@ def daily():
     raid(int(raidshard), hero, int(tempo))
     time.sleep(5)
     pvp(int(pvprun))
-    cimento(int(cimentorun), 200)
+    time.sleep(5)
+    # prova a fare cimento. Se ritorna None, ritorna 0
+    g = cimento(int(cimentorun), 200)
+    if g == 0:
+        prove(int(cimentorun), 200)
     f.close()
 
 
 def main():
     d1 = datetime.now()
     log(d1, "w+")
-    ciclo=1
+    ciclo = 1
     # a = input("inserisci il numero di run del raid: \n")
     # b = input("inserisci il la difficoltà del raid scrivendo norm = normal, hard = hard o hero = heroic\n ")
     # print(b)
     # c = input("Inserisci il tempo impiegato per finire una run(in secondi). Attento...meglio dare qualche secondo in piu! \n")
     # Raid(a,str(b),c)
     print("Start")
-    while True:
-        ciclo = menu()
-        if ciclo == 0:
-            exit()
+    # while True:
+    #    ciclo = menu()
+    #    if ciclo == 0:
+    #        exit()
 
 
 if __name__ == '__main__':

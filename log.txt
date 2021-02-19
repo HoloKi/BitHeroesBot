@@ -1,12 +1,43 @@
-2021-02-18 10:39:21.407439
+2021-02-19 11:01:05.417393
+heroic,200
+raid
+run: 
+1
+Point(x=92, y=403)
+evoca: 
+Point(x=592, y=477)
+difficulty: 
+Point(x=639, y=343)
+accept: 
+Point(x=569, y=565)
+yes: 
+Point(x=372, y=465)
+--------pvp----------
+run: 
+1
+pvpbutton: 
+Point(x=90, y=190)
+play: 
+Point(x=600, y=376)
+battle: 
+Point(x=656, y=298)
+accept: 
+Point(x=569, y=565)
+close: 
+Point(x=451, y=549)
 --------cimento----------
 run: 
 1
 cimentobutton: 
-Point(x=769, y=271)
+None
+problem with cimento.png. return = 
+None
+--------cimento----------
+run: 
+1
+provebutton: 
+Point(x=812, y=327)
 play: 
-Point(x=559, y=323)
+Point(x=602, y=380)
 accept: 
-Point(x=527, y=507)
-close: 
-Point(x=409, y=494)
+Point(x=354, y=553)
