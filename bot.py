@@ -4,6 +4,7 @@ import json
 import cv2 as cv
 import logging
 
+VERSION = 2.2
 
 hero = "heroic"
 hard = "hard"
@@ -11,14 +12,14 @@ norm = "normal"
 
 
 def menu():
-    print("\n\n\n\n\n")
+    print("\n\n\n")
     print(f"Digita il numero per selezionare l'opzione desiderato\n")
     print(f"1)Per utilizzare la funzione raid\n")
     print(f"2)Per utilizzare la funzione pvp\n")
     print(f"3)Per utilizzare la funzione cimento\n")
     print(f"4)Per modificare le impostazioni delle daily\n")
-    print(f"5)Per autilizzare la funzione daily\n")
-    print(f"6)PEr utilizzare la funzione prova\n")
+    print(f"5)Per utilizzare la funzione daily\n")
+    print(f"6)Per utilizzare la funzione prova\n")
     print(f"0)Per chiudere il programma\n")
     a = input("Seleziona numero: \n")
     logging.debug(f'Menu input = {a}')
@@ -28,17 +29,18 @@ def menu():
         d = input(
             "Digita il numero relativo a quanto impieghi a completare una run del raid in secondi.\n Attento, non essere preciso, meglio avere del tempo in piu per eventuali\n")
         if int(c) == 1:
-            raid(b, norm, d)
+            retraid = raid(b, norm, d)
+            logging.debug(f"ritorno del raid = {retraid}")
             return 1
         else:
             if int(c) == 2:
-                supp = raid(b, hard, d)
-                if supp == 0:
-                    return 1
+                retraid = raid(b, hard, d)
+                logging.debug(f"ritorno del raid = {retraid}")
                 return 1
             else:
                 if int(c) == 3:
-                    raid(b, hero, d)
+                    retraid = raid(b, hero, d)
+                    logging.debug(f"ritorno del raid = {retraid}")
                     return 1
                 else:
                     print("Qualcosa è andato storto con la digitazione dei numeri")
@@ -46,7 +48,7 @@ def menu():
     else:
         if int(a) == 2:
             pvprun = input(
-                "Quante run di pvp vuoi fare?\n ATTENTO:il bot selezioneràdi default il primo nella lista! \n")
+                "Quante run di pvp vuoi fare?\n ATTENTO: il bot selezionera di default il primo nella lista! \n")
             pvp(int(pvprun))
             return 1
         else:
@@ -67,7 +69,7 @@ def menu():
                         return 1
                     else:
                         if int(a) == 6:
-                            proverun = input("!uante run delle prove di Nynx vuoi fare?\n")
+                            proverun = input("Quante run delle prove di Nynx vuoi fare?\n")
                             promento = input("Quanto ci impieghi in secondi a finirne uno?\n "
                                              "Aggiungi del tempo in piu in caso!\n")
                             prove(int(proverun), promento)
@@ -90,6 +92,9 @@ def test(name, numero):
 # duration = quanto dura in secondi una run
 #ritorna 1 se tutto va bene, in caso 0. il break va solo nel ciclo while
 def raid(run, difficult, duration):
+    conta = 1
+    print("\nRAID\n")
+    print(f"run = {run}, difficolta = {difficult} e durata = {duration} secondi\n")
     logging.debug(f"run = {run}, difficoltà = {difficult}, durata = {duration}")
     time.sleep(3)
     #caso in cui le run sono minori di 1, ritorna 0
@@ -98,13 +103,13 @@ def raid(run, difficult, duration):
         pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
         return 0
     else:
-        raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.7)
-        logging.debug(f"raid button = {raidcord}. To fix it, change position in the screen.")
+        raidcord = pyautogui.locateCenterOnScreen("prova.png", grayscale=False, confidence=0.6)
+        logging.debug(f"raid button = {raidcord}. If None, to fix it, change position in the screen.")
         if raidcord is not None:
             pyautogui.click(raidcord)
             time.sleep(2)
             shardcheck = pyautogui.locateCenterOnScreen("noshard.png", grayscale=False, confidence=0.9)
-            logging.debug(f"shardcheck = {shardcheck}.")
+            logging.debug(f"shardcheck = {shardcheck}. if None its ok!")
             if shardcheck is None:
                 evoca = pyautogui.locateCenterOnScreen("startraid.png", grayscale=False, confidence=0.5)
                 logging.debug(f"evoca = {evoca}.")
@@ -113,13 +118,10 @@ def raid(run, difficult, duration):
                     time.sleep(3)
                     if difficult == hero:
                         difficulty = pyautogui.locateCenterOnScreen("eroic.png", grayscale=False, confidence=0.4)
-                        print(difficulty)
                     if difficult == hard:
                         difficulty = pyautogui.locateCenterOnScreen("hard.png", grayscale=False, confidence=0.5)
-                        print(difficulty)
                     if difficult == norm:
                         difficulty = pyautogui.locateCenterOnScreen("normal.png", grayscale=False, confidence=0.5)
-                        print(difficulty)
                     #if difficult != norm and difficult != hard and difficult != hero:
                     #    print("error")
                     #    log("difficult error, probably not norm,hard or hero", "a")
@@ -133,20 +135,18 @@ def raid(run, difficult, duration):
                         if accept is not None:
                             pyautogui.click(accept)
                             # tempo dedicato al completamento del raid in auto
-                            time.sleep(int(duration))
                             while True:
+                                print(f"giro numero = {conta}")
+                                time.sleep(int(duration))
                                 if int(run) == 1:
-                                    print(f"run debug = {run}")
                                     yes = pyautogui.locateCenterOnScreen("yes.png", grayscale=False, confidence=0.5)
                                     logging.debug(f"yes = {yes}")
                                     time.sleep(3)
                                     if yes is not None:
                                         pyautogui.click(yes)
-                                        time.sleep(3)
+                                        time.sleep(5)
                                         xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
-                                        pyautogui.click(xbutton)
-                                        time.sleep(3)
-                                        xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                                        logging.debug(f"xbutton = {xbutton}")
                                         pyautogui.click(xbutton)
                                         break
                                     else:
@@ -154,43 +154,48 @@ def raid(run, difficult, duration):
                                         return 0
 
                                 else:
-                                    print(f"run debug = {run}")
+                                    conta = int(conta) + 1
                                     run = int(run) - 1
                                     rerun = pyautogui.locateCenterOnScreen("rerun.png", grayscale=False, confidence=0.5)
                                     logging.debug(f"rerun = {rerun}")
                                     time.sleep(3)
                                     pyautogui.click(rerun)
-                                    time.sleep(int(duration))
                             return 1
 
                         else:
-                            print("AcceptError\n")
+                            print("Tasto accept non trovato!\n")
                             logging.error("AcceptError, please send this to github issue")
                             print("Please report this bug/error on github\n")
                             return 0
                     else:
-                        print("DifficultError\n")
+                        print("Tasto della difficolta non trovato!\n")
                         logging.error("Difficult error, please send this to github issue")
                         print("Please report this bug/error on github\n")
                         return 0
                 else:
-                    print("EvocaError\n")
+                    print("Tasto evoca non trovato!r\n")
                     logging.debug("Evoca is none, please send this to github issue")
-                    print("Please report this bug/error on github")
+                    print("Please report this bug/error on github\n")
                     return 0
             else:
-                print("Shard non disponibili!")
+                print("Shard non disponibili!\n")
                 logging.debug("No shard")
+                time.sleep(5)
+                xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
+                logging.debug(f"xbutton = {xbutton}")
+                pyautogui.click(xbutton)
         else:
-            print("RaidError\n")
+            print("Tasto errore non trovato!\n")
             logging.debug("Raid is None,please report this error on github")
-            print("Please report this bug/error on github")
+            print("Prova a spostarti un pochino e riprova il comando!\n")
             return 0
 
 
 def pvp(run):
+    conta = 1
     logging.debug(f"run = {run}")
-    print("PVP")
+    print("\n-----PVP-----\n")
+    print(f"run = {run}\n")
     if run <= 0:
         pyautogui.alert(text="Run must be > 0", button="OK")
         logging.debug("run < 1")
@@ -215,7 +220,9 @@ def pvp(run):
                     logging.debug(f"battle = {battle}")
                     if accept is not None:
                         pyautogui.click(accept)
+                        print(f"giro numero = {conta}")
                         time.sleep(100)
+                        conta = int(conta) + 1
                         close = pyautogui.locateCenterOnScreen("close.png", grayscale=False, confidence=0.5)
                         logging.debug(f"close = {close}")
                         if close is not None:
@@ -248,6 +255,7 @@ def pvp(run):
                 logging.error("play is None")
                 print("Please report this bug/error on github")
                 break
+        return 1
     else:
         logging.error(f"problem with pvp.png. pvp = {pvp}")
         print("Please report this bug/error on github")
@@ -310,7 +318,9 @@ def cimento(run, tempo):
 
 
 def prove(run, tempo):
-    print("PROVE")
+    print("\nPROVE\n")
+    print(f"run = {run}, tempo per un completamento = {tempo}\n")
+    conta = 1
     logging.debug(f"run = {run}, time = {tempo}")
     if run <= 0:
         logging.debug("Run < 1")
@@ -331,13 +341,15 @@ def prove(run, tempo):
                 logging.debug(f"accept = {accept}")
                 if accept is not None:
                     pyautogui.click(accept)
+                    print(f"giro numero = {conta}")
                     time.sleep(int(tempo))
                     close = pyautogui.locateCenterOnScreen("close.png", grayscale=False, confidence=0.5)
                     logging.debug(f"close = {close}")
                     if close is not None:
                         pyautogui.click(close)
-                        time.sleep(3)
+                        time.sleep(5)
                         run = int(run) - 1
+                        conta = int(conta) + 1
                         if int(run) == 0:
                             xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
                             if xbutton is not None:
@@ -402,6 +414,7 @@ def daily():
 
 def main():
     logging.basicConfig(filename="latest.log", filemode="w", format='%(asctime)s - %(funcName)s :   %(message)s', level=logging.DEBUG)
+    logging.info(f"VERSION : {VERSION} - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot")
     ciclo = 1
     # a = input("inserisci il numero di run del raid: \n")
     # b = input("inserisci il la difficoltà del raid scrivendo norm = normal, hard = hard o hero = heroic\n ")
@@ -418,4 +431,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as e:
+        logging.error(e)

@@ -1,24 +1,8 @@
-2021-02-19 20:42:39,245 - main
-2021-02-19 20:42:39,245 - main
-2021-02-19 20:43:37,345 - main
-2021-02-19 20:43:37,346 - main
-2021-02-19 20:43:38,558 - menu
-2021-02-19 20:43:42,351 - raid
-2021-02-19 20:43:45,612 - raid
-2021-02-19 20:43:45,614 - raid
-2021-02-19 20:55:11,195 - menu :   Menu input = 1
-2021-02-19 20:55:12,720 - raid :   run = 1, difficoltà = normal, durata = 1
-2021-02-19 20:55:15,965 - raid :   raid button = None. To fix it, change position in the screen.
-2021-02-19 20:55:15,967 - raid :   Raid is None,please report this error on github
-2021-02-19 21:01:34,828 - menu :   Menu input = 1
-2021-02-19 21:01:43,572 - raid :   run = 1, difficoltà = heroic, durata = 200
-2021-02-19 21:01:46,804 - raid :   raid button = None. To fix it, change position in the screen.
-2021-02-19 21:01:46,806 - raid :   Raid is None,please report this error on github
-2021-02-19 21:04:31,514 - menu :   Menu input = 1
-2021-02-19 21:04:34,787 - raid :   run = 1, difficoltà = heroic, durata = 100
-2021-02-19 21:04:38,010 - raid :   raid button = Point(x=76, y=426). To fix it, change position in the screen.
-2021-02-19 21:04:40,311 - raid :   shardcheck = None.
-2021-02-19 21:04:40,572 - raid :   evoca = Point(x=576, y=500).
-2021-02-19 21:04:43,887 - raid :   difficult = Point(x=623, y=366).
-2021-02-19 21:04:46,225 - raid :   accept = Point(x=553, y=588)
-2021-02-19 21:06:26,561 - raid :   yes = None
+2021-02-22 10:49:41,499 - main :   VERSION : 2.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-02-22 10:49:54,716 - menu :   Menu input = 6
+2021-02-22 10:49:57,462 - prove :   run = 1, time = 200
+2021-02-22 10:49:57,682 - prove :   bottone prove = Point(x=821, y=270)
+2021-02-22 10:50:01,070 - prove :   play = Point(x=610, y=323)
+2021-02-22 10:50:04,439 - prove :   accept = Point(x=578, y=507)
+2021-02-22 10:53:24,753 - prove :   close = Point(x=384, y=407)
+2021-02-22 11:00:20,810 - menu :   Menu input = 0
