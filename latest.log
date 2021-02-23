@@ -1,8 +1,10 @@
-2021-02-23 09:27:36,292 - main :   VERSION : 2.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2021-02-23 09:27:42,146 - menu :   Menu input = 6
-2021-02-23 09:27:46,796 - prove :   run = 1, time = 200
-2021-02-23 09:27:47,001 - prove :   bottone prove = Point(x=806, y=313)
-2021-02-23 09:27:50,392 - prove :   play = Point(x=595, y=366)
-2021-02-23 09:27:53,740 - prove :   accept = Point(x=563, y=550)
-2021-02-23 09:31:14,061 - prove :   close = Point(x=369, y=450)
-2021-02-23 09:32:13,504 - menu :   Menu input = 0
+2021-02-23 10:36:36,964 - main :   VERSION : 2.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-02-23 10:36:59,860 - gvg :   gvgbutton = Point(x=805, y=240)
+2021-02-23 10:37:05,263 - gvg :   play = Point(x=595, y=366)
+2021-02-23 10:37:10,614 - gvg :   battle = Point(x=650, y=283)
+2021-02-23 10:37:15,967 - gvg :   accept = Point(x=563, y=550)
+2021-02-23 10:38:46,282 - gvg :   close = Point(x=445, y=537)
+2021-02-23 10:38:51,716 - gvg :   play = Point(x=595, y=366)
+2021-02-23 10:38:57,024 - gvg :   battle = Point(x=650, y=283)
+2021-02-23 10:39:02,369 - gvg :   accept = Point(x=563, y=550)
+2021-02-23 10:40:32,676 - gvg :   close = Point(x=445, y=537)
