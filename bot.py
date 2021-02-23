@@ -147,6 +147,7 @@ def raid(run, difficult, duration):
                                         time.sleep(5)
                                         xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
                                         logging.debug(f"xbutton = {xbutton}")
+                                        time.sleep(5)
                                         pyautogui.click(xbutton)
                                         break
                                     else:
@@ -296,7 +297,7 @@ def cimento(run, tempo):
                                 pyautogui.click(xbutton)
                                 break
                             else:
-                                logging.debug(f'close = {close}')
+                                logging.debug(f'xbutton = {xbutton}')
                                 print("Please report this bug/error on github")
                                 break
                     else:
@@ -351,12 +352,13 @@ def prove(run, tempo):
                         run = int(run) - 1
                         conta = int(conta) + 1
                         if int(run) == 0:
+                            time.sleep(3)
                             xbutton = pyautogui.locateCenterOnScreen("xbutton.png", grayscale=False, confidence=0.5)
                             if xbutton is not None:
                                 pyautogui.click(xbutton)
                                 break
                             else:
-                                logging.debug(f"close = {close}")
+                                logging.debug(f"xbutton = {xbutton}")
                                 print("Please report this bug/error on github")
                                 break
                     else:
