@@ -3,7 +3,7 @@ import time
 import cv2 as cv
 import logging
 from colorama import *
-from termcolor import colored
+from termcolor import colored,cprint
 init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base
 
 hero = "heroic"
@@ -18,9 +18,9 @@ error=colored("Please report this bug/error on github\n",'red',attrs=['bold'])
 # ritorna 1 se tutto va bene, in caso 0. il break va solo nel ciclo while
 def raid(run, difficult, duration):
     conta = 1
-    print(colored("\n-----RAID-----",'blue'))
-    print(colored("run = ",'green'),colored(run,'white'),colored(" difficolta = ",'green'),colored(difficult,'white'),
-          colored(" e durata = ",'green'), colored(duration,'white'),colored("secondi\n",'green'))
+    print(colored("\n-----RAID-----",'cyan',attrs=['bold']))
+    print(colored("run = ",'green',attrs=['bold']),colored(run,'white'),colored(" difficolta = ",'green',attrs=['bold']),colored(difficult,'white'),
+          colored(" e durata = ",'green',attrs=['bold']), colored(duration,'white'),colored("secondi\n",'green',attrs=['bold']))
     logging.debug(f"run = {run}, difficoltà = {difficult}, durata = {duration}")
     time.sleep(3)
     # caso in cui le run sono minori di 0, ritorna 0
@@ -89,13 +89,13 @@ def raid(run, difficult, duration):
                                             #Se è morto e yes è None cioè non trova il bottone
                                             close = pyautogui.locateCenterOnScreen(r"image\chiudi.png",grayscale=False,
                                                                                    confidence=0.5)
-                                            logging(f"close= {close}")
+                                            logging.debug(f"close= {close}")
                                             if close is not None:
                                                 time.sleep(3)
                                                 pyautogui.click(close)
                                                 return 0
                                             else:
-                                                print("Tempo impostato non sufficiente!")
+                                                cprint("Tempo impostato non sufficiente!",'red',attrs=['bold'])
                                                 return 0
 
                                     else:

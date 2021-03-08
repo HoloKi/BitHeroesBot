@@ -4,7 +4,7 @@ import cv2 as cv
 import logging
 from colorama import *
 from termcolor import colored,cprint
-init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base
+init(autoreset=True) # Permette ad ogni print di ritornare al suo colore base
 
 
 error=colored("Please report this bug/error on github\n", 'red', attrs=['bold'])
@@ -12,7 +12,7 @@ error=colored("Please report this bug/error on github\n", 'red', attrs=['bold'])
 def spedizione(run, tempo):
     conta = 1
     logging.debug(f"run = {run}, time = {tempo} seconds")
-    cprint("\n-----SPEDIZIONE-----", 'blue', attrs=['bold'])
+    cprint("\n-----SPEDIZIONE-----", 'cyan', attrs=['bold'])
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'), colored(" e durata = ",
         'green', attrs=['bold']),colored(tempo, 'white'), colored("secondi\n", 'green', attrs=['bold']))
     if run <= 0:
@@ -51,12 +51,13 @@ def spedizione(run, tempo):
                             xbutton = pyautogui.locateCenterOnScreen(r"image\xbutton1.png", grayscale=False, confidence = 0.9)
                             logging.debug(f"xbutton1 = {xbutton}")
                             pyautogui.click(xbutton)
-                            time.sleep(2)
+                            time.sleep(3)
                             #cicla 2 volte
                             for i in range(2):
                                 xbutton = pyautogui.locateCenterOnScreen(r"image\xbutton.png", grayscale=False, confidence=0.5)
                                 logging.debug(f"xbutton = {xbutton}")
-                                time.sleep(3)
+                                #pyautogui.press('esc')
+                                time.sleep(2)
                                 if xbutton is not None:
                                     pyautogui.click(xbutton)
                                     time.sleep(2)

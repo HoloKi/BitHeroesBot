@@ -18,7 +18,7 @@ def pvp(run):
     else:
         conta = 1
         logging.debug(f"run = {run}")
-        print(colored("\n-----PVP-----",'blue',attrs=['bold']))
+        print(colored("\n-----PVP-----",'cyan',attrs=['bold']))
         print(colored("run = ",'green',attrs=['bold']),colored(run,'white'),colored("\n"))
         #Cerca il bottone del pvp
         pvp = pyautogui.locateCenterOnScreen(r"image\pvp.png", grayscale=False, confidence=0.5)

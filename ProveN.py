@@ -11,7 +11,7 @@ error = colored("Please report this bug/error on github",'red')
 
 
 def prove(run, tempo):
-    print(colored("\n-----PROVE-----", 'blue', attrs=['bold']))
+    print(colored("\n-----PROVE-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'), colored(" e durata = ", 'green', attrs=['bold']),
           colored(tempo, 'white'), colored("secondi\n", 'green', attrs=['bold']))
     conta = 1

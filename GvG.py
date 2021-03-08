@@ -9,8 +9,8 @@ init(autoreset=True) # Permette ad ogni print di ritornare al suo colore base
 
 def gvg(run, tempo):
     conta = 1
-    print(colored("\n-----GVG-----",'blue'))
-    print(colored("run = ", 'green'), colored(run, 'white'),colored(" e durata = ", 'green'),
+    print(colored("\n-----GVG-----",'cyan',attrs=['bold']))
+    print(colored("run = ", 'green',attrs=['bold']), colored(run, 'white'),colored(" e durata = ", 'green',attrs=['bold']),
           colored(tempo, 'white'), colored("secondi\n", 'green'))
     time.sleep(2)
     gvgbutton = pyautogui.locateCenterOnScreen(r"image\gvg.png", grayscale=False, confidence=0.5)
