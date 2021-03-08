@@ -10,7 +10,7 @@ hero = "heroic"
 hard = "hard"
 norm = "normal"
 
-error=colored("Please report this bug/error on github\n",'red')
+error=colored("Please report this bug/error on github\n",'red',attrs=['bold'])
 
 # run = numero di shard
 # difficult = difficoltà

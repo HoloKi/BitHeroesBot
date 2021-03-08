@@ -1,6 +1,9 @@
-2021-03-08 18:36:09,124 - main :   VERSION : 3.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2021-03-08 18:36:33,138 - menu :   Menu input = 6
-2021-03-08 18:37:00,135 - prove :   run = 1, time = 120
-2021-03-08 18:37:00,365 - prove :   bottone prove = Point(x=817, y=359)
-2021-03-08 18:37:03,742 - prove :   play = Point(x=606, y=412)
-2021-03-08 18:37:07,102 - prove :   accept = Point(x=574, y=596)
+2021-03-08 20:52:03,741 - main :   VERSION : 3.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-03-08 20:52:10,131 - menu :   Menu input = 8
+2021-03-08 20:52:15,269 - spedizione :   run = 1, time = 120 seconds
+2021-03-08 20:52:15,480 - spedizione :   enter = Point(x=426, y=534)
+2021-03-08 20:52:20,838 - spedizione :   accept = Point(x=544, y=540)
+2021-03-08 20:54:24,191 - spedizione :   yes = Point(x=347, y=439)
+2021-03-08 20:54:32,536 - spedizione :   xbutton1 = Point(x=672, y=195)
+2021-03-08 20:54:34,896 - spedizione :   xbutton = None
+2021-03-08 20:54:37,901 - spedizione :   xbutton missing

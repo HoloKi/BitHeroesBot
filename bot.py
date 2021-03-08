@@ -8,6 +8,7 @@ import Cimento
 import PvP
 import ProveN
 import GvG
+import Expedition
 from colorama import *
 from termcolor import colored,cprint
 
@@ -29,9 +30,11 @@ def menu():
     print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
     print(colored("6) ",'white'),colored("Prove di Nynx",'green',attrs=['bold']))
     print(colored("7) ",'white'),colored("GvG",'green',attrs=['bold']))
+    print(colored("8) ",'white'),colored("Spedizione",'red',attrs=['bold']),colored("  - Funzione semi-manuale!",'cyan',attrs=['bold']))
     print(colored("10)",'white'),colored("Debug Mode\n",'green',attrs=['bold']))
-    print(f"0)Per chiudere il programma\n")
-    a = input("Seleziona numero: \n")
+    print(f"0) Per chiudere il programma\n")
+    cprint("Seleziona numero: \n",'cyan',attrs=['bold'])
+    a = input()
     logging.debug(f'Menu input = {a}')
     if int(a) == 1:
         print(colored("Digita il numero di run: ",'green',attrs=['bold']))
@@ -104,14 +107,25 @@ def menu():
                                 GvG.gvg(int(gvgrun),int(gvgtempo))
                                 return 1;
                             else:
-                                if int(a) == 10:
-                                    debug()
-                                    return 1;
+                                if int(a)==8 :
+                                    cprint("ATTENTO: Questa modalità richiede che tu selezioni prima la spedizione!",'red',attrs=['bold'])
+                                    cprint("Devi selezionare te quale delle 4 spedizioni fare! Al resto ci pensa il BOT!",'red',attrs=['bold'])
+                                    cprint("Quante run desideri fare?",'green',attrs=['bold'])
+                                    exprun = input()
+                                    cprint("Quanto tempo impieghi a terminare una run?",'green',attrs=['bold'])
+                                    cprint("ATTENTO: Aggiungi del tempo in piu onde evitare che si impalli il bot!",'red',attrs=['bold'])
+                                    exptime= input()
+                                    Expedition.spedizione(int(exprun),int(exptime))
+                                    return 1
                                 else:
-                                    if int(a) == 0:
-                                        return 0
+                                    if int(a) == 10:
+                                        debug()
+                                        return 1;
                                     else:
-                                        print("Non esiste un'opzione relativo a questo numero!")
+                                        if int(a) == 0:
+                                            return 0
+                                        else:
+                                            print("Non esiste un'opzione relativo a questo numero!")
 
 
 def test(name, numero):

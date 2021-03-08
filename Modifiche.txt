@@ -29,3 +29,4 @@ update:
 	-funzione debug che mi controlla che veda tutte le immagini disponibili
 	-modifica del menu semplificato
 	-modificato il pvp da 100 a 40 secondi
+	-aggiunte le spedizioni!
