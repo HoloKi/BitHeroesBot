@@ -1,0 +1,31 @@
+VERSIONE: 3.1
+
+- librerie:
+	-colorama
+	-termcolor
+	-logging
+	-pyautogui
+
+- modules:
+	-raid
+	-Cimento
+	-PvP
+	-ProveN
+	-GvG
+
+- file:
+	-*.py
+	-images
+	-modifiche.txt
+	-latest.log
+
+update:
+	-aggiunti i colori con colorama e termcolor
+	-controllo nel raid se al termine del tempo si è morti
+	-aggiunto i commenti per facilitare la lettura
+	-suddivisione delle funzioni in moduli
+	-raggruppamenti delle immagini in una cartella
+	-in aggiunta le spedizioni
+	-funzione debug che mi controlla che veda tutte le immagini disponibili
+	-modifica del menu semplificato
+	-modificato il pvp da 100 a 40 secondi

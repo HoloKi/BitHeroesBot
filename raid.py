@@ -68,7 +68,7 @@ def raid(run, difficult, duration):
                                 pyautogui.click(accept)
                                 # tempo dedicato al completamento del raid in auto
                                 while True:
-                                    print(colored(f"giro numero = ",'green'),colored(conta,"red"))
+                                    print(colored(f"giro numero = ",'green', attrs=['bold']),colored(conta,'white'))
                                     time.sleep(int(duration))
                                     if int(run) == 1:
                                         yes = pyautogui.locateCenterOnScreen(r"image\yes.png", grayscale=False,
@@ -93,6 +93,7 @@ def raid(run, difficult, duration):
                                             if close is not None:
                                                 time.sleep(3)
                                                 pyautogui.click(close)
+                                                return 0
                                             else:
                                                 print("Tempo impostato non sufficiente!")
                                                 return 0
@@ -115,6 +116,7 @@ def raid(run, difficult, duration):
                                             else:
                                                 #se è morto clicca su close;
                                                 pyautogui.click(close);
+                                                return 0
                                         else:
                                             #Se può fare la rerun
                                             pyautogui.click(rerun)

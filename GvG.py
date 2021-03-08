@@ -1,14 +1,17 @@
 import pyautogui
 import time
-import json
 import cv2 as cv
 import logging
+from colorama import *
+from termcolor import colored
+init(autoreset=True) # Permette ad ogni print di ritornare al suo colore base
 
 
 def gvg(run, tempo):
     conta = 1
-    print("GVG")
-    print(f"run = {run},tempo = {tempo}s")
+    print(colored("\n-----GVG-----",'blue'))
+    print(colored("run = ", 'green'), colored(run, 'white'),colored(" e durata = ", 'green'),
+          colored(tempo, 'white'), colored("secondi\n", 'green'))
     time.sleep(2)
     gvgbutton = pyautogui.locateCenterOnScreen(r"image\gvg.png", grayscale=False, confidence=0.5)
     if gvgbutton is not None:
@@ -16,7 +19,7 @@ def gvg(run, tempo):
         pyautogui.click(gvgbutton)
         time.sleep(5)
         while True:
-            print(f"giro numero: {conta}")
+            print(colored("giro numero = ",'green'),colored(conta,'white'))
             conta = int(conta) + 1
             play = pyautogui.locateCenterOnScreen(r"image\play.png", grayscale=False, confidence=0.5)
             if play is not None:

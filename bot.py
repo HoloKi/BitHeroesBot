@@ -8,31 +8,41 @@ import Cimento
 import PvP
 import ProveN
 import GvG
+from colorama import *
+from termcolor import colored,cprint
 
-VERSION = 2.4
+init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
+
+VERSION = 3.1
 
 hero = "heroic"
 hard = "hard"
 norm = "normal"
 
 def menu():
-    print("\n\n\n")
-    print(f"Digita il numero per selezionare l'opzione desiderato\n")
-    print(f"1)Per utilizzare la funzione raid\n")
-    print(f"2)Per utilizzare la funzione pvp\n")
-    print(f"3)Per utilizzare la funzione cimento\n")
-    print(f"4)Per modificare le impostazioni delle daily\n")
-    print(f"5)Per utilizzare la funzione daily\n")
-    print(f"6)Per utilizzare la funzione prova\n")
-    print(f"7)Per utilizzare la funzione gvg\n")
+    print("\n\n")
+    print(colored("Digita il numero per selezionare l'opzione desiderato:\n",'red',attrs=['bold']))
+    print(colored("1) ",'white'),colored("Raid",'green',attrs=['bold']))
+    print(colored("2) ",'white'),colored("Pvp",'green',attrs=['bold']))
+    print(colored("3) ",'white'),colored("Cimento",'green',attrs=['bold']))
+    print(colored("4) ",'white'),colored("Cambiare impostazioni delle daily",'red',attrs=['bold']))
+    print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
+    print(colored("6) ",'white'),colored("Prove di Nynx",'green',attrs=['bold']))
+    print(colored("7) ",'white'),colored("GvG",'green',attrs=['bold']))
+    print(colored("10)",'white'),colored("Debug Mode\n",'green',attrs=['bold']))
     print(f"0)Per chiudere il programma\n")
     a = input("Seleziona numero: \n")
     logging.debug(f'Menu input = {a}')
     if int(a) == 1:
-        b = input("Digita il numero di run: \n")
-        c = input("Digita 1)normal 2)hard 3)heroic in base alla difficoltà che desideri\n")
-        d = input(
-            "Digita il numero relativo a quanto impieghi a completare una run del raid in secondi.\n Attento, non essere preciso, meglio avere del tempo in piu per eventuali\n")
+        print(colored("Digita il numero di run: ",'green',attrs=['bold']))
+        b = input()
+        print(colored("Digita il numero:\n",'green',attrs=['bold']),colored("1) normal\n"),colored("2) hard\n"),
+              colored("3) heroic\n"),colored("In base alla difficoltà che desideri",'green',attrs=['bold']))
+        c = input()
+        print("Digita il numero relativo a quanto impieghi a completare una run del raid in secondi.\n",
+            colored("Attento: non essere preciso, meglio avere del tempo in piu per evitare che il bot si impalli",
+                    'red',attrs=['bold']))
+        d = input()
         if int(c) == 1:
             retraid = raid.raid(b, norm, d)
             logging.debug(f"ritorno del raid = {retraid}")
@@ -48,21 +58,26 @@ def menu():
                     logging.debug(f"ritorno del raid = {retraid}")
                     return 1
                 else:
-                    print("Qualcosa è andato storto con la digitazione dei numeri")
+                    print(colored("Qualcosa è andato storto con la digitazione dei numeri",'red',attrs=['bold']))
                     return 1
     else:
         if int(a) == 2:
-            pvprun = input(
-                "Quante run di pvp vuoi fare?\n ATTENTO: il bot selezionera di default il primo nella lista! \n")
+            print(colored("ATTENTO: il bot selezionerà di default il primo nella lista!\n",'red',attrs=['bold']),
+                  colored("Tempo default: 40 secondi -> se è troppo poco segnalalo allo sviluppatore!",'red',attrs=['bold']))
+            cprint("Quante run di pvp vuoi fare?\n",'green',attrs=['bold'])
+            pvprun = input()
             PvP.pvp(int(pvprun))
             return 1
         else:
             if int(a) == 3:
-                cimentorun = input("Quante run di cimento vuoi fare?\n")
-                timento = input("Quanto ci impieghi in secondi a finirne uno?\n Aggiungi del tempo in piu in caso!\n")
+                cprint("Quante run del cimento vuoi fare?",'green',attrs=['bold'])
+                cimentorun = input()
+                cprint("Quanto tempo impieghi in secondi a finire una run?",'green',attrs=['bold'])
+                cprint("Attento: aggiungi del tempo in piu per non impallare il bot!",'red',attrs=['bold'])
+                timento = input()
                 g = Cimento.cimento(int(cimentorun), int(timento))
                 if g == 0:
-                    print("Non c'è cimento!")
+                    print(colored("Non c'è cimento!",'red',attrs=['bold']))
                 return 1
             else:
                 if int(a) == 4:
@@ -74,15 +89,29 @@ def menu():
                         return 1
                     else:
                         if int(a) == 6:
-                            proverun = input("Quante run delle prove di Nynx vuoi fare?\n")
-                            promento = input("Quanto ci impieghi in secondi a finirne uno?\n "
-                                             "Aggiungi del tempo in piu in caso!\n")
+                            cprint("Quante run delle prove di Nynx vuoi fare?\n",'green',attrs=['bold'])
+                            proverun = input()
+                            cprint("Quanto ci impieghi in secondi a finirne uno?",'green',attrs=['bold'])
+                            cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!\n",'red',attrs=['bold'])
+                            promento = input()
                             ProveN.prove(int(proverun), promento)
+                            return 1;
                         else:
-                            if int(a) == 0:
-                                return 0
+                            if int(a) == 7:
+                                gvgrun = input("Quante run delle prove di GvG vuoi fare?\n")
+                                gvgtempo = input("Quanto ci impieghi in secondi a finirne uno?\n "
+                                                 "Aggiungi del tempo in piu in caso!\n")
+                                GvG.gvg(int(gvgrun),int(gvgtempo))
+                                return 1;
                             else:
-                                print("Non esiste un'opzione relativo a questo numero!")
+                                if int(a) == 10:
+                                    debug()
+                                    return 1;
+                                else:
+                                    if int(a) == 0:
+                                        return 0
+                                    else:
+                                        print("Non esiste un'opzione relativo a questo numero!")
 
 
 def test(name, numero):
@@ -118,7 +147,7 @@ def daily():
     print(raidshard)
     raid.raid(int(raidshard), hero, int(tempo))
     time.sleep(5)
-    pvp(int(pvprun))
+    PvP.pvp(int(pvprun))
     time.sleep(5)
     # prova a fare cimento. Se ritorna None, ritorna 0
     g = Cimento.cimento(int(cimentorun), 200)
@@ -127,11 +156,43 @@ def daily():
     f.close()
 
 
+def debug():
+    print(colored("Debug Mode on. Cerco tutte le immagini",'red'))
+    raid = pyautogui.locateCenterOnScreen(r"image\prova.png", grayscale=False,confidence=0.5)
+    if raid is not None:
+        print(colored("Raid funzionante!",'blue',attrs=['bold']))
+    else:
+        print(f"Raid = {raid}")
+    pvp = pyautogui.locateCenterOnScreen(r"image\pvp.png", grayscale=False,confidence=0.5)
+    if pvp is not None:
+        print(colored("PvP funzionante!",'blue',attrs=['bold']))
+    else:
+        print(f"PvP = {pvp}")
+    gvg = pyautogui.locateCenterOnScreen(r"image\gvg.png", grayscale=False,confidence=0.5)
+    if gvg is not None:
+        print(colored("GvG Presente!",'blue',attrs=['bold']))
+    else:
+        print(f"GvG = {gvg}")
+    cimento = pyautogui.locateCenterOnScreen(r"image\cimento.png", grayscale=False,confidence=0.5)
+    if cimento is not None:
+        print(colored("Cimento presente!",'blue',attrs=['bold']))
+    else:
+        print(f"Cimento = {cimento}")
+    prove = pyautogui.locateCenterOnScreen(r"image\prove.png", grayscale=False,confidence=0.5)
+    if raid is not None:
+        print(colored("Prove presente!",'blue',attrs=['bold']))
+    else:
+        print(f"Prove di Nyxn = {prove}")
+    print(colored("\nNel caso ci fossero dei None, assicurati che siano disponibili, in tal caso spostati",'red',attrs=['bold']))
+    time.sleep(5)
+    return 1;
+
+
 def main():
     logging.basicConfig(filename="latest.log", filemode="w", format='%(asctime)s - %(funcName)s :   %(message)s', level=logging.DEBUG)
     logging.info(f"VERSION : {VERSION} - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot")
     ciclo = 1
-    print("Start")
+    print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION}. All info on latest.log")
     while True:
         ciclo = menu()
         if ciclo == 0:

@@ -3,11 +3,14 @@ import time
 import json
 import cv2 as cv
 import logging
+from colorama import *;
+from termcolor import colored;
+init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
 
 
 def cimento(run, tempo):
     logging.debug(f"run = {run}, time = {tempo} seconds")
-    print("\n-----CIMENTO-----\n")
+    print("\n-----CIMENTO-----")
     if run <= 0:
         logging.debug("run < 1")
         pyautogui.alert(text="Run must be > 0", button="OK")
