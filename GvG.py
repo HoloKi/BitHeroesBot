@@ -3,7 +3,7 @@ import time
 import cv2 as cv
 import logging
 from colorama import *
-from termcolor import colored
+from termcolor import colored,cprint
 init(autoreset=True) # Permette ad ogni print di ritornare al suo colore base
 
 
@@ -11,7 +11,7 @@ def gvg(run, tempo):
     conta = 1
     print(colored("\n-----GVG-----",'cyan',attrs=['bold']))
     print(colored("run = ", 'green',attrs=['bold']), colored(run, 'white'),colored(" e durata = ", 'green',attrs=['bold']),
-          colored(tempo, 'white'), colored("secondi\n", 'green'))
+          colored(tempo, 'white'), colored("secondi\n", 'green',attrs=['bold']))
     time.sleep(2)
     gvgbutton = pyautogui.locateCenterOnScreen(r"image\gvg.png", grayscale=False, confidence=0.5)
     if gvgbutton is not None:
@@ -19,7 +19,7 @@ def gvg(run, tempo):
         pyautogui.click(gvgbutton)
         time.sleep(5)
         while True:
-            print(colored("giro numero = ",'green'),colored(conta,'white'))
+            print(colored("giro numero = ",'green',attrs=['bold']),colored(conta,'white'))
             conta = int(conta) + 1
             play = pyautogui.locateCenterOnScreen(r"image\play.png", grayscale=False, confidence=0.5)
             if play is not None:
@@ -59,5 +59,5 @@ def gvg(run, tempo):
                 print("Report this on github!")
                 logging.debug(f"play = {play}")
     else:
-        print("Gvg non disponibile o non riconosciuto. Nel caso spostati e ritenta")
+        cprint("Gvg non disponibile o non riconosciuto. Nel caso spostati e ritenta",'red',attrs=['bold'])
         logging.debug(f"gvg not found! gvgbutton = {gvgbutton}")

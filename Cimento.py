@@ -1,16 +1,21 @@
 import pyautogui
 import time
-import json
 import cv2 as cv
 import logging
-from colorama import *;
-from termcolor import colored;
-init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
+from colorama import *
+from termcolor import colored,cprint
+init(autoreset=True); # Permette ad ogni print di ritornare al suo colore base
+
+
+error = colored("Please report this bug/error on github",'red',attrs=['bold'])
 
 
 def cimento(run, tempo):
     logging.debug(f"run = {run}, time = {tempo} seconds")
-    print("\n-----CIMENTO-----")
+    cprint("\n-----CIMENTO-----",'cyan',attrs=['bold'])
+    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
+          colored(" e durata = ", 'green', attrs=['bold']),
+          colored(tempo, 'white'), colored("secondi\n", 'green'))
     if run <= 0:
         logging.debug("run < 1")
         pyautogui.alert(text="Run must be > 0", button="OK")
@@ -44,21 +49,22 @@ def cimento(run, tempo):
                                 break
                             else:
                                 logging.debug(f'xbutton = {xbutton}')
-                                print("Please report this bug/error on github")
+                                print(error)
                                 break
                     else:
                         logging.error("close is None")
-                        print("Please report this bug/error on github")
+                        print(error)
                         break
                 else:
                     logging.error("accept is None")
-                    print("Please report this bug/error on github")
+                    print(error)
                     break
             else:
                 logging.error("play is None")
-                print("Please report this bug/error on github")
+                print(error)
                 break
     else:
         logging.error(f'problem with cimento.png. return = {cimento}')
-        print("Non trovo cimento o non funziona")
+        cprint("Cimento non disponibile o non trovabile!",'red',attrs=['bold'])
+        print(error)
         return 0

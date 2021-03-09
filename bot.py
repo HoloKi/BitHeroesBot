@@ -79,8 +79,8 @@ def menu():
                 cprint("Attento: aggiungi del tempo in piu per non impallare il bot!",'red',attrs=['bold'])
                 timento = input()
                 g = Cimento.cimento(int(cimentorun), int(timento))
-                if g == 0:
-                    print(colored("Non c'è cimento!",'red',attrs=['bold']))
+                #if g == 0:
+                #    print(colored("Non c'è cimento!",'red',attrs=['bold']))
                 return 1
             else:
                 if int(a) == 4:
@@ -88,22 +88,35 @@ def menu():
                     return 1
                 else:
                     if int(a) == 5:
-                        daily()
-                        return 1
+                        cprint("ATTENTO: Questo comando avvierà Raid, Pvp, Cimento o Prove di Nynx!",'red',attrs=['bold'])
+                        cprint("Assicurati di aver settato per bene le impostazioni delle daily Comando 4)",'cyan',attrs=['bold'])
+                        print(colored("Premi",'cyan',attrs=['bold']),colored("y",'white'),
+                              colored("se sei pronto per startare le daily, altrimenti digita",'cyan',attrs=['bold']),
+                              colored("n",'white'))
+                        sure = input()
+                        if str(sure)=='y':
+                            daily()
+                            return 1;
+                        else:
+                            if str(sure) or int(sure):
+                                return 1
                     else:
                         if int(a) == 6:
-                            cprint("Quante run delle prove di Nynx vuoi fare?\n",'green',attrs=['bold'])
+                            cprint("Quante run delle prove di Nynx vuoi fare?",'green',attrs=['bold'])
                             proverun = input()
                             cprint("Quanto ci impieghi in secondi a finirne uno?",'green',attrs=['bold'])
-                            cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!\n",'red',attrs=['bold'])
+                            cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!",'red',attrs=['bold'])
                             promento = input()
                             ProveN.prove(int(proverun), promento)
                             return 1;
                         else:
                             if int(a) == 7:
-                                gvgrun = input("Quante run delle prove di GvG vuoi fare?\n")
-                                gvgtempo = input("Quanto ci impieghi in secondi a finirne uno?\n "
-                                                 "Aggiungi del tempo in piu in caso!\n")
+                                cprint("Quante run delle prove di GvG vuoi fare?",'green',attrs=['bold'])
+                                gvgrun = input()
+                                cprint("Quanto ci impieghi in secondi a finirne uno?", 'green', attrs=['bold'])
+                                cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!", 'red',
+                                       attrs=['bold'])
+                                gvgtempo = input()
                                 GvG.gvg(int(gvgrun),int(gvgtempo))
                                 return 1;
                             else:
@@ -125,7 +138,7 @@ def menu():
                                         if int(a) == 0:
                                             return 0
                                         else:
-                                            print("Non esiste un'opzione relativo a questo numero!")
+                                            cprint("Non esiste un'opzione relativo a questo numero!",'red',attrs=['bold'])
 
 
 def test(name, numero):
@@ -138,13 +151,19 @@ def test(name, numero):
 # potrei fare def setconfig(a,b,c)
 def setconfig():
     f = open("data.json", "w")
-    a = input("Inserisci il numero di raid che puoi fare giornalmente\n")
-    print("Per ora la difficoltà sarà preimpostata su eroico per error runtime\n")
+    cprint("Inserisci il numero di raid che puoi fare giornalmente:",'cyan',attrs=['bold'])
+    a = input()
+    cprint("Per ora la difficoltà sarà preimpostata su eroico per error runtime\n",'red',attrs=['bold'])
     # diff = input("Inserisci la difficoltà del raid\n")
-    time = input("Inserisci il tempo medio che impieghi per un raid\n")
-    b = input("Inserisci il numero di run di pvp che puoi fare giornalmente\n")
-    c = input("Inserisci il numero di run di cimento che puoi fare giornalmente\n")
-    data_dict = {"name": "Utente", "raid": a, "difficolta": hero, "temporaid": time, "pvp": b, "cimento": c}
+    cprint("Inserisci il tempo medio che impieghi per un raid:",'cyan',attrs=['bold'])
+    time = input()
+    cprint("Inserisci il numero di run di pvp che puoi fare giornalmente:",'cyan',attrs=['bold'])
+    b = input()
+    cprint("Inserisci il numero di run di Cimento/Prove che puoi fare giornalmente:",'cyan',attrs=['bold'])
+    c = input()
+    cprint("Inserisci il tempo medio che impieghi per Cimento/Prove:", 'cyan', attrs=['bold'])
+    d = input()
+    data_dict = {"name": "Utente", "raid": a, "difficolta": hero, "temporaid": time, "pvp": b, "cimento": c, "ctime": d}
     json_test = json.dump(data_dict, f)
     # test_dict = {"name": "Arty", "test": "funziona"}
     # json.dump(test_dict,f)
@@ -158,15 +177,16 @@ def daily():
     tempo = int(data['temporaid'])
     pvprun = int(data['pvp'])
     cimentorun = int(data['cimento'])
+    ctime = int(data['ctime'])
     print(raidshard)
     raid.raid(int(raidshard), hero, int(tempo))
     time.sleep(5)
     PvP.pvp(int(pvprun))
     time.sleep(5)
     # prova a fare cimento. Se ritorna None, ritorna 0
-    g = Cimento.cimento(int(cimentorun), 200)
+    g = Cimento.cimento(int(cimentorun), int(ctime))
     if g == 0:
-        ProveN.prove(int(cimentorun), 200)
+        ProveN.prove(int(cimentorun), int(ctime))
     f.close()
 
 

@@ -3,7 +3,7 @@ import time
 import cv2 as cv
 import logging
 from colorama import *
-from termcolor import colored
+from termcolor import colored,cprint
 init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base
 
 
@@ -76,5 +76,6 @@ def prove(run, tempo):
                 return 1
             else:
                 logging.debug(f"problem with prove.png. return = {provebutton} ")
+                cprint("Prove non disponibile o non lo trovo!",'red',attrs=['bold'])
                 print(error)
                 return 0

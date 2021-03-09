@@ -1,1 +1,75 @@
-2021-03-08 21:37:34,222 - main :   VERSION : 3.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-03-09 10:13:41,996 - main :   VERSION : 3.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-03-09 10:13:52,092 - menu :   Menu input = 5
+2021-03-09 10:13:54,103 - raid :   run = 4, difficoltà = heroic, durata = 200
+2021-03-09 10:13:57,341 - raid :   raid button = Point(x=108, y=433). If None, to fix it, change position in the screen.
+2021-03-09 10:13:59,647 - raid :   shardcheck = None. if None its ok!
+2021-03-09 10:13:59,893 - raid :   evoca = Point(x=608, y=507).
+2021-03-09 10:14:03,212 - raid :   difficult = Point(x=655, y=373).
+2021-03-09 10:14:05,547 - raid :   accept = Point(x=585, y=595)
+2021-03-09 10:17:25,866 - raid :   rerun = Point(x=542, y=494)
+2021-03-09 10:20:49,224 - raid :   rerun = None
+2021-03-09 10:20:57,442 - pvp :   run = 2
+2021-03-09 10:20:57,682 - pvp :   pvp button = None
+2021-03-09 10:20:57,689 - pvp :   problem with pvp.png. pvp = None
+2021-03-09 10:21:02,703 - cimento :   run = 2, time = 200 seconds
+2021-03-09 10:21:02,919 - cimento :   cimento button = None
+2021-03-09 10:21:02,920 - cimento :   problem with cimento.png. return = None
+2021-03-09 10:21:02,932 - prove :   run = 2, time = 200
+2021-03-09 10:21:03,150 - prove :   bottone prove = None
+2021-03-09 10:21:03,150 - prove :   problem with prove.png. return = None 
+2021-03-09 10:21:23,553 - menu :   Menu input = 5
+2021-03-09 10:21:34,883 - raid :   run = 4, difficoltà = heroic, durata = 200
+2021-03-09 10:21:38,136 - raid :   raid button = Point(x=108, y=433). If None, to fix it, change position in the screen.
+2021-03-09 10:21:40,473 - raid :   shardcheck = None. if None its ok!
+2021-03-09 10:21:40,708 - raid :   evoca = Point(x=608, y=507).
+2021-03-09 10:21:44,040 - raid :   difficult = Point(x=655, y=373).
+2021-03-09 10:21:46,368 - raid :   accept = Point(x=585, y=595)
+2021-03-09 10:25:06,709 - raid :   rerun = Point(x=542, y=494)
+2021-03-09 10:28:30,057 - raid :   rerun = Point(x=542, y=494)
+2021-03-09 10:31:53,410 - raid :   rerun = Point(x=542, y=494)
+2021-03-09 10:35:16,753 - raid :   yes = Point(x=389, y=495)
+2021-03-09 10:35:25,104 - raid :   xbutton = Point(x=703, y=249)
+2021-03-09 10:35:35,233 - pvp :   run = 2
+2021-03-09 10:35:35,486 - pvp :   pvp button = Point(x=106, y=220)
+2021-03-09 10:35:37,846 - pvp :   play = Point(x=616, y=406)
+2021-03-09 10:35:40,190 - pvp :   battle = Point(x=672, y=328)
+2021-03-09 10:35:42,524 - pvp :   accept = Point(x=585, y=595)
+2021-03-09 10:36:22,851 - pvp :   close = Point(x=467, y=581)
+2021-03-09 10:36:27,243 - pvp :   play = Point(x=616, y=406)
+2021-03-09 10:36:29,578 - pvp :   battle = Point(x=672, y=328)
+2021-03-09 10:36:31,904 - pvp :   accept = Point(x=585, y=595)
+2021-03-09 10:37:12,216 - pvp :   close = Point(x=467, y=581)
+2021-03-09 10:37:14,572 - pvp :   xbutton = Point(x=714, y=244)
+2021-03-09 10:37:19,692 - cimento :   run = 2, time = 200 seconds
+2021-03-09 10:37:19,934 - cimento :   cimento button = None
+2021-03-09 10:37:19,934 - cimento :   problem with cimento.png. return = None
+2021-03-09 10:37:19,951 - prove :   run = 2, time = 200
+2021-03-09 10:37:20,167 - prove :   bottone prove = Point(x=828, y=358)
+2021-03-09 10:37:23,575 - prove :   play = Point(x=617, y=411)
+2021-03-09 10:37:26,919 - prove :   accept = Point(x=585, y=595)
+2021-03-09 10:40:47,269 - prove :   close = Point(x=391, y=495)
+2021-03-09 10:40:55,647 - prove :   play = Point(x=617, y=411)
+2021-03-09 10:40:59,001 - prove :   accept = Point(x=585, y=595)
+2021-03-09 10:44:19,325 - prove :   close = Point(x=391, y=495)
+2021-03-09 10:44:55,352 - menu :   Menu input = 8
+2021-03-09 10:44:59,035 - spedizione :   run = 2, time = 200 seconds
+2021-03-09 10:44:59,257 - spedizione :   enter = None
+2021-03-09 10:44:59,257 - spedizione :   enter not found!
+2021-03-09 10:45:42,183 - menu :   Menu input = 8
+2021-03-09 10:45:46,163 - spedizione :   run = 2, time = 200 seconds
+2021-03-09 10:45:46,374 - spedizione :   enter = Point(x=468, y=590)
+2021-03-09 10:45:51,743 - spedizione :   accept = Point(x=586, y=596)
+2021-03-09 10:49:15,094 - spedizione :   yes = Point(x=389, y=495)
+2021-03-09 10:49:23,446 - spedizione :   enter = Point(x=468, y=590)
+2021-03-09 10:49:28,781 - spedizione :   accept = Point(x=586, y=596)
+2021-03-09 10:52:52,131 - spedizione :   yes = Point(x=389, y=495)
+2021-03-09 10:53:00,486 - spedizione :   xbutton1 = Point(x=655, y=246)
+2021-03-09 10:53:03,828 - spedizione :   xbutton = Point(x=793, y=205)
+2021-03-09 10:53:08,195 - spedizione :   xbutton = Point(x=714, y=249)
+2021-03-09 10:55:19,298 - menu :   Menu input = 3
+2021-03-09 10:55:21,617 - cimento :   run = 2, time = 200 seconds
+2021-03-09 10:55:21,829 - cimento :   cimento button = None
+2021-03-09 10:55:21,829 - cimento :   problem with cimento.png. return = None
+2021-03-09 10:55:26,071 - menu :   Menu input = 7
+2021-03-09 10:55:30,960 - gvg :   gvg not found! gvgbutton = None
+2021-03-09 10:55:37,212 - menu :   Menu input = 10
