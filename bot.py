@@ -213,7 +213,7 @@ def debug():
     else:
         print(f"Cimento = {cimento}")
     prove = pyautogui.locateCenterOnScreen(r"image\prove.png", grayscale=False,confidence=0.5)
-    if raid is not None:
+    if prove is not None:
         print(colored("Prove presente!",'blue',attrs=['bold']))
     else:
         print(f"Prove di Nyxn = {prove}")

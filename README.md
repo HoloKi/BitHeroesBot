@@ -3,6 +3,7 @@
 ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/HoloKi/BitHeroesBot?include_prereleases)
 ![GitHub last commit](https://img.shields.io/github/last-commit/HoloKi/BitHeroesBot)
 ![GitHub Repo stars](https://img.shields.io/github/stars/HoloKi/BitHeroesBot)
+![GitHub top language](https://img.shields.io/github/languages/top/HoloKi/BitHeroesBot)
 
 # Bit Heroes Bot
 >This bot is completely free, any sale is strictly prohibited
@@ -10,11 +11,15 @@
 >This bot is a macro, so it performs the various operations by having the screen free with the game and the script open
 >
 
-[Download](https://github.com/HoloKi/BitHeroesBot/releases/tag/2.0)
+[Download](https://github.com/HoloKi/BitHeroesBot/releases)
 
 ## Dipendencies
 
 [Pyautogui](https://pyautogui.readthedocs.io/en/latest/)
+
+[Colorama](https://pypi.org/project/colorama/)
+
+[Termcolor](https://pypi.org/project/termcolor/)
 
 ## Language
 
@@ -27,4 +32,4 @@
 Support me with translate or with code.
 
 **Discord contact**
->@HoloKi#
+> @HoloKi#0865

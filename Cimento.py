@@ -11,6 +11,7 @@ error = colored("Please report this bug/error on github",'red',attrs=['bold'])
 
 
 def cimento(run, tempo):
+    conta= 1;
     logging.debug(f"run = {run}, time = {tempo} seconds")
     cprint("\n-----CIMENTO-----",'cyan',attrs=['bold'])
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
@@ -34,6 +35,8 @@ def cimento(run, tempo):
                 accept = pyautogui.locateCenterOnScreen(r"image\accept.png", grayscale=False, confidence=0.5)
                 logging.debug(f'accept = {play}')
                 if accept is not None:
+                    print(colored("giro numero = ", 'green', attrs=['bold']), colored(conta, 'white'))
+                    ciclo = int(ciclo) + 1
                     pyautogui.click(accept)
                     time.sleep(int(tempo))
                     close = pyautogui.locateCenterOnScreen(r"image\close.png", grayscale=False, confidence=0.5)

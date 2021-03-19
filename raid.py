@@ -34,7 +34,7 @@ def raid(run, difficult, duration):
             logging.debug("run=0")
             return 0
         else:
-            raidcord = pyautogui.locateCenterOnScreen(r"image\prova.png", grayscale=False, confidence=0.6)
+            raidcord = pyautogui.locateCenterOnScreen(r"image\prova.png", grayscale=False, confidence=0.5)
             logging.debug(f"raid button = {raidcord}. If None, to fix it, change position in the screen.")
             if raidcord is not None:
                 pyautogui.click(raidcord)

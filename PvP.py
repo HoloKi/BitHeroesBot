@@ -34,7 +34,7 @@ def pvp(run):
                     pyautogui.click(play)
                     time.sleep(2)
                     #Cerca la battaglia e clicca in quello piu alto cioè il primo
-                    battle = pyautogui.locateCenterOnScreen(r"image\battle1.png", grayscale=False, confidence=0.5)
+                    battle = pyautogui.locateCenterOnScreen(r"image\battle2.png", grayscale=False, confidence=0.5)
                     logging.debug(f"battle = {battle}")
                     if battle is not None:
                         pyautogui.click(battle)
@@ -77,6 +77,18 @@ def pvp(run):
                                     print(colored("Sconfitta!", 'red', attrs=['bold']))
                                     pyautogui.click(chiudi)
                                     time.sleep(5)
+                                    if int(run) == 0:
+                                        xbutton = pyautogui.locateCenterOnScreen(r"image\xbutton.png", grayscale=False,
+                                                                             confidence=0.5)
+                                        logging.debug(f"xbutton = {xbutton}")
+                                        if xbutton is not None:
+                                            pyautogui.click(xbutton)
+                                            break
+                                        else:
+                                            print(repo)
+                                            logging.error("xbutton is None")
+                                            print(error)
+                                            break
                                 else:
                                     #Caso in cui non trova ne close ne chiudi ne close
                                     print(repo)
