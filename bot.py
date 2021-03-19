@@ -9,12 +9,13 @@ import PvP
 import ProveN
 import GvG
 import Expedition
+import Invasion
 from colorama import *
 from termcolor import colored,cprint
 
 init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
 
-VERSION = 3.1
+VERSION = 4.1
 
 hero = "heroic"
 hard = "hard"
@@ -131,14 +132,24 @@ def menu():
                                     Expedition.spedizione(int(exprun),int(exptime))
                                     return 1
                                 else:
-                                    if int(a) == 10:
-                                        debug()
+                                    if int(a) == 9:
+                                        cprint("Quante run dell'invasione vuoi fare?", 'green', attrs=['bold'])
+                                        invrun = input()
+                                        cprint("Quanto ci impieghi in secondi a finirne uno?", 'green', attrs=['bold'])
+                                        cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!",
+                                               'red', attrs=['bold'])
+                                        invento = input()
+                                        Invasion.invasione(int(invrun), invento)
                                         return 1;
                                     else:
-                                        if int(a) == 0:
-                                            return 0
+                                        if int(a) == 10:
+                                            debug()
+                                            return 1;
                                         else:
-                                            cprint("Non esiste un'opzione relativo a questo numero!",'red',attrs=['bold'])
+                                            if int(a) == 0:
+                                                return 0
+                                            else:
+                                                cprint("Non esiste un'opzione relativo a questo numero!",'red',attrs=['bold'])
 
 
 def test(name, numero):
@@ -217,6 +228,11 @@ def debug():
         print(colored("Prove presente!",'blue',attrs=['bold']))
     else:
         print(f"Prove di Nyxn = {prove}")
+    invasione = pyautogui.locateCenterOnScreen(r"image\invasione.png", grayscale=False, confidence=0.5)
+    if invasione is not None:
+        print(colored("Invasione presente!", 'blue', attrs=['bold']))
+    else:
+        print(f"Invasione = {invasione}")
     print(colored("\nNel caso ci fossero dei None, assicurati che siano disponibili, in tal caso spostati",'red',attrs=['bold']))
     time.sleep(5)
     return 1;

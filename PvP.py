@@ -39,7 +39,7 @@ def pvp(run):
                     if battle is not None:
                         pyautogui.click(battle)
                         time.sleep(2)
-                        accept = pyautogui.locateCenterOnScreen(r"image\accept.png", grayscale=False, confidence=0.5)
+                        accept = pyautogui.locateCenterOnScreen(r"image\accept.png", grayscale=False, confidence=0.9)
                         logging.debug(f"accept = {accept}")
                         if accept is not None:
                             pyautogui.click(accept)

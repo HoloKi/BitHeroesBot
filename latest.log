@@ -1,17 +1,18 @@
-2021-03-19 01:23:01,163 - main :   VERSION : 3.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2021-03-19 01:23:04,125 - menu :   Menu input = 10
-2021-03-19 01:24:01,261 - menu :   Menu input = 10
-2021-03-19 01:24:07,547 - menu :   Menu input = 6
-2021-03-19 01:24:13,055 - prove :   run = 1, time = 200
-2021-03-19 01:24:13,304 - prove :   bottone prove = Point(x=815, y=263)
-2021-03-19 01:24:16,726 - prove :   play = Point(x=588, y=348)
-2021-03-19 01:24:20,112 - prove :   accept = None
-2021-03-19 01:24:20,112 - prove :   accept is None
-2021-03-19 01:28:22,859 - menu :   Menu input = 6
-2021-03-19 01:28:27,604 - prove :   run = 2, time = 200
-2021-03-19 01:28:27,859 - prove :   bottone prove = Point(x=815, y=263)
-2021-03-19 01:28:31,271 - prove :   play = Point(x=588, y=348)
-2021-03-19 01:28:34,650 - prove :   accept = Point(x=561, y=522)
-2021-03-19 01:31:55,055 - prove :   close = Point(x=391, y=424)
-2021-03-19 01:32:03,453 - prove :   play = Point(x=588, y=348)
-2021-03-19 01:32:06,807 - prove :   accept = Point(x=561, y=522)
+2021-03-19 17:59:15,647 - main :   VERSION : 3.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-03-19 18:00:53,463 - menu :   Menu input = 10
+2021-03-19 18:00:59,935 - menu :   Menu input = 2
+2021-03-19 18:01:03,180 - pvp :   run = 3
+2021-03-19 18:01:03,424 - pvp :   pvp button = Point(x=76, y=177)
+2021-03-19 18:01:05,816 - pvp :   play = Point(x=577, y=324)
+2021-03-19 18:01:08,195 - pvp :   battle = Point(x=630, y=254)
+2021-03-19 18:01:10,546 - pvp :   accept = Point(x=554, y=504)
+2021-03-19 18:01:50,941 - pvp :   close = Point(x=441, y=489)
+2021-03-19 18:01:55,343 - pvp :   play = Point(x=577, y=324)
+2021-03-19 18:01:57,695 - pvp :   battle = Point(x=630, y=254)
+2021-03-19 18:02:00,061 - pvp :   accept = Point(x=554, y=504)
+2021-03-19 18:02:40,463 - pvp :   close = Point(x=441, y=489)
+2021-03-19 18:02:44,852 - pvp :   play = Point(x=577, y=324)
+2021-03-19 18:02:47,211 - pvp :   battle = Point(x=630, y=254)
+2021-03-19 18:02:49,564 - pvp :   accept = Point(x=554, y=504)
+2021-03-19 18:03:29,937 - pvp :   close = Point(x=441, y=489)
+2021-03-19 18:03:32,293 - pvp :   xbutton = Point(x=673, y=172)
