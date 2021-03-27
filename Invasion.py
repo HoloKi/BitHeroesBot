@@ -22,7 +22,7 @@ def invasione(run, tempo):
         return 0
     else:
         if run == 0:
-            print(colored("Skip Prove di Nyxn",'red', attrs=['bold']))
+            print(colored("Skip Invasione",'red', attrs=['bold']))
             return 0
         else:
             invasionebutton = pyautogui.locateCenterOnScreen(r"image\invasione.png", grayscale=False, confidence=0.5)

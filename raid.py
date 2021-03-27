@@ -2,6 +2,7 @@ import pyautogui
 import time
 import cv2 as cv
 import logging
+import classe
 from colorama import *
 from termcolor import colored,cprint
 init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base
@@ -50,7 +51,7 @@ def raid(run, difficult, duration):
                         time.sleep(3)
                         if difficult == hero:
                             difficulty = pyautogui.locateCenterOnScreen(r"image\eroic.png", grayscale=False,
-                                                                        confidence=0.4)
+                                                                        confidence=0.5)
                         if difficult == hard:
                             difficulty = pyautogui.locateCenterOnScreen(r"image\hard.png", grayscale=False,
                                                                         confidence=0.5)
@@ -150,3 +151,26 @@ def raid(run, difficult, duration):
                 logging.debug("Raid is None,please report this error on github")
                 print("Prova a spostarti un pochino e riprova il comando!\n")
                 return 0
+
+
+def raidclass(run, tipo,tempo):
+    p1 = classe.bit(r"image\prova.png",0.5)
+    p = p1.bottone()
+    time.sleep(2)
+    logging.debug(f"p1.bott={p}")
+    if p1 != 0:
+        p2 = classe.bit(r"image\startraid.png",0.5)
+        p2.bottone()
+        time.sleep(2)
+        if p2!=0:
+            p3 = classe.bit(r"image\eroic.png",0.5)
+            p3.bottone()
+            time.sleep(2)
+            if p3!=0:
+                return 1
+            else:
+                return 0
+        else:
+            return 0
+    else:
+        return 0;

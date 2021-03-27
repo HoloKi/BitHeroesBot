@@ -15,7 +15,7 @@ from termcolor import colored,cprint
 
 init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
 
-VERSION = 4.1
+VERSION = 4.2
 
 hero = "heroic"
 hard = "hard"
@@ -30,8 +30,9 @@ def menu():
     print(colored("4) ",'white'),colored("Cambiare impostazioni delle daily",'red',attrs=['bold']))
     print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
     print(colored("6) ",'white'),colored("Prove di Nynx",'green',attrs=['bold']))
-    print(colored("7) ",'white'),colored("GvG",'green',attrs=['bold']))
+    print(colored("7) ",'white'),colored("GvG",'red',attrs=['bold']))
     print(colored("8) ",'white'),colored("Spedizione",'red',attrs=['bold']),colored("  - Funzione semi-manuale!",'cyan',attrs=['bold']))
+    print(colored("9) ",'white'),colored("Invasione",'red',attrs=['bold']))
     print(colored("10)",'white'),colored("Debug Mode\n",'green',attrs=['bold']))
     print(f"0) Per chiudere il programma\n")
     cprint("Seleziona numero: \n",'cyan',attrs=['bold'])
@@ -157,7 +158,6 @@ def test(name, numero):
     print(raidcord)
     pyautogui.click(raidcord)
     return raidcord
-
 
 # potrei fare def setconfig(a,b,c)
 def setconfig():

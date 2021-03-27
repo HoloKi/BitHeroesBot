@@ -36,7 +36,7 @@ def cimento(run, tempo):
                 logging.debug(f'accept = {play}')
                 if accept is not None:
                     print(colored("giro numero = ", 'green', attrs=['bold']), colored(conta, 'white'))
-                    ciclo = int(ciclo) + 1
+                    conta = int(conta) + 1
                     pyautogui.click(accept)
                     time.sleep(int(tempo))
                     close = pyautogui.locateCenterOnScreen(r"image\close.png", grayscale=False, confidence=0.5)
