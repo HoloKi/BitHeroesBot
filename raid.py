@@ -72,6 +72,7 @@ def raid(run, difficult, duration):
                                     print(colored(f"giro numero = ",'green', attrs=['bold']),colored(conta,'white'))
                                     time.sleep(int(duration))
                                     if int(run) == 1:
+                                        time.sleep(3)
                                         yes = pyautogui.locateCenterOnScreen(r"image\yes.png", grayscale=False,
                                                                              confidence=0.5)
                                         logging.debug(f"yes = {yes}")
@@ -107,6 +108,7 @@ def raid(run, difficult, duration):
                                         logging.debug(f"rerun = {rerun}")
                                         time.sleep(3)
                                         if rerun is None:
+                                            print(colored("rerun non trovato!","red"))
                                             #Controlla che il giocatore sia morto
                                             close = pyautogui.locateCenterOnScreen(r"image\chiudi.png",grayscale=False,
                                                                                    confidence=0.5)

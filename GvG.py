@@ -26,7 +26,7 @@ def gvg(run, tempo):
                 logging.debug(f"play = {play}")
                 pyautogui.click(play)
                 time.sleep(5)
-                battle = pyautogui.locateCenterOnScreen(r"image\battle1.png", grayscale=False, confidence=0.5)
+                battle = pyautogui.locateCenterOnScreen(r"image\battle1.png", grayscale=False, confidence=0.2)
                 if battle is not None:
                     logging.debug(f"battle = {battle}")
                     pyautogui.click(battle)
@@ -49,15 +49,19 @@ def gvg(run, tempo):
                                 run = int(run) - 1
                         else:
                             logging.debug(f"close = {chiudi}")
+                            break;
                     else:
                         logging.debug(f"accept = {accept}")
+                        break;
 
                 else:
                     print("Report this on github!")
                     logging.debug(f"battle = {battle}")
+                    break;
             else:
                 print("Report this on github!")
                 logging.debug(f"play = {play}")
+                break;
     else:
         cprint("Gvg non disponibile o non riconosciuto. Nel caso spostati e ritenta",'red',attrs=['bold'])
         logging.debug(f"gvg not found! gvgbutton = {gvgbutton}")

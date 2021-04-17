@@ -1,1 +1,21 @@
-2021-03-27 01:21:00,692 - main :   VERSION : 4.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-04-13 12:39:26,908 - main :   VERSION : 4.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-04-13 12:39:35,065 - menu :   Menu input = 1
+2021-04-13 12:39:37,960 - raid :   run = 2, difficoltà = heroic, durata = 220
+2021-04-13 12:39:41,221 - raid :   raid button = Point(x=79, y=388). If None, to fix it, change position in the screen.
+2021-04-13 12:39:43,568 - raid :   shardcheck = None. if None its ok!
+2021-04-13 12:39:43,825 - raid :   evoca = Point(x=578, y=425).
+2021-04-13 12:39:47,249 - raid :   difficult = Point(x=624, y=293).
+2021-04-13 12:39:49,605 - raid :   accept = Point(x=556, y=511)
+2021-04-13 12:43:29,971 - raid :   rerun = None
+2021-04-13 12:43:33,203 - menu :   ritorno del raid = 0
+2021-04-13 12:44:27,026 - menu :   Menu input = 1
+2021-04-13 12:44:39,346 - menu :   Menu input = 1
+2021-04-13 12:44:43,329 - raid :   run = 1, difficoltà = heroic, durata = 220
+2021-04-13 12:44:46,604 - raid :   raid button = Point(x=79, y=388). If None, to fix it, change position in the screen.
+2021-04-13 12:44:48,967 - raid :   shardcheck = None. if None its ok!
+2021-04-13 12:44:49,221 - raid :   evoca = Point(x=578, y=425).
+2021-04-13 12:44:52,616 - raid :   difficult = Point(x=624, y=293).
+2021-04-13 12:44:54,988 - raid :   accept = Point(x=556, y=511)
+2021-04-13 12:48:38,388 - raid :   yes = Point(x=381, y=411)
+2021-04-13 12:48:46,755 - raid :   xbutton = Point(x=666, y=184)
+2021-04-13 12:48:51,878 - menu :   ritorno del raid = 1
