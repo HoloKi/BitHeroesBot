@@ -39,6 +39,7 @@ def spedizione(run, tempo):
                     time.sleep(int(tempo))
                     run = int(run) - 1
                     conta = int(conta) + 1
+                    time.sleep(5)
                     yes = pyautogui.locateCenterOnScreen(r"image\yes.png", grayscale=False, confidence=0.5)
                     logging.debug(f"yes = {yes}")
                     #pulsante yes
