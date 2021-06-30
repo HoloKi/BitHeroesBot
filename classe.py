@@ -16,10 +16,11 @@ class bit:
         button = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=self.confi)
         logging.debug(f"bottone = {button}")
         if button is not None:
-            time.sleep(5)
+            time.sleep(3)
             pyautogui.click(button)
-            time.sleep(2)
+            time.sleep(1)
             return 1
         else:
-            cprint("Errore, bottone non trovato!", "red", attrs=['bold'])
+            cprint(f"Error, {self.image} not found!", "red", attrs=['bold'])
+            logging.error(f"{self.image} not found!")
             return 0
