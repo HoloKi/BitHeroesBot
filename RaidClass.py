@@ -2,6 +2,7 @@ import pyautogui
 import time
 import logging
 import classe
+import sys
 from colorama import *
 from termcolor import colored,cprint
 import classe
@@ -11,7 +12,7 @@ hero = "heroic"
 hard = "hard"
 norm = "normal"
 
-error=colored("Please report this bug/error on github\n",'red',attrs=['bold'])
+errore=colored("Please report this bug/error on github or discord\n",'red',attrs=['bold'])
 """
 Funzione Raid che utilizza la classe per semplificare il codice e il suo riutilizzo
 @:param run = numero di run che fa il player (si presuppone che sia gia int)
@@ -22,14 +23,29 @@ Funzione Raid che utilizza la classe per semplificare il codice e il suo riutili
 """
 def raid(run, difficult, duration):
     count=0;
+    # LOAD CLASS FIRST-----------------------------------------------------------------
+    if difficult == hero:
+        difficulty = classe.bit(r"image\raid\eroic.png",0.5)
+    if difficult == hard:
+        difficulty = classe.bit(r"image\raid\hard.png",0.5)
+    if difficult == norm:
+        difficulty = classe.bit(r"image\raid\normal.png",0.5)
+    raid = classe.bit(r"image\raid\raid.png", 0.5)
+    evoca = classe.bit(r"image\startraid.png",0.5)
+    accetta = classe.bit(r"image\accept.png", 0.5)
+    si = classe.bit(r"image\yes.png", 0.5)
+    #---------------------------------------------------------------------------------
+    logging.debug(f"difficult = {difficulty}.")
     print(colored("\n-----RAID-----",'cyan',attrs=['bold']))
-    print(colored("run = ",'green',attrs=['bold']),colored(run,'white'),colored(" difficult = ",'green',attrs=['bold']),colored(difficult,'white'),
-          colored(" and duration = ",'green',attrs=['bold']), colored(duration,'white'),colored("seconds\n",'green',attrs=['bold']))
+    print(colored("run = ",'green',attrs=['bold']),colored(run,'white'),
+          colored(" difficult = ",'green',attrs=['bold']),colored(difficult,'white'),
+          colored(" and duration = ",'green',attrs=['bold']), colored(duration,'white'),
+          colored("seconds\n",'green',attrs=['bold']))
     logging.debug(f"run = {run}, difficoltà = {difficult}, durata = {duration}")
     time.sleep(3)
     # caso in cui le run sono minori di 0, ritorna 0
-    if int(run) < 0:
-        logging.debug("duration < 0")
+    if int(run) <= 0:
+        logging.debug("run < 0")
         pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
         return 0
     else:
@@ -38,21 +54,29 @@ def raid(run, difficult, duration):
             logging.debug("run=0")
             return 0
         else:
-            raid = classe.bit(r"image\prova.png",0.5)
             error = raid.bottone()
-            evoca = classe.bit(r"image\startraid.png",0.5)
-            evoca.bottone()
-            eroico = classe.bit(r"image\eroic.png",0.5)
-            eroico.bottone()
-            accetta = classe.bit(r"image\accept.png",0.5)
+            if error == 0:
+                cprint(errore)
+                return 0
+            error = evoca.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
+            error = difficulty.bottone()
             accetta.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
             while(True):
                 count += 1
                 print(f"run number {count}\n")
-                time.sleep(int(duration))
-                if count==run:
-                    si = classe.bit(r"image\yes.png",0.5)
-                    si.bottone()
+                timer(int(duration))
+                if int(count) >= int(run):
+                    print("finito")
+                    error = si.bottone()
+                    if error == 0:
+                        cprint(errore)
+                        break
                     time.sleep(3)
                     pyautogui.press('esc')
                     break
@@ -63,5 +87,13 @@ def raid(run, difficult, duration):
             print("test done")
 
 
-
+def timer(tempo):
+    for i in range(int(tempo), 0, -1):
+        sys.stdout.write("\r")
+        sys.stdout.write('remaining time: ' + str(i) + 's  ')
+        sys.stdout.flush()
+        time.sleep(1)
+    sys.stdout.flush()
+    sys.stdout.write("\r")
+    sys.stdout.write("--------------Done!--------------\n")
 

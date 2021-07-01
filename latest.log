@@ -1,12 +1,10 @@
-2021-04-19 22:13:02,387 - main :   VERSION : 4.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2021-04-19 22:13:46,077 - menu :   Menu input = 8
-2021-04-19 22:13:50,492 - spedizione :   run = 2, time = 220 seconds
-2021-04-19 22:13:50,833 - spedizione :   enter = Point(x=461, y=472)
-2021-04-19 22:13:56,219 - spedizione :   accept = Point(x=574, y=478)
-2021-04-19 22:17:44,654 - spedizione :   yes = Point(x=397, y=377)
-2021-04-19 22:17:53,074 - spedizione :   enter = Point(x=461, y=472)
-2021-04-19 22:17:58,456 - spedizione :   accept = Point(x=574, y=478)
-2021-04-19 22:21:46,866 - spedizione :   yes = Point(x=397, y=377)
-2021-04-19 22:21:55,241 - spedizione :   xbutton1 = None
-2021-04-19 22:21:58,593 - spedizione :   xbutton = Point(x=636, y=144)
-2021-04-19 22:22:02,944 - spedizione :   xbutton = Point(x=768, y=112)
+2021-07-01 22:53:25,029 - main :   VERSION : 5.0.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-07-01 22:53:34,693 - menu :   Menu input = 1
+2021-07-01 22:53:39,288 - raid :   difficult = <classe.bit object at 0x000001E991E459D0>.
+2021-07-01 22:53:39,307 - raid :   run = 1, difficoltà = heroic, durata = 210
+2021-07-01 22:53:42,572 - bottone :   bottone = Point(x=548, y=422)
+2021-07-01 22:53:46,955 - bottone :   bottone = Point(x=1047, y=460)
+2021-07-01 22:53:51,347 - bottone :   bottone = Point(x=1094, y=328)
+2021-07-01 22:53:55,711 - bottone :   bottone = Point(x=1025, y=546)
+2021-07-01 22:57:31,995 - bottone :   bottone = Point(x=850, y=446)
+2021-07-01 22:57:39,264 - menu :   ritorno del raid = None

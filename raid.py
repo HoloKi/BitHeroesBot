@@ -155,24 +155,3 @@ def raid(run, difficult, duration):
                 return 0
 
 
-def raidclass(run, tipo,tempo):
-    p1 = classe.bit(r"image\prova.png",0.5)
-    p = p1.bottone()
-    time.sleep(2)
-    logging.debug(f"p1.bott={p}")
-    if p1 != 0:
-        p2 = classe.bit(r"image\startraid.png",0.5)
-        p2.bottone()
-        time.sleep(2)
-        if p2!=0:
-            p3 = classe.bit(r"image\eroic.png",0.5)
-            p3.bottone()
-            time.sleep(2)
-            if p3!=0:
-                return 1
-            else:
-                return 0
-        else:
-            return 0
-    else:
-        return 0;

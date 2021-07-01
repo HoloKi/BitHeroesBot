@@ -3,7 +3,7 @@ import time
 import json
 import cv2 as cv
 import logging
-import raid
+import RaidClass
 import Cimento
 import PvP
 import ProveN
@@ -12,10 +12,11 @@ import Expedition
 import Invasion
 from colorama import *
 from termcolor import colored,cprint
+import asyncio
 
 init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
 
-VERSION = 4.2
+VERSION = "5.0.1"
 
 hero = "heroic"
 hard = "hard"
@@ -49,17 +50,17 @@ def menu():
                     'red',attrs=['bold']))
         d = input()
         if int(c) == 1:
-            retraid = raid.raid(b, norm, d)
+            retraid = RaidClass.raid(b, norm, d)
             logging.debug(f"ritorno del raid = {retraid}")
             return 1
         else:
             if int(c) == 2:
-                retraid = raid.raid(b, hard, d)
+                retraid = RaidClass.raid(b, hard, d)
                 logging.debug(f"ritorno del raid = {retraid}")
                 return 1
             else:
                 if int(c) == 3:
-                    retraid = raid.raid(b, hero, d)
+                    retraid = RaidClass.raid(b, hero, d)
                     logging.debug(f"ritorno del raid = {retraid}")
                     return 1
                 else:
@@ -243,6 +244,7 @@ def main():
     logging.info(f"VERSION : {VERSION} - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot")
     ciclo = 1
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION}. All info on latest.log")
+    print(f"Translate - PastShadie")
     while True:
         ciclo = menu()
         if ciclo == 0:
