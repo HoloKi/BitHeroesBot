@@ -24,29 +24,31 @@ norm = "normal"
 
 def menu():
     print("\n\n")
-    print(colored("Digita il numero per selezionare l'opzione desiderato:\n",'red',attrs=['bold']))
+    print(colored("Enter the number to select the desired option:\n",'red',attrs=['bold']))
     print(colored("1) ",'white'),colored("Raid",'green',attrs=['bold']))
+    """
     print(colored("2) ",'white'),colored("Pvp",'green',attrs=['bold']))
     print(colored("3) ",'white'),colored("Cimento",'green',attrs=['bold']))
-    print(colored("4) ",'white'),colored("Cambiare impostazioni delle daily",'red',attrs=['bold']))
+    print(colored("4) ",'white'),colored("Change daily settings",'red',attrs=['bold']))
     print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
-    print(colored("6) ",'white'),colored("Prove di Nynx",'green',attrs=['bold']))
+    print(colored("6) ",'white'),colored("Nynx Trial",'green',attrs=['bold']))
     print(colored("7) ",'white'),colored("GvG",'red',attrs=['bold']))
-    print(colored("8) ",'white'),colored("Spedizione",'red',attrs=['bold']),colored("  - Funzione semi-manuale!",'cyan',attrs=['bold']))
-    print(colored("9) ",'white'),colored("Invasione",'red',attrs=['bold']))
+    print(colored("8) ",'white'),colored("Expedition",'red',attrs=['bold']),colored("  - Funzione semi-manuale!",'cyan',attrs=['bold']))
+    print(colored("9) ",'white'),colored("Invasion",'red',attrs=['bold']))
     print(colored("10)",'white'),colored("Debug Mode\n",'green',attrs=['bold']))
-    print(f"0) Per chiudere il programma\n")
-    cprint("Seleziona numero: \n",'cyan',attrs=['bold'])
+    """
+    print(f"0)  To close the program\n")
+    cprint("Select number: \n",'cyan',attrs=['bold'])
     a = input()
     logging.debug(f'Menu input = {a}')
     if int(a) == 1:
-        print(colored("Digita il numero di run: ",'green',attrs=['bold']))
+        print(colored("Enter the number of runs: ",'green',attrs=['bold']))
         b = input()
-        print(colored("Digita il numero:\n",'green',attrs=['bold']),colored("1) normal\n"),colored("2) hard\n"),
-              colored("3) heroic\n"),colored("In base alla difficoltà che desideri",'green',attrs=['bold']))
+        print(colored("Enter the number:\n",'green',attrs=['bold']),colored("1) normal\n"),colored("2) hard\n"),
+              colored("3) heroic\n"),colored("According to the difficulty you want",'green',attrs=['bold']))
         c = input()
-        print("Digita il numero relativo a quanto impieghi a completare una run del raid in secondi.\n",
-            colored("Attento: non essere preciso, meglio avere del tempo in piu per evitare che il bot si impalli",
+        print("Enter the number of how long it takes you to complete a raid run in seconds.\n",
+            colored("Be careful not to be precise; It's better to have some more time to prevent the bot from getting stuck",
                     'red',attrs=['bold']))
         d = input()
         if int(c) == 1:
@@ -64,9 +66,11 @@ def menu():
                     logging.debug(f"ritorno del raid = {retraid}")
                     return 1
                 else:
-                    print(colored("Qualcosa è andato storto con la digitazione dei numeri",'red',attrs=['bold']))
+                    print(colored("Something went wrong with typing the numbers",'red',attrs=['bold']))
                     return 1
     else:
+        cprint("There is no option for this number!", 'red', attrs=['bold'])
+        """
         if int(a) == 2:
             print(colored("ATTENTO: il bot selezionerà di default il primo nella lista!\n",'red',attrs=['bold']),
                   colored("Tempo default: 40 secondi -> se è troppo poco segnalalo allo sviluppatore!",'red',attrs=['bold']))
@@ -152,6 +156,7 @@ def menu():
                                                 return 0
                                             else:
                                                 cprint("Non esiste un'opzione relativo a questo numero!",'red',attrs=['bold'])
+        """
 
 
 def test(name, numero):
@@ -242,9 +247,10 @@ def debug():
 def main():
     logging.basicConfig(filename="latest.log", filemode="w", format='%(asctime)s - %(funcName)s :   %(message)s', level=logging.DEBUG)
     logging.info(f"VERSION : {VERSION} - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot")
+    logging.info("https://discord.gg/h98xsssEpe")
     ciclo = 1
-    print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION}. All info on latest.log")
-    print(f"Translate - PastShadie")
+    print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------ Translate by PastShadie")
+    print("All info on latest.log")
     while True:
         ciclo = menu()
         if ciclo == 0:

@@ -72,10 +72,11 @@ def raid(run, difficult, duration):
                 print(f"run number {count}\n")
                 timer(int(duration))
                 if int(count) >= int(run):
-                    print("finito")
+                    logging.debug("end")
                     error = si.bottone()
                     if error == 0:
                         cprint(errore)
+                        print("Probably Insufficient time!")
                         break
                     time.sleep(3)
                     pyautogui.press('esc')
@@ -84,7 +85,6 @@ def raid(run, difficult, duration):
                     pyautogui.press('esc')
                     time.sleep(5)
 
-            print("test done")
 
 
 def timer(tempo):
