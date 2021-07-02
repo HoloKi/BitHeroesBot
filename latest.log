@@ -1,12 +1,12 @@
-2021-07-02 00:53:08,162 - main :   VERSION : 5.0.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2021-07-02 00:53:08,163 - main :   https://discord.gg/h98xsssEpe
-2021-07-02 00:53:14,265 - menu :   Menu input = 1
-2021-07-02 00:53:18,832 - raid :   difficult = <classe.bit object at 0x00000273BF7CADC0>.
-2021-07-02 00:53:18,847 - raid :   run = 1, difficoltà = heroic, durata = 210
-2021-07-02 00:53:22,125 - bottone :   bottone = Point(x=540, y=442)
-2021-07-02 00:53:26,513 - bottone :   bottone = Point(x=1035, y=481)
-2021-07-02 00:53:30,925 - bottone :   bottone = Point(x=906, y=347)
-2021-07-02 00:53:35,323 - bottone :   bottone = Point(x=1012, y=565)
-2021-07-02 00:57:11,673 - raid :   end
-2021-07-02 00:57:11,935 - bottone :   bottone = Point(x=839, y=466)
-2021-07-02 00:57:19,199 - menu :   ritorno del raid = None
+2021-07-02 11:34:31,048 - main :   VERSION : 5.0.1 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-07-02 11:34:31,049 - main :   https://discord.gg/h98xsssEpe
+2021-07-02 11:34:36,395 - menu :   Menu input = 1
+2021-07-02 11:34:41,741 - raid :   difficult = <classe.bit object at 0x0000028C710A9E20>.
+2021-07-02 11:34:41,756 - raid :   run = 1, difficoltà = heroic, durata = 60
+2021-07-02 11:34:45,021 - bottone :   bottone = Point(x=597, y=360)
+2021-07-02 11:34:49,434 - bottone :   bottone = Point(x=1096, y=398)
+2021-07-02 11:34:53,855 - bottone :   bottone = Point(x=1143, y=266)
+2021-07-02 11:34:58,211 - bottone :   bottone = Point(x=1074, y=484)
+2021-07-02 11:36:03,015 - ispresence :   presence = Point(x=963, y=282)
+2021-07-02 11:36:03,237 - bottone :   bottone = Point(x=962, y=383)
+2021-07-02 11:36:10,482 - menu :   ritorno del raid = None

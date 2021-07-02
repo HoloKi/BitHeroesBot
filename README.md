@@ -25,7 +25,7 @@
 
 >Italian
 >
->English (planned)
+>English (WORK IN PROGRESS)
 
 ## Help me
 

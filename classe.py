@@ -24,3 +24,13 @@ class bit:
             cprint(f"Error, {self.image} not found!", "red", attrs=['bold'])
             logging.error(f"{self.image} not found!")
             return 0
+
+    def ispresence(self):
+        presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=self.confi)
+        logging.debug(f"presence = {presente}")
+        if presente is not None:
+            print("DEBUG: è presente!")
+            return 1
+        else:
+            print("DEBUG:non è presente!")
+            return 0

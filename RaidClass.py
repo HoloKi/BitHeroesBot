@@ -34,6 +34,8 @@ def raid(run, difficult, duration):
     evoca = classe.bit(r"image\startraid.png",0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
     si = classe.bit(r"image\yes.png", 0.5)
+    morte = classe.bit(r"image\raid\raiddie.png",0.5)
+    chiudi = classe.bit(r"image\raid\close.png",0.5)
     #---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty}.")
     print(colored("\n-----RAID-----",'cyan',attrs=['bold']))
@@ -71,6 +73,16 @@ def raid(run, difficult, duration):
                 count += 1
                 print(f"run number {count}\n")
                 timer(int(duration))
+                #controllo se è morto---------------
+                error = morte.ispresence()
+                if error == 1: #se è morto clicca
+                    chiudi.bottone()
+                    print("your team is dead!")
+                    time.sleep(5)
+                    pyautogui.press('esc')
+                    break
+                    return 0
+                #-----------------------------------
                 if int(count) >= int(run):
                     logging.debug("end")
                     error = si.bottone()
@@ -78,12 +90,15 @@ def raid(run, difficult, duration):
                         cprint(errore)
                         print("Probably Insufficient time!")
                         break
-                    time.sleep(3)
-                    pyautogui.press('esc')
-                    break
+                        return 0
+                    else:
+                        time.sleep(3)
+                        pyautogui.press('esc')
+                        break
+                        return 1
                 else:
                     pyautogui.press('esc')
-                    time.sleep(5)
+                    time.sleep(3)
 
 
 
