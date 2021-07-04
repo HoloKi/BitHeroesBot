@@ -10,21 +10,24 @@ import classe
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 #repo = colored("C'è stato un problema con il bot. Segnalalo allo sviluppatore inviando il file ",'red') + "latest.log"
-error = colored("Please report this bug/error on github or discord\n",'red',attrs=['bold'])
+#error = colored("Please report this bug/error on github or discord\n",'red',attrs=['bold'])
 
 def pvp(run):
+    error = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
     #Caso in cui run <=0
     if run<=0:
         print(colored("Run <=0, skip PvP",'red'))
         logging.debug("Run<=0")
         return 0
     else:
+        print(colored("\n-----PVP-----", 'cyan', attrs=['bold']))
+        print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'), colored("\n"))
         #load class-------------------------------------
         pvp = classe.bit(r"image\pvp.png",0.5)
         play = classe.bit(r"image\play.png",0.5)
         select = classe.bit(r"image\battle2.png",0.5)
         accetta = classe.bit(r"image\accept.png",0.5)
-        defeat = classe.bit(r"image\defeat.png",0.5)
+        defeat = classe.bit(r"image\defeat.png",0.7)
         chiudi = classe.bit(r"image\close.png",0.5)
         #-----------------------------------------------
         conta = 0
@@ -34,7 +37,7 @@ def pvp(run):
             return 0
         #timer(50)
         while(True):
-            conta +=1
+            conta =int(conta) + 1
             errore = play.bottone()
             if errore == 0:
                 cprint(error)
@@ -50,7 +53,9 @@ def pvp(run):
                 cprint(error)
                 break
                 return 0
-            time.sleep(50)
+            #time.sleep(50)
+            print(f"Match n: {conta}")
+            timer(40)
             # controllo se è morto---------------
             error = defeat.ispresence()
             if error == 1:  # se è morto clicca

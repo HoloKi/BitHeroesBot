@@ -1,22 +1,17 @@
 import pyautogui
 import time
 import json
-import cv2 as cv
 import logging
 import RaidClass
 import Cimento
-import PvP
+import PvPClass
 import ProveN
-import GvG
-import Expedition
-import Invasion
 from colorama import *
 from termcolor import colored,cprint
-import asyncio
 
 init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
 
-VERSION = "5.0.1"
+VERSION = "5.0.2"
 
 hero = "heroic"
 hard = "hard"
@@ -26,8 +21,8 @@ def menu():
     print("\n\n")
     print(colored("Enter the number to select the desired option:\n",'red',attrs=['bold']))
     print(colored("1) ",'white'),colored("Raid",'green',attrs=['bold']))
-    """
     print(colored("2) ",'white'),colored("Pvp",'green',attrs=['bold']))
+    """
     print(colored("3) ",'white'),colored("Cimento",'green',attrs=['bold']))
     print(colored("4) ",'white'),colored("Change daily settings",'red',attrs=['bold']))
     print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
@@ -69,15 +64,16 @@ def menu():
                     print(colored("Something went wrong with typing the numbers",'red',attrs=['bold']))
                     return 1
     else:
-        cprint("There is no option for this number!", 'red', attrs=['bold'])
-        """
         if int(a) == 2:
             print(colored("ATTENTO: il bot selezionerà di default il primo nella lista!\n",'red',attrs=['bold']),
                   colored("Tempo default: 40 secondi -> se è troppo poco segnalalo allo sviluppatore!",'red',attrs=['bold']))
             cprint("Quante run di pvp vuoi fare?\n",'green',attrs=['bold'])
             pvprun = input()
-            PvP.pvp(int(pvprun))
+            PvPClass.pvp(int(pvprun))
             return 1
+        else:
+            cprint("There is no option for this number!", 'red', attrs=['bold'])
+            """
         else:
             if int(a) == 3:
                 cprint("Quante run del cimento vuoi fare?",'green',attrs=['bold'])

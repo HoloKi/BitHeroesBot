@@ -8,9 +8,6 @@ from termcolor import colored,cprint
 import classe
 init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base
 
-hero = "heroic"
-hard = "hard"
-norm = "normal"
 
 errore=colored("Please report this bug/error on github or discord\n",'red',attrs=['bold'])
 """
@@ -22,6 +19,10 @@ Funzione Raid che utilizza la classe per semplificare il codice e il suo riutili
 @:return 0 se è andato storto
 """
 def raid(run, difficult, duration):
+    hero = "heroic"
+    hard = "hard"
+    norm = "normal"
+    difficulty = None #default
     count=0;
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
@@ -34,7 +35,7 @@ def raid(run, difficult, duration):
     evoca = classe.bit(r"image\startraid.png",0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
     si = classe.bit(r"image\yes.png", 0.5)
-    morte = classe.bit(r"image\raid\raiddie.png",0.5)
+    morte = classe.bit(r"image\raid\raiddie.png",0.7)
     chiudi = classe.bit(r"image\raid\close.png",0.5)
     #---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty}.")
