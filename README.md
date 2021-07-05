@@ -5,6 +5,9 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/HoloKi/BitHeroesBot)
 ![GitHub top language](https://img.shields.io/github/languages/top/HoloKi/BitHeroesBot)
 
+#Server Discord
+[Discord](https://discord.gg/h98xsssEpe)
+
 # Bit Heroes Bot
 >This bot is completely free, any sale is strictly prohibited
 >
