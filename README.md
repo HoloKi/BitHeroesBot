@@ -14,7 +14,11 @@
 >This bot is a macro, so it performs the various operations by having the screen free with the game and the script open
 >
 
-[Download](https://github.com/HoloKi/BitHeroesBot/releases)
+[Download](https://github.com/HoloKi/BitHeroesBot/releases) 
+
+# WIKI
+
+[Wiki - english and italian](https://github.com/HoloKi/BitHeroesBot/wiki)
 
 ## Dipendencies
 
