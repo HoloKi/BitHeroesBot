@@ -5,7 +5,7 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/HoloKi/BitHeroesBot)
 ![GitHub top language](https://img.shields.io/github/languages/top/HoloKi/BitHeroesBot)
 
-#Server Discord
+# Server Discord
 [Discord](https://discord.gg/h98xsssEpe)
 
 # Bit Heroes Bot
