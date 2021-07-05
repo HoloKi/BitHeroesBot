@@ -72,8 +72,10 @@ def raid(run, difficult, duration):
                 return 0
             while(True):
                 count += 1
-                print(f"run number {count}\n")
+                print("----------------------------------")
+                print(f"run number: {count}")
                 timer(int(duration))
+                print("----------------------------------\n")
                 #controllo se è morto---------------
                 error = morte.ispresence()
                 if error == 1: #se è morto clicca
@@ -109,7 +111,6 @@ def timer(tempo):
         sys.stdout.write('remaining time: ' + str(i) + 's  ')
         sys.stdout.flush()
         time.sleep(1)
-    sys.stdout.flush()
     sys.stdout.write("\r")
-    sys.stdout.write("--------------Done!--------------\n")
+    sys.stdout.write("\033[K")
 

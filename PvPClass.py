@@ -24,11 +24,11 @@ def pvp(run):
         print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'), colored("\n"))
         #load class-------------------------------------
         pvp = classe.bit(r"image\pvp.png",0.5)
-        play = classe.bit(r"image\play.png",0.5)
+        play = classe.bit(r"image\play.png",0.4)
         select = classe.bit(r"image\battle2.png",0.5)
         accetta = classe.bit(r"image\accept.png",0.5)
         defeat = classe.bit(r"image\defeat.png",0.7)
-        chiudi = classe.bit(r"image\close.png",0.5)
+        chiudi = classe.bit(r"image\chiudi.png",0.5)
         #-----------------------------------------------
         conta = 0
         errore = pvp.bottone()
@@ -37,7 +37,7 @@ def pvp(run):
             return 0
         #timer(50)
         while(True):
-            conta =int(conta) + 1
+            conta = int(conta) + 1
             errore = play.bottone()
             if errore == 0:
                 cprint(error)
@@ -54,6 +54,7 @@ def pvp(run):
                 break
                 return 0
             #time.sleep(50)
+            print("----------------------------------")
             print(f"Match n: {conta}")
             timer(40)
             # controllo se è morto---------------
@@ -62,13 +63,16 @@ def pvp(run):
                 chiudi.bottone()
                 print("Match Lost")
                 time.sleep(2)
+            if error == 0:
+                print("Winner!")
             # -----------------------------------
+            print("----------------------------------\n")
 
             if conta == int(run):
                 pyautogui.press('esc')
                 time.sleep(2)
                 pyautogui.press('esc')
-                print("test finito")
+
                 break
                 return 1
             else:
@@ -81,6 +85,7 @@ def timer(tempo):
         sys.stdout.write('remaining time: ' + str(i) + 's  ')
         sys.stdout.flush()
         time.sleep(1)
-    sys.stdout.flush()
     sys.stdout.write("\r")
-    sys.stdout.write("--------------Done!--------------\n")
+    sys.stdout.write("\033[K")
+    #sys.stdout.write("\033[F")  # back to previous line
+    #sys.stdout.write("\033[K")

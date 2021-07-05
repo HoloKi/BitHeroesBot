@@ -1,6 +1,16 @@
-2021-07-05 00:31:56,277 - main :   VERSION : 5.0.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2021-07-05 00:31:56,278 - main :   https://discord.gg/h98xsssEpe
-2021-07-05 00:32:02,137 - menu :   Menu input = 2
-2021-07-05 00:32:03,484 - bottone :   bottone = None
-2021-07-05 00:32:03,486 - bottone :   image\pvp.png not found!
-2021-07-05 00:32:03,487 - <module> :   local variable 'error' referenced before assignment
+2021-07-05 11:13:22,819 - main :   VERSION : 5.0.2 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2021-07-05 11:13:22,819 - main :   https://discord.gg/h98xsssEpe
+2021-07-05 11:13:27,747 - menu :   Menu input = 1
+2021-07-05 11:13:31,684 - raid :   difficult = <classe.bit object at 0x0000020A15C3AB50>.
+2021-07-05 11:13:31,694 - raid :   run = 2, difficoltà = heroic, durata = 210
+2021-07-05 11:13:34,951 - bottone :   bottone = Point(x=596, y=392)
+2021-07-05 11:13:39,334 - bottone :   bottone = Point(x=1091, y=432)
+2021-07-05 11:13:43,762 - bottone :   bottone = Point(x=962, y=298)
+2021-07-05 11:13:48,145 - bottone :   bottone = Point(x=1068, y=516)
+2021-07-05 11:17:24,407 - ispresence :   presence = None
+2021-07-05 11:17:24,407 - ispresence :   DEBUG:non è presente!
+2021-07-05 11:20:59,545 - ispresence :   presence = None
+2021-07-05 11:20:59,545 - ispresence :   DEBUG:non è presente!
+2021-07-05 11:20:59,545 - raid :   end
+2021-07-05 11:20:59,816 - bottone :   bottone = Point(x=895, y=417)
+2021-07-05 11:21:07,070 - menu :   ritorno del raid = None

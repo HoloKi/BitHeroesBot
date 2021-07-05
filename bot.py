@@ -65,9 +65,9 @@ def menu():
                     return 1
     else:
         if int(a) == 2:
-            print(colored("ATTENTO: il bot selezionerà di default il primo nella lista!\n",'red',attrs=['bold']),
-                  colored("Tempo default: 40 secondi -> se è troppo poco segnalalo allo sviluppatore!",'red',attrs=['bold']))
-            cprint("Quante run di pvp vuoi fare?\n",'green',attrs=['bold'])
+            print(colored("ATTENTION: the bot will select the first one in the list by default!\n",'red',attrs=['bold']),
+                  colored("Default time: 40 seconds -> if it is too little report it to the developer!",'red',attrs=['bold']))
+            cprint("How many pvp runs do you want to do?\n",'green',attrs=['bold'])
             pvprun = input()
             PvPClass.pvp(int(pvprun))
             return 1
