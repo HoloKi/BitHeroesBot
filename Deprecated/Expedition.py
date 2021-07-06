@@ -3,7 +3,8 @@ import time
 import cv2 as cv
 import logging
 from colorama import *
-from termcolor import colored,cprint
+from termcolor import colored, cprint
+
 init(autoreset=True) # Permette ad ogni print di ritornare al suo colore base
 
 
