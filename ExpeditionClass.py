@@ -46,8 +46,8 @@ def expedition(run,tempo):
             if error == 0:
                 cprint(errore)
                 return 0
+            time.sleep(3)
             if count == int(run):
-                time.sleep(2)
                 error = xbutt.bottone()
                 if error == 0:
                     cprint(errore)
