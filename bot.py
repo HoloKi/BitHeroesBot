@@ -170,9 +170,9 @@ def setconfig():
     # diff = input("Inserisci la difficoltà del raid\n")
     cprint("Enter the average time it takes for a raid:",'cyan',attrs=['bold'])
     time = input()
-    cprint("Inserisci il numero di run di pvp che puoi fare giornalmente:",'cyan',attrs=['bold'])
-    b = input()
     cprint("Enter the number of pvp runs you can do daily:",'cyan',attrs=['bold'])
+    b = input()
+    cprint("Enter the number of Gauntlet / Trials runs you can do daily:",'cyan',attrs=['bold'])
     c = input()
     cprint("Enter the average time it takes for Gauntlet / Trials:", 'cyan', attrs=['bold'])
     d = input()
@@ -192,14 +192,14 @@ def daily():
     cimentorun = int(data['cimento'])
     ctime = int(data['ctime'])
     print(raidshard)
-    raid.raid(int(raidshard), hero, int(tempo))
+    RaidClass.raid(int(raidshard), hero, int(tempo))
     time.sleep(5)
-    PvP.pvp(int(pvprun))
+    PvPClass.pvp(int(pvprun))
     time.sleep(5)
     # prova a fare cimento. Se ritorna None, ritorna 0
-    g = Cimento.cimento(int(cimentorun), int(ctime))
-    if g == 0:
-        ProveN.prove(int(cimentorun), int(ctime))
+    g = GauntletClass.cimento(int(cimentorun), int(ctime))
+    #if g == 0:
+    #    ProveN.prove(int(cimentorun), int(ctime))
     f.close()
 
 
