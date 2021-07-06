@@ -4,6 +4,7 @@ import json
 import logging
 import RaidClass
 import GauntletClass
+import ExpeditionClass
 import PvPClass
 import ProveN
 from colorama import *
@@ -23,10 +24,10 @@ def menu():
     print(colored("1) ",'white'),colored("Raid",'green',attrs=['bold']))
     print(colored("2) ",'white'),colored("Pvp",'green',attrs=['bold']))
     print(colored("3) ",'white'),colored("Gauntlet",'green',attrs=['bold']))
-    """
     print(colored("4) ",'white'),colored("Change daily settings",'red',attrs=['bold']))
     print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
-    print(colored("6) ",'white'),colored("Nynx Trial",'green',attrs=['bold']))
+    print(colored("6) ",'white'),colored("Expedition",'green',attrs=['bold']))
+    """
     print(colored("7) ",'white'),colored("GvG",'red',attrs=['bold']))
     print(colored("8) ",'white'),colored("Expedition",'red',attrs=['bold']),colored("  - Funzione semi-manuale!",'cyan',attrs=['bold']))
     print(colored("9) ",'white'),colored("Invasion",'red',attrs=['bold']))
@@ -83,17 +84,15 @@ def menu():
                 #    print(colored("Non c'è cimento!",'red',attrs=['bold']))
                 return 1
             else:
-                cprint("There is no option for this number!", 'red', attrs=['bold'])
-                """
                 if int(a) == 4:
                     setconfig()
                     return 1
                 else:
                     if int(a) == 5:
-                        cprint("ATTENTO: Questo comando avvierà Raid, Pvp, Cimento o Prove di Nynx!",'red',attrs=['bold'])
-                        cprint("Assicurati di aver settato per bene le impostazioni delle daily Comando 4)",'cyan',attrs=['bold'])
-                        print(colored("Premi",'cyan',attrs=['bold']),colored("y",'white'),
-                              colored("se sei pronto per startare le daily, altrimenti digita",'cyan',attrs=['bold']),
+                        cprint("ATTENTION: This command will initiate Raid, Pvp, Trial or Trials of Nynx!",'red',attrs=['bold'])
+                        cprint("Make sure you have set the settings of the daily Command 4)",'cyan',attrs=['bold'])
+                        print(colored("Press",'cyan',attrs=['bold']),colored("y",'white'),
+                              colored("if you are ready to start the daily, otherwise type",'cyan',attrs=['bold']),
                               colored("n",'white'))
                         sure = input()
                         if str(sure)=='y':
@@ -104,14 +103,20 @@ def menu():
                                 return 1
                     else:
                         if int(a) == 6:
-                            cprint("Quante run delle prove di Nynx vuoi fare?",'green',attrs=['bold'])
+                            cprint("ATTENTION: This mode requires you to select expedition first!", 'red',
+                                   attrs=['bold'])
+                            cprint("You have to select which of the 3/4 shipments to make! The BOT will take care of the rest!",
+                                   'red', attrs=['bold'])
+                            cprint("How many expedition runs do you want to do?",'green',attrs=['bold'])
                             proverun = input()
-                            cprint("Quanto ci impieghi in secondi a finirne uno?",'green',attrs=['bold'])
-                            cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!",'red',attrs=['bold'])
+                            cprint("Enter the number of how long it takes you to complete a run in seconds",'green',attrs=['bold'])
+                            cprint("Be careful not to be precise; It's better to have some more time to prevent the bot from getting stuck",'red',attrs=['bold'])
                             promento = input()
-                            ProveN.prove(int(proverun), promento)
+                            ExpeditionClass.expedition(int(proverun), promento)
                             return 1;
                         else:
+                            cprint("There is no option for this number!", 'red', attrs=['bold'])
+                            """
                             if int(a) == 7:
                                 cprint("Quante run delle prove di GvG vuoi fare?",'green',attrs=['bold'])
                                 gvgrun = input()
@@ -124,7 +129,7 @@ def menu():
                             else:
                                 if int(a)==8 :
                                     cprint("ATTENTO: Questa modalità richiede che tu selezioni prima la spedizione!",'red',attrs=['bold'])
-                                    cprint("Devi selezionare te quale delle 4 spedizioni fare! Al resto ci pensa il BOT!",'red',attrs=['bold'])
+                                    cprint("Devi selezionare te quale delle 3/4 spedizioni fare! Al resto ci pensa il BOT!",'red',attrs=['bold'])
                                     cprint("Quante run desideri fare?",'green',attrs=['bold'])
                                     exprun = input()
                                     cprint("Quanto tempo impieghi a terminare una run?",'green',attrs=['bold'])
@@ -159,22 +164,20 @@ command to edit json file that store information about daily raid etc
 """
 def setconfig():
     f = open("data.json", "w")
-    cprint("Inserisci il numero di raid che puoi fare giornalmente:",'cyan',attrs=['bold'])
+    cprint("Enter the number of raids you can do daily:",'cyan',attrs=['bold'])
     a = input()
-    cprint("Per ora la difficoltà sarà preimpostata su eroico per error runtime\n",'red',attrs=['bold'])
+    cprint("For now the difficulty will be preset to heroic for error runtime",'red',attrs=['bold'])
     # diff = input("Inserisci la difficoltà del raid\n")
-    cprint("Inserisci il tempo medio che impieghi per un raid:",'cyan',attrs=['bold'])
+    cprint("Enter the average time it takes for a raid:",'cyan',attrs=['bold'])
     time = input()
     cprint("Inserisci il numero di run di pvp che puoi fare giornalmente:",'cyan',attrs=['bold'])
     b = input()
-    cprint("Inserisci il numero di run di Cimento/Prove che puoi fare giornalmente:",'cyan',attrs=['bold'])
+    cprint("Enter the number of pvp runs you can do daily:",'cyan',attrs=['bold'])
     c = input()
-    cprint("Inserisci il tempo medio che impieghi per Cimento/Prove:", 'cyan', attrs=['bold'])
+    cprint("Enter the average time it takes for Gauntlet / Trials:", 'cyan', attrs=['bold'])
     d = input()
     data_dict = {"name": "Utente", "raid": a, "difficolta": hero, "temporaid": time, "pvp": b, "cimento": c, "ctime": d}
     json_test = json.dump(data_dict, f)
-    # test_dict = {"name": "Arty", "test": "funziona"}
-    # json.dump(test_dict,f)
     f.close()
 
 """
