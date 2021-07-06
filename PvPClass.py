@@ -9,12 +9,10 @@ import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
-#repo = colored("C'è stato un problema con il bot. Segnalalo allo sviluppatore inviando il file ",'red') + "latest.log"
-#error = colored("Please report this bug/error on github or discord\n",'red',attrs=['bold'])
 
 def pvp(run):
     error = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
-    #Caso in cui run <=0
+    #Case run <=0
     if run<=0:
         print(colored("Run <=0, skip PvP",'red'))
         logging.debug("Run<=0")
@@ -57,9 +55,9 @@ def pvp(run):
             print("----------------------------------")
             print(f"Match n: {conta}")
             timer(40)
-            # controllo se è morto---------------
+            # check if he die---------------
             error = defeat.ispresence()
-            if error == 1:  # se è morto clicca
+            if error == 1:  # if he die click
                 chiudi.bottone()
                 print("Match Lost")
                 time.sleep(2)
@@ -87,5 +85,3 @@ def timer(tempo):
         time.sleep(1)
     sys.stdout.write("\r")
     sys.stdout.write("\033[K")
-    #sys.stdout.write("\033[F")  # back to previous line
-    #sys.stdout.write("\033[K")

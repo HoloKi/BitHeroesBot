@@ -11,12 +11,12 @@ init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base
 
 errore=colored("Please report this bug/error on github or discord\n",'red',attrs=['bold'])
 """
-Funzione Raid che utilizza la classe per semplificare il codice e il suo riutilizzo
-@:param run = numero di run che fa il player (si presuppone che sia gia int)
-@:param difficult = difficoltà del livello (si presuppone sia gia una stringa dal menu)
-@:param duration = tempo in secondi per completare la run (si presuppone sia gia int)
-@:return 1 se è andato tutto bene
-@:return 0 se è andato storto
+Raid function that uses the class to simplify the code and its reuse
+@: param run = number of runs that the player does (assumes it is already int)
+@: param difficult = level difficulty (assumes it is already a string from the menu)
+@: param duration = time in seconds to complete the run (assumes it is already int)
+@: return 1 if everything went well
+@: return 0 if it went wrong
 """
 def raid(run, difficult, duration):
     hero = "heroic"
