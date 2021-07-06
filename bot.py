@@ -3,15 +3,15 @@ import time
 import json
 import logging
 import RaidClass
-import Cimento
+import GauntletClass
 import PvPClass
 import ProveN
 from colorama import *
 from termcolor import colored,cprint
 
-init(autoreset=True); #Permette ad ogni print di ritornare al suo colore base
+init(autoreset=True);
 
-VERSION = "5.0.2"
+VERSION = "5.1.3"
 
 hero = "heroic"
 hard = "hard"
@@ -22,8 +22,8 @@ def menu():
     print(colored("Enter the number to select the desired option:\n",'red',attrs=['bold']))
     print(colored("1) ",'white'),colored("Raid",'green',attrs=['bold']))
     print(colored("2) ",'white'),colored("Pvp",'green',attrs=['bold']))
+    print(colored("3) ",'white'),colored("Gauntlet",'green',attrs=['bold']))
     """
-    print(colored("3) ",'white'),colored("Cimento",'green',attrs=['bold']))
     print(colored("4) ",'white'),colored("Change daily settings",'red',attrs=['bold']))
     print(colored("5) ",'white'),colored("Daily",'green',attrs=['bold']))
     print(colored("6) ",'white'),colored("Nynx Trial",'green',attrs=['bold']))
@@ -72,20 +72,19 @@ def menu():
             PvPClass.pvp(int(pvprun))
             return 1
         else:
-            cprint("There is no option for this number!", 'red', attrs=['bold'])
-            """
-        else:
             if int(a) == 3:
-                cprint("Quante run del cimento vuoi fare?",'green',attrs=['bold'])
+                cprint("How many gauntlet runs do you want to do?",'green',attrs=['bold'])
                 cimentorun = input()
-                cprint("Quanto tempo impieghi in secondi a finire una run?",'green',attrs=['bold'])
-                cprint("Attento: aggiungi del tempo in piu per non impallare il bot!",'red',attrs=['bold'])
+                cprint("Enter the number of how long it takes you to complete a run in seconds",'green',attrs=['bold'])
+                cprint("Be careful not to be precise; It's better to have some more time to prevent the bot from getting stuck",'red',attrs=['bold'])
                 timento = input()
-                g = Cimento.cimento(int(cimentorun), int(timento))
+                g = GauntletClass.cimento(int(cimentorun), int(timento))
                 #if g == 0:
                 #    print(colored("Non c'è cimento!",'red',attrs=['bold']))
                 return 1
             else:
+                cprint("There is no option for this number!", 'red', attrs=['bold'])
+                """
                 if int(a) == 4:
                     setconfig()
                     return 1
@@ -154,14 +153,10 @@ def menu():
                                                 cprint("Non esiste un'opzione relativo a questo numero!",'red',attrs=['bold'])
         """
 
+"""
+command to edit json file that store information about daily raid etc
 
-def test(name, numero):
-    raidcord = pyautogui.locateCenterOnScreen(name, grayscale=False, confidence=numero)
-    print(raidcord)
-    pyautogui.click(raidcord)
-    return raidcord
-
-# potrei fare def setconfig(a,b,c)
+"""
 def setconfig():
     f = open("data.json", "w")
     cprint("Inserisci il numero di raid che puoi fare giornalmente:",'cyan',attrs=['bold'])
@@ -182,7 +177,9 @@ def setconfig():
     # json.dump(test_dict,f)
     f.close()
 
-
+"""
+Function to do daily task
+"""
 def daily():
     f = open('data.json', "r")
     data = json.loads(f.read())
@@ -244,6 +241,7 @@ def main():
     logging.basicConfig(filename="latest.log", filemode="w", format='%(asctime)s - %(funcName)s :   %(message)s', level=logging.DEBUG)
     logging.info(f"VERSION : {VERSION} - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot")
     logging.info("https://discord.gg/h98xsssEpe")
+    logging.info("The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer")
     ciclo = 1
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------ Translate by PastShadie")
     print("All info on latest.log")
