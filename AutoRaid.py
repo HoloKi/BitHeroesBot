@@ -28,7 +28,12 @@ def raid(run, difficult):
     difficulty = None  # default
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
-    difficulty = classe.bit(r"image\raid\eroic.png", 0.5)
+    if difficult == hero:
+        difficulty = classe.bit(r"image\raid\eroic.png", 0.5)
+    if difficult == hard:
+        difficulty = classe.bit(r"image\raid\hard.png", 0.5)
+    if difficult == norm:
+        difficulty = classe.bit(r"image\raid\normal.png", 0.5)
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)

@@ -2,7 +2,7 @@ import pyautogui
 import time
 import json
 import logging
-import RaidClass
+import AutoRaid
 import GauntletClass
 import ExpeditionClass
 import PvPClass
@@ -43,22 +43,18 @@ def menu():
         print(colored("Enter the number:\n",'green',attrs=['bold']),colored("1) normal\n"),colored("2) hard\n"),
               colored("3) heroic\n"),colored("According to the difficulty you want",'green',attrs=['bold']))
         c = input()
-        print("Enter the number of how long it takes you to complete a raid run in seconds.\n",
-            colored("Be careful not to be precise; It's better to have some more time to prevent the bot from getting stuck",
-                    'red',attrs=['bold']))
-        d = input()
         if int(c) == 1:
-            retraid = RaidClass.raid(b, norm, d)
+            retraid = AutoRaid.raid(b, norm)
             logging.debug(f"ritorno del raid = {retraid}")
             return 1
         else:
             if int(c) == 2:
-                retraid = RaidClass.raid(b, hard, d)
+                retraid = AutoRaid.raid(b, hard)
                 logging.debug(f"ritorno del raid = {retraid}")
                 return 1
             else:
                 if int(c) == 3:
-                    retraid = RaidClass.raid(b, hero, d)
+                    retraid = AutoRaid.raid(b, hero)
                     logging.debug(f"ritorno del raid = {retraid}")
                     return 1
                 else:
