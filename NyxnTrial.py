@@ -12,7 +12,7 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
 def prove(run):
-    print(colored("\n-----PROVE-----", 'cyan', attrs=['bold']))
+    print(colored("\n-----NYxNTRIAL-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
     logging.debug(f"run = {run}")
@@ -32,6 +32,9 @@ def prove(run):
             yes = classe.bit(r"image\yes.png",0.5)
             # -------------------------------------
             error = trial.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
             while(True):
                 conta += 1
                 error = play.bottone()
