@@ -6,13 +6,14 @@ import AutoRaid
 import GauntletClass
 import ExpeditionClass
 import PvPClass
-import ProveN
+import NyxnTrial
+import Invasion
 from colorama import *
 from termcolor import colored,cprint
 
 init(autoreset=True);
 
-VERSION = "5.1.3"
+VERSION = "5.2.0"
 
 hero = "heroic"
 hard = "hard"
@@ -29,8 +30,10 @@ def menu():
     print(colored("6) ",'white'),colored("Expedition",'green',attrs=['bold']))
     """
     print(colored("7) ",'white'),colored("GvG",'red',attrs=['bold']))
-    print(colored("8) ",'white'),colored("Expedition",'red',attrs=['bold']),colored("  - Funzione semi-manuale!",'cyan',attrs=['bold']))
+    """
+    print(colored("8) ",'white'),colored("Nyxn Trial",'red',attrs=['bold']))
     print(colored("9) ",'white'),colored("Invasion",'red',attrs=['bold']))
+    """
     print(colored("10)",'white'),colored("Debug Mode\n",'green',attrs=['bold']))
     """
     print(f"0)  To close the program\n")
@@ -111,48 +114,32 @@ def menu():
                             ExpeditionClass.expedition(int(proverun), promento)
                             return 1;
                         else:
-                            cprint("There is no option for this number!", 'red', attrs=['bold'])
-                            """
+
                             if int(a) == 7:
-                                cprint("Quante run delle prove di GvG vuoi fare?",'green',attrs=['bold'])
-                                gvgrun = input()
-                                cprint("Quanto ci impieghi in secondi a finirne uno?", 'green', attrs=['bold'])
-                                cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!", 'red',
-                                       attrs=['bold'])
-                                gvgtempo = input()
-                                GvG.gvg(int(gvgrun),int(gvgtempo))
-                                return 1;
+                                print("gvg soon")
+                                return 1
                             else:
                                 if int(a)==8 :
-                                    cprint("ATTENTO: Questa modalità richiede che tu selezioni prima la spedizione!",'red',attrs=['bold'])
-                                    cprint("Devi selezionare te quale delle 3/4 spedizioni fare! Al resto ci pensa il BOT!",'red',attrs=['bold'])
-                                    cprint("Quante run desideri fare?",'green',attrs=['bold'])
+                                    cprint("How many NyxnTrial runs do you want to do?",'green',attrs=['bold'])
                                     exprun = input()
-                                    cprint("Quanto tempo impieghi a terminare una run?",'green',attrs=['bold'])
-                                    cprint("ATTENTO: Aggiungi del tempo in piu onde evitare che si impalli il bot!",'red',attrs=['bold'])
-                                    exptime= input()
-                                    Expedition.spedizione(int(exprun),int(exptime))
+
+                                    NyxnTrial.prove(int(exprun))
                                     return 1
                                 else:
                                     if int(a) == 9:
-                                        cprint("Quante run dell'invasione vuoi fare?", 'green', attrs=['bold'])
+                                        cprint("How many invasion runs do you want to do?", 'green', attrs=['bold'])
                                         invrun = input()
-                                        cprint("Quanto ci impieghi in secondi a finirne uno?", 'green', attrs=['bold'])
-                                        cprint("Attento: aggiungi del tempo in piu in caso per non impallare il bot!",
-                                               'red', attrs=['bold'])
-                                        invento = input()
-                                        Invasion.invasione(int(invrun), invento)
+                                        Invasion.invasione(int(invrun))
                                         return 1;
                                     else:
                                         if int(a) == 10:
-                                            debug()
+                                            #debug()
                                             return 1;
                                         else:
                                             if int(a) == 0:
                                                 return 0
                                             else:
                                                 cprint("Non esiste un'opzione relativo a questo numero!",'red',attrs=['bold'])
-        """
 
 """
 command to edit json file that store information about daily raid etc
