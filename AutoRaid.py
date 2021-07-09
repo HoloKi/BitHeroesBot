@@ -44,8 +44,7 @@ def raid(run, difficult):
     logging.debug(f"difficult = {difficulty}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
-          colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'),
-          colored(" and duration = ", 'green', attrs=['bold']))
+          colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
     logging.debug(f"run = {run}, difficoltà = {difficult}")
     time.sleep(3)
     # caso in cui le run sono minori di 0, ritorna 0
