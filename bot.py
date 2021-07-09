@@ -175,14 +175,14 @@ def daily():
     cimentorun = int(data['cimento'])
     ctime = int(data['ctime'])
     print(raidshard)
-    RaidClass.raid(int(raidshard), hero, int(tempo))
+    RaidClass.raid(int(raidshard), hero)
     time.sleep(5)
     PvPClass.pvp(int(pvprun))
     time.sleep(5)
     # prova a fare cimento. Se ritorna None, ritorna 0
     g = GauntletClass.cimento(int(cimentorun), int(ctime))
-    #if g == 0:
-    #    ProveN.prove(int(cimentorun), int(ctime))
+    if g == 0:
+        NyxnTrial.prove(int(cimentorun))
     f.close()
 
 
