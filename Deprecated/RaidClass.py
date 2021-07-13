@@ -1,7 +1,6 @@
 import pyautogui
 import time
 import logging
-import classe
 import sys
 from colorama import *
 from termcolor import colored, cprint
@@ -10,6 +9,8 @@ import classe
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
+
+
 """
 Raid function that uses the class to simplify the code and its reuse
 @: param run = number of runs that the player does (assumes it is already int)
