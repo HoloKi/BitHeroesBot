@@ -23,7 +23,7 @@ def invasione(run):
         return 0
     else:
         if run == 0:
-            print(colored("Skip Prove di Nyxn",'red', attrs=['bold']))
+            print(colored("Skip Prove di Nyxn", 'red', attrs=['bold']))
             return 0
         else:
             # load_class---------------------------
