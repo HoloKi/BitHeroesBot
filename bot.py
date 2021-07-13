@@ -175,7 +175,7 @@ def daily():
     cimentorun = int(data['cimento'])
     ctime = int(data['ctime'])
     print(raidshard)
-    RaidClass.raid(int(raidshard), hero)
+    AutoRaid.raid(int(raidshard), hero)
     time.sleep(5)
     PvPClass.pvp(int(pvprun))
     time.sleep(5)
