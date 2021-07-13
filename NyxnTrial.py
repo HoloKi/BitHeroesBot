@@ -1,7 +1,6 @@
 import pyautogui
 import time
 import logging
-import classe
 from colorama import *
 from termcolor import colored, cprint
 import classe
@@ -11,8 +10,9 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
+
 def prove(run):
-    print(colored("\n-----NYxNTRIAL-----", 'cyan', attrs=['bold']))
+    print(colored("\n-----NYXN_TRIAL-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
     logging.debug(f"run = {run}")
@@ -22,20 +22,20 @@ def prove(run):
         return 0
     else:
         if run == 0:
-            print(colored("Skip Prove di Nyxn",'red', attrs=['bold']))
+            print(colored("Skip Prove di Nyxn", 'red', attrs=['bold']))
             return 0
         else:
             # load_class---------------------------
-            trial = classe.bit(r"image\prove.png",0.5)
-            play = classe.bit(r"image\play.png",0.5)
-            accept = classe.bit(r"image\accept.png",0.5)
-            yes = classe.bit(r"image\yes.png",0.5)
+            trial = classe.bit(r"image\prove.png", 0.5)
+            play = classe.bit(r"image\play.png", 0.5)
+            accept = classe.bit(r"image\accept.png", 0.5)
+            yes = classe.bit(r"image\yes.png", 0.5)
             # -------------------------------------
             error = trial.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
-            while(True):
+            while True:
                 conta += 1
                 error = play.bottone()
                 if error == 0:
@@ -61,11 +61,12 @@ def prove(run):
 
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)
-    while(True):
+    while True:
         await asyncio.sleep(1)
         test = fine.ispresence()
-        if test==1:
+        if test == 1:
             return 1
+
 
 async def test():
     prova = asyncio.create_task(fine())
