@@ -2,7 +2,7 @@ import pyautogui
 import time
 import cv2 as cv
 import logging
-import sys
+import asyncio
 from colorama import *
 from termcolor import colored,cprint
 import classe
@@ -33,55 +33,56 @@ def pvp(run):
         if errore == 0:
             cprint(error)
             return 0
-        #timer(50)
-        while(True):
+        while True:
             conta = int(conta) + 1
             errore = play.bottone()
             if errore == 0:
                 cprint(error)
                 break
-                return 0
             errore = select.bottone()
             if errore == 0:
                 cprint(error)
                 break
-                return 0
             errore = accetta.bottone()
             if errore == 0:
                 cprint(error)
                 break
-                return 0
-            #time.sleep(50)
             print("----------------------------------")
             print(f"Match n: {conta}")
-            timer(40)
+            asyncio.run(test())
             # check if he die---------------
             error = defeat.ispresence()
             if error == 1:  # if he die click
                 chiudi.bottone()
                 print("Match Lost")
-                time.sleep(2)
             if error == 0:
                 print("Winner!")
             # -----------------------------------
             print("----------------------------------\n")
-
+            time.sleep(2)
             if conta == int(run):
                 pyautogui.press('esc')
                 time.sleep(2)
                 pyautogui.press('esc')
-
-                break
                 return 1
             else:
                 pyautogui.press('esc')
                 time.sleep(2)
+        return 0
 
-def timer(tempo):
-    for i in range(int(tempo), 0, -1):
-        sys.stdout.write("\r")
-        sys.stdout.write('remaining time: ' + str(i) + 's  ')
-        sys.stdout.flush()
-        time.sleep(1)
-    sys.stdout.write("\r")
-    sys.stdout.write("\033[K")
+
+async def fine():
+    fine = classe.bit(r"image\pvpvick.png", 0.7)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    while True:
+        await asyncio.sleep(1)
+        test = morte.ispresence()
+        if test==1:
+            return 2
+        test = fine.ispresence()
+        if test==1:
+            return 1
+
+async def test():
+    prova = asyncio.create_task(fine())
+    await prova
