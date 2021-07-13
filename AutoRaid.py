@@ -38,8 +38,8 @@ def raid(run, difficult):
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
     si = classe.bit(r"image\yes.png", 0.5)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
@@ -76,7 +76,6 @@ def raid(run, difficult):
                 print("----------------------------------")
                 print(f"run number: {count}")
                 asyncio.run(test())
-                print("----------------------------------\n")
                 # controllo se è morto---------------
                 error = morte.ispresence()
                 if error == 1:  # se è morto clicca
@@ -86,6 +85,7 @@ def raid(run, difficult):
                     pyautogui.press('esc')
                     break
                 # -----------------------------------
+                print("----------------------------------\n")
                 if int(count) >= int(run):
                     logging.debug("end")
                     error = si.bottone()
@@ -103,10 +103,14 @@ def raid(run, difficult):
 
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while(True):
         await asyncio.sleep(1)
+        test = morte.ispresence()
+        if test == 1:
+            return 2
         test = fine.ispresence()
-        if test==1:
+        if test == 1:
             return 1
 
 async def test():
