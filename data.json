@@ -1,9 +1,1 @@
-{
-	"name": "Utente", 
-	"raid": "7", 
-	"difficolta": "heroic",
-	"temporaid": "200",
-	"pvp": "3",
-	"cimento": "2",
-	"ctime": "2"
-}
+{"name": "User", "raid": "3", "difficulty": "heroic", "pvp": "3", "gauntlet": "3"}
