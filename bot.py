@@ -10,6 +10,16 @@ import NyxnTrial
 import Invasion
 from colorama import *
 from termcolor import colored,cprint
+import os
+from ctypes import windll, byref
+from ctypes.wintypes import SMALL_RECT
+import ctypes.wintypes as wintypes
+
+STDOUT = -11
+
+hdl = windll.kernel32.GetStdHandle(STDOUT)
+rect = wintypes.SMALL_RECT(0, 0, 56, 26) # (left, top, right, bottom)
+windll.kernel32.SetConsoleWindowInfo(hdl, True, byref(rect))
 
 init(autoreset=True);
 
@@ -65,8 +75,7 @@ def menu():
                     return 1
     else:
         if int(a) == 2:
-            print(colored("ATTENTION: the bot will select the first one in the list by default!\n",'red',attrs=['bold']),
-                  colored("Default time: 40 seconds -> if it is too little report it to the developer!",'red',attrs=['bold']))
+            print(colored("ATTENTION: the bot will select the first one in the list by default!\n",'red',attrs=['bold']))
             cprint("How many pvp runs do you want to do?\n",'green',attrs=['bold'])
             pvprun = input()
             PvPClass.pvp(int(pvprun))
@@ -133,7 +142,8 @@ def menu():
                                         return 1;
                                     else:
                                         if int(a) == 10:
-                                            #debug()
+                                            size = os.get_terminal_size()
+                                            print(size)
                                             return 1;
                                         else:
                                             if int(a) == 0:
@@ -151,15 +161,11 @@ def setconfig():
     a = input()
     cprint("For now the difficulty will be preset to heroic for error runtime",'red',attrs=['bold'])
     # diff = input("Inserisci la difficoltà del raid\n")
-    cprint("Enter the average time it takes for a raid:",'cyan',attrs=['bold'])
-    time = input()
     cprint("Enter the number of pvp runs you can do daily:",'cyan',attrs=['bold'])
     b = input()
     cprint("Enter the number of Gauntlet / Trials runs you can do daily:",'cyan',attrs=['bold'])
     c = input()
-    cprint("Enter the average time it takes for Gauntlet / Trials:", 'cyan', attrs=['bold'])
-    d = input()
-    data_dict = {"name": "Utente", "raid": a, "difficolta": hero, "temporaid": time, "pvp": b, "cimento": c, "ctime": d}
+    data_dict = {"name": "User", "raid": a, "difficulty": hero, "pvp": b, "gauntlet": c}
     json_test = json.dump(data_dict, f)
     f.close()
 
@@ -170,10 +176,8 @@ def daily():
     f = open('data.json', "r")
     data = json.loads(f.read())
     raidshard = int(data['raid'])
-    tempo = int(data['temporaid'])
     pvprun = int(data['pvp'])
     cimentorun = int(data['cimento'])
-    ctime = int(data['ctime'])
     print(raidshard)
     AutoRaid.raid(int(raidshard), hero)
     time.sleep(5)
@@ -229,7 +233,8 @@ def main():
     logging.info("https://discord.gg/h98xsssEpe")
     logging.info("The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer")
     ciclo = 1
-    print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------ Translate by PastShadie")
+    print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
+    print("Translate by PastShadie")
     print("All info on latest.log")
     while True:
         ciclo = menu()
