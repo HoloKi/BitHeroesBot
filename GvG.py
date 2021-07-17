@@ -1,67 +1,82 @@
 import pyautogui
 import time
-import cv2 as cv
 import logging
 from colorama import *
-from termcolor import colored,cprint
-init(autoreset=True) # Permette ad ogni print di ritornare al suo colore base
+from termcolor import colored, cprint
+import classe
+import asyncio
+
+init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
+
+errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
 
-def gvg(run, tempo):
-    conta = 1
-    print(colored("\n-----GVG-----",'cyan',attrs=['bold']))
-    print(colored("run = ", 'green',attrs=['bold']), colored(run, 'white'),colored(" e durata = ", 'green',attrs=['bold']),
-          colored(tempo, 'white'), colored("secondi\n", 'green',attrs=['bold']))
-    time.sleep(2)
-    gvgbutton = pyautogui.locateCenterOnScreen(r"image\gvg.png", grayscale=False, confidence=0.5)
-    if gvgbutton is not None:
-        logging.debug(f"gvgbutton = {gvgbutton}")
-        pyautogui.click(gvgbutton)
-        time.sleep(5)
-        while True:
-            print(colored("giro numero = ",'green',attrs=['bold']),colored(conta,'white'))
-            conta = int(conta) + 1
-            play = pyautogui.locateCenterOnScreen(r"image\play.png", grayscale=False, confidence=0.5)
-            if play is not None:
-                logging.debug(f"play = {play}")
-                pyautogui.click(play)
-                time.sleep(5)
-                battle = pyautogui.locateCenterOnScreen(r"image\battle1.png", grayscale=False, confidence=0.2)
-                if battle is not None:
-                    logging.debug(f"battle = {battle}")
-                    pyautogui.click(battle)
-                    time.sleep(5)
-                    accept = pyautogui.locateCenterOnScreen(r"image\accept.png", grayscale=False, confidence=0.5)
-                    if accept is not None:
-                        logging.debug(f"accept = {accept}")
-                        pyautogui.click(accept)
-                        time.sleep(int(tempo))
-                        chiudi = pyautogui.locateCenterOnScreen(r"image\close.png", grayscale=False, confidence=0.5)
-                        if chiudi is not None:
-                            logging.debug(f"close = {chiudi}")
-                            pyautogui.click(chiudi)
-                            time.sleep(5)
-                            if run == 1:
-                                xbutton = pyautogui.locateCenterOnScreen(r"image\xbutton.png", grayscale=False, confidence=0.5)
-                                pyautogui.click(xbutton)
-                                break
-                            else:
-                                run = int(run) - 1
-                        else:
-                            logging.debug(f"close = {chiudi}")
-                            break;
-                    else:
-                        logging.debug(f"accept = {accept}")
-                        break;
-
-                else:
-                    print("Report this on github!")
-                    logging.debug(f"battle = {battle}")
-                    break;
-            else:
-                print("Report this on github!")
-                logging.debug(f"play = {play}")
-                break;
+def gvg(run):
+    print(colored("\n-----GVG-----", 'cyan', attrs=['bold']))
+    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
+    conta = 0
+    logging.debug(f"run = {run}")
+    if run < 0:
+        logging.debug("Run < 0")
+        pyautogui.alert(text="Run must be > 0", button="OK")
+        return 0
     else:
-        cprint("Gvg non disponibile o non riconosciuto. Nel caso spostati e ritenta",'red',attrs=['bold'])
-        logging.debug(f"gvg not found! gvgbutton = {gvgbutton}")
+        if run == 0:
+            print(colored("Skip Prove di Nyxn", 'red', attrs=['bold']))
+            return 0
+        else:
+            # load_class---------------------------
+            gvg = classe.bit(r"image\gvg.png", 0.5)
+            play = classe.bit(r"image\play.png",0.5)
+            select = classe.bit(r"image\battle2.png", 0.5)
+            accept = classe.bit(r"image\accept.png", 0.5)
+            yes = classe.bit(r"image\yes.png", 0.5)
+            # -------------------------------------
+            error = gvg.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
+            error = play.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
+            error = select.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
+            while True:
+                conta += 1
+                error = accept.bottone()
+                if error == 0:
+                    cprint(errore)
+                    return 0
+                print("----------------------------------")
+                print(f"run number: {conta}")
+                asyncio.run(test())
+                print("----------------------------------\n")
+                error = yes.bottone()
+                if error == 0:
+                    cprint(errore)
+                    return 0
+                time.sleep(2)
+                if conta == int(run):
+                    pyautogui.press('esc')
+                    break
+
+
+async def fine():
+    vittoria = classe.bit(r"image\gvgvict.png", 0.7)
+    sconfitta = classe.bit(r"image\endinv.png", 0.7)
+    while (True):
+        await asyncio.sleep(1)
+        test = vittoria.ispresence()
+        if test == 1:
+            return 2
+        test = sconfitta.ispresence()
+        if test == 1:
+            return 1
+
+
+async def test():
+    prova = asyncio.create_task(fine())
+    await prova

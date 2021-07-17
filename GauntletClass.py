@@ -2,36 +2,35 @@ import pyautogui
 import time
 import cv2 as cv
 import logging
-import sys
+import asyncio
 from colorama import *
-from termcolor import colored,cprint
+from termcolor import colored, cprint
 import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
-errore = colored("Please report this bug/error on github",'red',attrs=['bold'])
+errore = colored("Please report this bug/error on github", 'red', attrs=['bold'])
 
-def cimento(run, tempo):
+
+def cimento(run):
     conta = 0
-    logging.debug(f"run = {run}, time = {tempo} seconds")
-    cprint("\n-----CIMENTO-----", 'cyan', attrs=['bold'])
-    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
-          colored(" e durata = ", 'green', attrs=['bold']),
-          colored(tempo, 'white'), colored("secondi\n", 'green'))
+    logging.debug(f"run = {run}")
+    cprint("\n-----GAUNTLET-----", 'cyan', attrs=['bold'])
+    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     if run <= 0:
         logging.debug("run <= 0")
         pyautogui.alert(text="Run must be > 0", button="OK")
         return 0
     else:
-        #load-----------------------------
-        gaunt = classe.bit(r"image\cimento.png",0.5)
-        play = classe.bit(r"image\play.png",0.4)
-        accept = classe.bit(r"image\accept.png",0.5)
-        #---------------------------------
+        # load-----------------------------
+        gaunt = classe.bit(r"image\cimento.png", 0.5)
+        play = classe.bit(r"image\play.png", 0.4)
+        accept = classe.bit(r"image\accept.png", 0.5)
+        # ---------------------------------
         error = gaunt.bottone()
         if error == 0:
             cprint(errore)
             return 0
-        while(True):
+        while (True):
             conta += 1
             error = play.bottone()
             if error == 0:
@@ -43,24 +42,31 @@ def cimento(run, tempo):
                 return 0
             print("----------------------------------")
             print(f"run number: {conta}")
-            timer(int(tempo))
+            asyncio.run(test())
             print("----------------------------------\n")
-            if conta==int(run):
+            if conta == int(run):
                 pyautogui.press('esc')
                 time.sleep(3)
                 pyautogui.press('esc')
                 break
-                return 1
             else:
                 pyautogui.press('esc')
                 time.sleep(2)
 
 
-def timer(tempo):
-    for i in range(int(tempo), 0, -1):
-        sys.stdout.write("\r")
-        sys.stdout.write('remaining time: ' + str(i) + 's  ')
-        sys.stdout.flush()
-        time.sleep(1)
-    sys.stdout.write("\r")
-    sys.stdout.write("\033[K")
+async def fine():
+    vittoria = classe.bit(r"image\gvgvict.png", 0.7)
+    sconfitta = classe.bit(r"image\endinv.png", 0.7)
+    while (True):
+        await asyncio.sleep(1)
+        test = vittoria.ispresence()
+        if test == 1:
+            return 2
+        test = sconfitta.ispresence()
+        if test == 1:
+            return 1
+
+
+async def test():
+    prova = asyncio.create_task(fine())
+    await prova
