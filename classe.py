@@ -30,10 +30,10 @@ class bit:
         presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
         logging.debug(f"presence = {presente}")
         if presente is not None:
-            logging.debug("DEBUG: è presente!")
+            #logging.debug("DEBUG: è presente!")
             return 1
         else:
-            logging.debug("DEBUG:non è presente!")
+            #logging.debug("DEBUG:non è presente!")
             return 0
 
     def timer(self):
