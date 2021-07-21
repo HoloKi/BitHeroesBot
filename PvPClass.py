@@ -34,6 +34,7 @@ def pvp(run):
             cprint(error)
             return 0
         while True:
+            perso=False
             conta = int(conta) + 1
             errore = play.bottone()
             if errore == 0:
@@ -53,7 +54,7 @@ def pvp(run):
             # check if he die---------------
             error = defeat.ispresence()
             if error == 1:  # if he die click
-                chiudi.bottone()
+                perso=True
                 print("Match Lost")
             if error == 0:
                 print("Winner!")
@@ -66,8 +67,12 @@ def pvp(run):
                 pyautogui.press('esc')
                 return 1
             else:
-                pyautogui.press('esc')
-                time.sleep(2)
+                if perso==True:
+                    chiudi.bottone()
+                    time.sleep(2)
+                else:
+                    pyautogui.press('esc')
+                    time.sleep(2)
         return 0
 
 
