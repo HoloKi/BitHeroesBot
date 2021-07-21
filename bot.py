@@ -186,7 +186,7 @@ def daily():
     data = json.loads(f.read())
     raidshard = int(data['raid'])
     pvprun = int(data['pvp'])
-    cimentorun = int(data['cimento'])
+    cimentorun = int(data['gauntlet'])
     print(raidshard)
     AutoRaid.raid(int(raidshard), hero)
     time.sleep(5)
