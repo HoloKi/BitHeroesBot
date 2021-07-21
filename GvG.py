@@ -36,15 +36,15 @@ def gvg(run):
             if error == 0:
                 cprint(errore)
                 return 0
-            error = play.bottone()
-            if error == 0:
-                cprint(errore)
-                return 0
-            error = select.bottone()
-            if error == 0:
-                cprint(errore)
-                return 0
             while True:
+                error = play.bottone()
+                if error == 0:
+                    cprint(errore)
+                    return 0
+                error = select.bottone()
+                if error == 0:
+                    cprint(errore)
+                    return 0
                 conta += 1
                 error = accept.bottone()
                 if error == 0:
