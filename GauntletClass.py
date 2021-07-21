@@ -16,6 +16,7 @@ def cimento(run):
     logging.debug(f"run = {run}")
     cprint("\n-----GAUNTLET-----", 'cyan', attrs=['bold'])
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
+    print(" ")
     if run <= 0:
         logging.debug("run <= 0")
         pyautogui.alert(text="Run must be > 0", button="OK")
