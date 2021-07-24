@@ -115,13 +115,7 @@ def menu():
                                 'red', attrs=['bold'])
                             cprint("How many expedition runs do you want to do?", 'green', attrs=['bold'])
                             proverun = input()
-                            cprint("Enter the number of how long it takes you to complete a run in seconds", 'green',
-                                   attrs=['bold'])
-                            cprint(
-                                "Be careful not to be precise; It's better to have some more time to prevent the bot from getting stuck",
-                                'red', attrs=['bold'])
-                            promento = input()
-                            ExpeditionClass.expedition(int(proverun), promento)
+                            ExpeditionClass.expedition(int(proverun))
                             return 1
                         else:
 
