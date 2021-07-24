@@ -53,7 +53,7 @@ def prove(run):
                 if error == 0:
                     cprint(errore)
                     return 0
-                time.sleep(2)
+                time.sleep(3)
                 if conta == int(run):
                     pyautogui.press('esc')
                     break
@@ -61,8 +61,12 @@ def prove(run):
 
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while True:
         await asyncio.sleep(1)
+        test = morte.ispresence()
+        if test == 1:
+            return 2
         test = fine.ispresence()
         if test == 1:
             return 1

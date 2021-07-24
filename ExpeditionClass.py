@@ -1,8 +1,8 @@
 import pyautogui
 import time
 import cv2 as cv
+import asyncio
 import logging
-import sys
 from colorama import *
 from termcolor import colored,cprint
 import classe
@@ -10,13 +10,11 @@ import classe
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github",'red',attrs=['bold'])
 
-def expedition(run,tempo):
+def expedition(run):
     count = 0
-    logging.debug(f"run = {run}, time = {tempo} seconds")
+    logging.debug(f"run = {run}")
     cprint("\n-----EXPEDITION-----", 'cyan', attrs=['bold'])
-    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
-          colored(" e durata = ",'green', attrs=['bold']),
-          colored(tempo, 'white'), colored("secondi\n", 'green', attrs=['bold']))
+    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     if run <= 0:
         logging.debug("run <= 0")
         pyautogui.alert(text="Run must be > 0", button="OK")
@@ -40,7 +38,7 @@ def expedition(run,tempo):
                 return 0
             print("----------------------------------")
             print(f"Match n: {count}")
-            time.sleep(int(tempo))
+            asyncio.run(test())
             print("----------------------------------\n")
             error = yes.bottone()
             if error == 0:
@@ -56,3 +54,20 @@ def expedition(run,tempo):
                 time.sleep(2)
                 pyautogui.press('esc')
                 break
+
+
+async def fine():
+    fine = classe.bit(r"image\fine.png", 0.7)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    while(True):
+        await asyncio.sleep(1)
+        test = morte.ispresence()
+        if test == 1:
+            return 2
+        test = fine.ispresence()
+        if test == 1:
+            return 1
+
+async def test():
+    prova = asyncio.create_task(fine())
+    await prova
