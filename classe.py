@@ -44,3 +44,6 @@ class bit:
             time.sleep(1)
         sys.stdout.write("\r")
         sys.stdout.write("\033[K")
+
+    def getImage(self):
+        return self.image
