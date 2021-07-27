@@ -27,7 +27,7 @@ def prove(run):
         else:
             # load_class---------------------------
             trial = classe.bit(r"image\prove.png", 0.5)
-            play = classe.bit(r"image\play.png", 0.5)
+            play = classe.bit(r"image\play.png", 0.4)
             accept = classe.bit(r"image\accept.png", 0.5)
             yes = classe.bit(r"image\yes.png", 0.5)
             # -------------------------------------
