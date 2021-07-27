@@ -1,8 +1,6 @@
 import pyautogui
 import time
 import logging
-import classe
-import sys
 from colorama import *
 from termcolor import colored, cprint
 import classe
@@ -29,11 +27,13 @@ def raid(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\eroic.png", 0.5)
-    if difficult == hard:
-        difficulty = classe.bit(r"image\raid\hard.png", 0.5)
-    if difficult == norm:
-        difficulty = classe.bit(r"image\raid\normal.png", 0.5)
+        difficulty = classe.bit(r"image\raid\eroic.png", 0.7)
+    else:
+        if difficult == hard:
+            difficulty = classe.bit(r"image\raid\hard.png", 0.7)
+        else:
+            if difficult == norm:
+                difficulty = classe.bit(r"image\raid\normal.png", 0.7)
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
@@ -41,7 +41,7 @@ def raid(run, difficult):
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     # ---------------------------------------------------------------------------------
-    logging.debug(f"difficult = {difficulty}.")
+    logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
           colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
@@ -68,7 +68,10 @@ def raid(run, difficult):
                 cprint(errore)
                 return 0
             error = difficulty.bottone()
-            accetta.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
+            error = accetta.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
