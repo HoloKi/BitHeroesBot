@@ -2,18 +2,11 @@ import pyautogui
 import time
 import json
 import logging
-import AutoRaid
-import GauntletClass
-import ExpeditionClass
-import GvG
-import PvPClass
-import NyxnTrial
-import Invasion
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass
 from colorama import *
 from termcolor import colored, cprint
 import os
 from ctypes import windll, byref
-from ctypes.wintypes import SMALL_RECT
 import ctypes.wintypes as wintypes
 
 STDOUT = -11
