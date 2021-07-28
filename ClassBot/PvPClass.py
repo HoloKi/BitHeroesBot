@@ -1,11 +1,10 @@
 import pyautogui
 import time
-import cv2 as cv
 import logging
 import asyncio
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
@@ -61,9 +60,13 @@ def pvp(run):
             # -----------------------------------
             print("----------------------------------\n")
             time.sleep(2)
-            if conta == int(run):
-                pyautogui.press('esc')
+            if perso == True:
+                chiudi.bottone()
                 time.sleep(2)
+            if conta == int(run):
+                if perso == False:
+                    pyautogui.press('esc')
+                    time.sleep(2)
                 pyautogui.press('esc')
                 return 1
             else:
