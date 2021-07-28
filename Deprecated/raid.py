@@ -1,8 +1,6 @@
 import pyautogui
 import time
-import cv2 as cv
 import logging
-import classe
 from colorama import *
 from termcolor import colored,cprint
 init(autoreset=True) #Permette ad ogni print di ritornare al suo colore base

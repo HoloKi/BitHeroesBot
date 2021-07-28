@@ -3,7 +3,7 @@ import time
 import logging
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 import asyncio
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
@@ -11,8 +11,8 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
 
-def gvg(run):
-    print(colored("\n-----GVG-----", 'cyan', attrs=['bold']))
+def prove(run):
+    print(colored("\n-----NYXN_TRIAL-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
     logging.debug(f"run = {run}")
@@ -26,26 +26,21 @@ def gvg(run):
             return 0
         else:
             # load_class---------------------------
-            gvg = classe.bit(r"image\gvg.png", 0.5)
-            play = classe.bit(r"image\play.png",0.5)
-            select = classe.bit(r"image\battle2.png", 0.5)
+            trial = classe.bit(r"image\prove.png", 0.5)
+            play = classe.bit(r"image\play.png", 0.4)
             accept = classe.bit(r"image\accept.png", 0.5)
             yes = classe.bit(r"image\yes.png", 0.5)
             # -------------------------------------
-            error = gvg.bottone()
+            error = trial.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
             while True:
+                conta += 1
                 error = play.bottone()
                 if error == 0:
                     cprint(errore)
                     return 0
-                error = select.bottone()
-                if error == 0:
-                    cprint(errore)
-                    return 0
-                conta += 1
                 error = accept.bottone()
                 if error == 0:
                     cprint(errore)
@@ -58,21 +53,21 @@ def gvg(run):
                 if error == 0:
                     cprint(errore)
                     return 0
-                time.sleep(2)
+                time.sleep(3)
                 if conta == int(run):
                     pyautogui.press('esc')
                     break
 
 
 async def fine():
-    vittoria = classe.bit(r"image\gvgvict.png", 0.7)
-    sconfitta = classe.bit(r"image\endinv.png", 0.7)
-    while (True):
+    fine = classe.bit(r"image\fine.png", 0.7)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    while True:
         await asyncio.sleep(1)
-        test = vittoria.ispresence()
+        test = morte.ispresence()
         if test == 1:
             return 2
-        test = sconfitta.ispresence()
+        test = fine.ispresence()
         if test == 1:
             return 1
 

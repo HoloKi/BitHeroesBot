@@ -3,16 +3,15 @@ import time
 import logging
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 import asyncio
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
-
-def prove(run):
-    print(colored("\n-----NYXN_TRIAL-----", 'cyan', attrs=['bold']))
+def invasione(run):
+    print(colored("\n-----INVASION-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
     logging.debug(f"run = {run}")
@@ -26,8 +25,8 @@ def prove(run):
             return 0
         else:
             # load_class---------------------------
-            trial = classe.bit(r"image\prove.png", 0.5)
-            play = classe.bit(r"image\play.png", 0.4)
+            trial = classe.bit(r"image\invasione.png", 0.5)
+            play = classe.bit(r"image\play.png", 0.5)
             accept = classe.bit(r"image\accept.png", 0.5)
             yes = classe.bit(r"image\yes.png", 0.5)
             # -------------------------------------
@@ -35,7 +34,7 @@ def prove(run):
             if error == 0:
                 cprint(errore)
                 return 0
-            while True:
+            while(True):
                 conta += 1
                 error = play.bottone()
                 if error == 0:
@@ -49,28 +48,20 @@ def prove(run):
                 print(f"run number: {conta}")
                 asyncio.run(test())
                 print("----------------------------------\n")
-                error = yes.bottone()
-                if error == 0:
-                    cprint(errore)
-                    return 0
-                time.sleep(3)
+                pyautogui.press('esc')
+                time.sleep(2)
                 if conta == int(run):
                     pyautogui.press('esc')
                     break
 
 
 async def fine():
-    fine = classe.bit(r"image\fine.png", 0.7)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    while True:
+    fine = classe.bit(r"image\endinv.png", 0.7)
+    while(True):
         await asyncio.sleep(1)
-        test = morte.ispresence()
-        if test == 1:
-            return 2
         test = fine.ispresence()
-        if test == 1:
+        if test==1:
             return 1
-
 
 async def test():
     prova = asyncio.create_task(fine())

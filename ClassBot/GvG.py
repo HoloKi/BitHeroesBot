@@ -1,19 +1,18 @@
 import pyautogui
 import time
 import logging
-import classe
-import sys
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 import asyncio
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
-def invasione(run):
-    print(colored("\n-----INVASION-----", 'cyan', attrs=['bold']))
+
+def gvg(run):
+    print(colored("\n-----GVG-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
     logging.debug(f"run = {run}")
@@ -27,21 +26,26 @@ def invasione(run):
             return 0
         else:
             # load_class---------------------------
-            trial = classe.bit(r"image\invasione.png",0.5)
-            play = classe.bit(r"image\play.png",0.5)
-            accept = classe.bit(r"image\accept.png",0.5)
-            yes = classe.bit(r"image\yes.png",0.5)
+            gvg = classe.bit(r"image\gvg.png", 0.5)
+            play = classe.bit(r"image\play.png", 0.5)
+            select = classe.bit(r"image\battle2.png", 0.5)
+            accept = classe.bit(r"image\accept.png", 0.5)
+            yes = classe.bit(r"image\yes.png", 0.5)
             # -------------------------------------
-            error = trial.bottone()
+            error = gvg.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
-            while(True):
-                conta += 1
+            while True:
                 error = play.bottone()
                 if error == 0:
                     cprint(errore)
                     return 0
+                error = select.bottone()
+                if error == 0:
+                    cprint(errore)
+                    return 0
+                conta += 1
                 error = accept.bottone()
                 if error == 0:
                     cprint(errore)
@@ -50,7 +54,10 @@ def invasione(run):
                 print(f"run number: {conta}")
                 asyncio.run(test())
                 print("----------------------------------\n")
-                pyautogui.press('esc')
+                error = yes.bottone()
+                if error == 0:
+                    cprint(errore)
+                    return 0
                 time.sleep(2)
                 if conta == int(run):
                     pyautogui.press('esc')
@@ -58,12 +65,17 @@ def invasione(run):
 
 
 async def fine():
-    fine = classe.bit(r"image\endinv.png", 0.7)
-    while(True):
+    vittoria = classe.bit(r"image\gvgvict.png", 0.7)
+    sconfitta = classe.bit(r"image\endinv.png", 0.7)
+    while (True):
         await asyncio.sleep(1)
-        test = fine.ispresence()
-        if test==1:
+        test = vittoria.ispresence()
+        if test == 1:
+            return 2
+        test = sconfitta.ispresence()
+        if test == 1:
             return 1
+
 
 async def test():
     prova = asyncio.create_task(fine())

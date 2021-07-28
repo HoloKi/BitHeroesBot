@@ -4,7 +4,7 @@ import logging
 import sys
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 

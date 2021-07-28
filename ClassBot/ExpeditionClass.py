@@ -1,11 +1,10 @@
 import pyautogui
 import time
-import cv2 as cv
 import asyncio
 import logging
 from colorama import *
 from termcolor import colored,cprint
-import classe
+from ClassBot import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github",'red',attrs=['bold'])
@@ -21,10 +20,10 @@ def expedition(run):
         exit(0)
     else:
         #load_class-------------------------
-        expe = classe.bit(r"image\entra.png",0.5)
-        accept = classe.bit(r"image\accept.png",0.5)
-        xbutt = classe.bit(r"image\xbutton.png",0.5)
-        yes = classe.bit(r"image\yes.png",0.5)
+        expe = classe.bit(r"image\entra.png", 0.5)
+        accept = classe.bit(r"image\accept.png", 0.5)
+        xbutt = classe.bit(r"image\xbutton.png", 0.5)
+        yes = classe.bit(r"image\yes.png", 0.5)
         #----------------------------------
         while(True):
             count += 1

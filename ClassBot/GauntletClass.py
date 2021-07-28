@@ -1,11 +1,10 @@
 import pyautogui
 import time
-import cv2 as cv
 import logging
 import asyncio
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github", 'red', attrs=['bold'])

@@ -3,7 +3,7 @@ import time
 import logging
 from colorama import *
 from termcolor import colored, cprint
-import classe
+from ClassBot import classe
 import asyncio
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
@@ -34,6 +34,7 @@ def raid(run, difficult):
         else:
             if difficult == norm:
                 difficulty = classe.bit(r"image\raid\normal.png", 0.7)
+
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
