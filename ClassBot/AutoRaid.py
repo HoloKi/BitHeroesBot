@@ -86,6 +86,7 @@ def raid(run, difficult):
                 if error == 1:  # se è morto clicca
                     chiudi.bottone()
                     print("your team is dead!")
+                    print("----------------------------------\n")
                     time.sleep(5)
                     pyautogui.press('esc')
                     break
