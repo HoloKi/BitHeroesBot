@@ -2,7 +2,7 @@ import pyautogui
 import time
 import json
 import logging
-from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon
 from colorama import *
 from termcolor import colored, cprint
 import os
@@ -131,8 +131,9 @@ def menu():
                                         return 1
                                     else:
                                         if int(a) == 10:
-                                            size = os.get_terminal_size()
-                                            print(size)
+                                            cprint("How many dungeon4 runs do you want to do?", 'green', attrs=['bold'])
+                                            dunrun = input()
+                                            Dungeon.dungeon(int(dunrun))
                                             return 1
                                         else:
                                             if int(a) == 0:
