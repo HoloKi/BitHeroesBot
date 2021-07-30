@@ -2,10 +2,24 @@ import pyautogui
 import time
 import json
 import logging
-from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon, DungeonAuto
 from colorama import *
 from termcolor import colored, cprint
+from discord import Webhook, AsyncWebhookAdapter
+import aiohttp
+import uuid
+import asyncio
 import os
+
+
+init(autoreset=True)
+
+VERSION = "5.4.0"
+USER = hex(uuid.getnode())
+
+'''
+Function to resize bot window
+'''
 from ctypes import windll, byref
 import ctypes.wintypes as wintypes
 
@@ -15,9 +29,36 @@ hdl = windll.kernel32.GetStdHandle(STDOUT)
 rect = wintypes.SMALL_RECT(0, 0, 56, 26)  # (left, top, right, bottom)
 windll.kernel32.SetConsoleWindowInfo(hdl, True, byref(rect))
 
-init(autoreset=True)
+'''
+Discord Implementation to count user
+'''
 
-VERSION = "5.2.0"
+async def foo():
+    async with aiohttp.ClientSession() as session:
+        webhook = Webhook.from_url('https://discord.com/api/webhooks/870586161620484146/jdALZsGh3qe51e9J5fT8YPxIhYVsXCcdiaJBHZ4vKAbwBfdzKveqpxWYTqP-Ow81kg6i',
+                                   adapter=AsyncWebhookAdapter(session))
+        await webhook.send(f'{USER} is using the bot with version {VERSION}', username=USER)
+
+def check():
+    f = open('data.json', "r")
+    data = json.loads(f.read())
+    a = int(data['yes'])
+    logging.debug(f"a = {a}")
+    f.close()
+    if a==0:
+        loop = asyncio.get_event_loop()
+        cazzo = loop.run_until_complete(foo())
+        loop.close()
+        data['yes'] = 1
+        f = open('data.json','w')
+        #data = json.loads(f.read())
+        json.dump(data, f)
+        f.close()
+    else:
+        f.close()
+
+
+
 
 hero = "heroic"
 hard = "hard"
@@ -25,6 +66,7 @@ norm = "normal"
 
 
 def menu():
+    check()
     print("\n\n")
     print(colored("Enter the number to select the desired option:\n", 'red', attrs=['bold']))
     print(colored("1) ", 'white'), colored("Raid", 'green', attrs=['bold']))
@@ -36,9 +78,9 @@ def menu():
     print(colored("7) ", 'white'), colored("GvG", 'green', attrs=['bold']))
     print(colored("8) ", 'white'), colored("Nyxn Trial", 'red', attrs=['bold']))
     print(colored("9) ", 'white'), colored("Invasion", 'red', attrs=['bold']))
-    """
-    print(colored("10)",'white'),colored("Debug Mode\n",'green',attrs=['bold']))
-    """
+    print(colored("10)",'white'),colored("Dungeon4",'green',attrs=['bold']))
+    print(colored("11)", 'white'), colored("Dungeon", 'green', attrs=['bold']))
+    print(colored("check wiki to check how to set dungeon",'red',attrs=['bold']))
     print(f"0)  To close the program\n")
     cprint("Select number: \n", 'cyan', attrs=['bold'])
     a = input()
@@ -136,11 +178,40 @@ def menu():
                                             Dungeon.dungeon(int(dunrun))
                                             return 1
                                         else:
-                                            if int(a) == 0:
-                                                return 0
+                                            if int(a) == 11:
+                                                print(colored("Enter the number of runs: ", 'green', attrs=['bold']))
+                                                b = input()
+                                                print(colored("Enter the number:\n", 'green', attrs=['bold']),
+                                                      colored("1) normal\n"), colored("2) hard\n"),
+                                                      colored("3) heroic\n"),
+                                                      colored("According to the difficulty you want", 'green',
+                                                              attrs=['bold']))
+                                                c = input()
+                                                if int(c) == 1:
+                                                    retraid = DungeonAuto.dungeonrepeat(b, norm)
+                                                    logging.debug(f"ritorno del raid = {retraid}")
+                                                    return 1
+                                                else:
+                                                    if int(c) == 2:
+                                                        retraid = DungeonAuto.dungeonrepeat(b, hard)
+                                                        logging.debug(f"ritorno del raid = {retraid}")
+                                                        return 1
+                                                    else:
+                                                        if int(c) == 3:
+                                                            retraid = DungeonAuto.dungeonrepeat(b, hero)
+                                                            logging.debug(f"ritorno del raid = {retraid}")
+                                                            return 1
+                                                        else:
+                                                            print(
+                                                                colored("Something went wrong with typing the numbers",
+                                                                        'red', attrs=['bold']))
+                                                            return 1
                                             else:
-                                                cprint("Non esiste un'opzione relativo a questo numero!", 'red',
-                                                       attrs=['bold'])
+                                                if int(a) == 0:
+                                                    return 0
+                                                else:
+                                                    cprint("Non esiste un'opzione relativo a questo numero!", 'red',
+                                                           attrs=['bold'])
 
 
 """
@@ -159,7 +230,7 @@ def setconfig():
     b = input()
     cprint("Enter the number of Gauntlet / Trials runs you can do daily:", 'cyan', attrs=['bold'])
     c = input()
-    data_dict = {"name": "User", "raid": a, "difficulty": hero, "pvp": b, "gauntlet": c}
+    data_dict = {"name": "User", "raid": a, "difficulty": hero, "pvp": b, "gauntlet": c,"yes":0}
     json.dump(data_dict, f)
     f.close()
 
