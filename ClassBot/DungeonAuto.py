@@ -44,7 +44,7 @@ def dungeonrepeat(run, difficult):
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
-    print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
+    print(colored("\n-----DUNGEON-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
           colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
     print(" ")
