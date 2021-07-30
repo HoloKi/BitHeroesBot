@@ -29,13 +29,13 @@ def dungeonrepeat(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\eroic.png", 0.7)
+        difficulty = classe.bit(r"image\raid\eroic.png", 0.6)
     else:
         if difficult == hard:
-            difficulty = classe.bit(r"image\raid\hard.png", 0.7)
+            difficulty = classe.bit(r"image\raid\hard.png", 0.6)
         else:
             if difficult == norm:
-                difficulty = classe.bit(r"image\raid\normal.png", 0.7)
+                difficulty = classe.bit(r"image\raid\normal.png", 0.6)
 
     dungeon = classe.bit(r"image\dungeon\dungeon.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
