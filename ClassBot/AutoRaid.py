@@ -48,7 +48,6 @@ def raid(run, difficult):
           colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
     print(" ")
     logging.debug(f"run = {run}, difficoltà = {difficult}")
-    time.sleep(3)
     # caso in cui le run sono minori di 0, ritorna 0
     if int(run) <= 0:
         logging.debug("run < 0")
