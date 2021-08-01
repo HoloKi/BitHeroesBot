@@ -25,6 +25,7 @@ def dungeon(run):
     difficulty = None  # default
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
+    quest = classe.bit(r"image\quest.png",0.5)
     dun = classe.bit(r"image\d4\d4.png", 0.5)
     enter = classe.bit(r"image\entra.png",0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
@@ -36,7 +37,6 @@ def dungeon(run):
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     print(" ")
     logging.debug(f"run = {run}")
-    time.sleep(3)
     # caso in cui le run sono minori di 0, ritorna 0
     if int(run) <= 0:
         logging.debug("run < 0")
@@ -48,6 +48,10 @@ def dungeon(run):
             logging.debug("run=0")
             return 0
         else:
+            error = quest.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
             error = dun.bottone()
             if error == 0:
                 cprint(errore)
