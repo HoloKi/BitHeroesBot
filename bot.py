@@ -9,12 +9,12 @@ from discord import Webhook, AsyncWebhookAdapter
 import aiohttp
 import uuid
 import asyncio
-import os
+import os.path
 
 
 init(autoreset=True)
 
-VERSION = "5.4.0"
+VERSION = "5.4.1"
 USER = hex(uuid.getnode())
 
 '''
@@ -221,6 +221,9 @@ command to edit json file that store information about daily raid etc
 
 
 def setconfig():
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+    f.close()
     f = open("data.json", "w")
     cprint("Enter the number of raids you can do daily:", 'cyan', attrs=['bold'])
     a = input()
@@ -230,8 +233,12 @@ def setconfig():
     b = input()
     cprint("Enter the number of Gauntlet / Trials runs you can do daily:", 'cyan', attrs=['bold'])
     c = input()
-    data_dict = {"name": "User", "raid": a, "difficulty": hero, "pvp": b, "gauntlet": c,"yes":0}
-    json.dump(data_dict, f)
+    data['name'] = USER
+    data['raid'] = a
+    data['difficulty'] = hero
+    data['pvp'] = b
+    data['gauntlet'] = c
+    json.dump(data, f)
     f.close()
 
 
@@ -306,6 +313,14 @@ def main():
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")
+    file = os.path.isfile("data.json")
+    logging.debug(f"data.json = {file}")
+    if file is False:
+        f = open("data.json", "x")
+        data_dict = {"name": USER, "raid": "0", "difficulty": "heroic", "pvp": "0", "gauntlet": "0", "yes": "0"}
+        json.dump(data_dict, f)
+        f.close()
+        #time.sleep(3)
     while True:
         ciclo = menu()
         if ciclo == 0:
