@@ -10,11 +10,11 @@ import aiohttp
 import uuid
 import asyncio
 import os.path
-
+from logging.handlers import RotatingFileHandler
 
 init(autoreset=True)
 
-VERSION = "5.4.1"
+VERSION = "5.4.2"
 USER = hex(uuid.getnode())
 
 '''
@@ -33,11 +33,14 @@ windll.kernel32.SetConsoleWindowInfo(hdl, True, byref(rect))
 Discord Implementation to count user
 '''
 
+
 async def foo():
     async with aiohttp.ClientSession() as session:
-        webhook = Webhook.from_url('https://discord.com/api/webhooks/870586161620484146/jdALZsGh3qe51e9J5fT8YPxIhYVsXCcdiaJBHZ4vKAbwBfdzKveqpxWYTqP-Ow81kg6i',
-                                   adapter=AsyncWebhookAdapter(session))
+        webhook = Webhook.from_url(
+            'https://discord.com/api/webhooks/870586161620484146/jdALZsGh3qe51e9J5fT8YPxIhYVsXCcdiaJBHZ4vKAbwBfdzKveqpxWYTqP-Ow81kg6i',
+            adapter=AsyncWebhookAdapter(session))
         await webhook.send(f'{USER} is using the bot with version {VERSION}', username=USER)
+
 
 def check():
     f = open('data.json', "r")
@@ -45,19 +48,17 @@ def check():
     a = int(data['yes'])
     logging.debug(f"a = {a}")
     f.close()
-    if a==0:
+    if a == 0:
         loop = asyncio.get_event_loop()
         cazzo = loop.run_until_complete(foo())
         loop.close()
         data['yes'] = 1
-        f = open('data.json','w')
-        #data = json.loads(f.read())
+        f = open('data.json', 'w')
+        # data = json.loads(f.read())
         json.dump(data, f)
         f.close()
     else:
         f.close()
-
-
 
 
 hero = "heroic"
@@ -66,7 +67,6 @@ norm = "normal"
 
 
 def menu():
-    check()
     print("\n\n")
     print(colored("Enter the number to select the desired option:\n", 'red', attrs=['bold']))
     print(colored("1) ", 'white'), colored("Raid", 'green', attrs=['bold']))
@@ -78,9 +78,9 @@ def menu():
     print(colored("7) ", 'white'), colored("GvG", 'green', attrs=['bold']))
     print(colored("8) ", 'white'), colored("Nyxn Trial", 'red', attrs=['bold']))
     print(colored("9) ", 'white'), colored("Invasion", 'red', attrs=['bold']))
-    print(colored("10)",'white'),colored("Dungeon4",'green',attrs=['bold']))
+    print(colored("10)", 'white'), colored("Dungeon4", 'green', attrs=['bold']))
     print(colored("11)", 'white'), colored("Dungeon", 'green', attrs=['bold']))
-    print(colored("check wiki to check how to set dungeon",'red',attrs=['bold']))
+    print(colored("check wiki to check how to set dungeon", 'red', attrs=['bold']))
     print(f"0)  To close the program\n")
     cprint("Select number: \n", 'cyan', attrs=['bold'])
     a = input()
@@ -248,12 +248,15 @@ Function to do daily task
 
 
 def daily():
+    # loading daily from data.json-------
     f = open('data.json', "r")
     data = json.loads(f.read())
     raidshard = int(data['raid'])
     pvprun = int(data['pvp'])
     cimentorun = int(data['gauntlet'])
-    print(raidshard)
+    f.close()
+    # ------------------------------------
+
     AutoRaid.raid(int(raidshard), hero)
     time.sleep(5)
     PvPClass.pvp(int(pvprun))
@@ -262,7 +265,6 @@ def daily():
     g = GauntletClass.cimento(int(cimentorun))
     if g == 0:
         NyxnTrial.prove(int(cimentorun))
-    f.close()
 
 
 def debug():
@@ -320,7 +322,8 @@ def main():
         data_dict = {"name": USER, "raid": "0", "difficulty": "heroic", "pvp": "0", "gauntlet": "0", "yes": "0"}
         json.dump(data_dict, f)
         f.close()
-        #time.sleep(3)
+        # time.sleep(3)
+    check()
     while True:
         ciclo = menu()
         if ciclo == 0:
