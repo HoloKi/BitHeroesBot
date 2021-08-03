@@ -10,7 +10,8 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 
 def pvp(run):
-    error = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
+    logging.debug("---------PVP----------")
+    problema = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
     # Case run <=0
     if run <= 0:
         print(colored("Run <=0, skip PvP", 'red'))
@@ -28,24 +29,24 @@ def pvp(run):
         chiudi = classe.bit(r"image\chiudi.png", 0.5)
         # -----------------------------------------------
         conta = 0
-        errore = pvp.bottone()
-        if errore == 0:
-            cprint(error)
+        error = pvp.bottone()
+        if error == 0:
+            cprint(problema)
             return 0
         while True:
             perso = False
             conta = int(conta) + 1
-            errore = play.bottone()
-            if errore == 0:
-                cprint(error)
+            error = play.bottone()
+            if error == 0:
+                cprint(problema)
                 break
-            errore = select.bottone()
-            if errore == 0:
-                cprint(error)
+            error = select.bottone()
+            if error == 0:
+                cprint(problema)
                 break
-            errore = accetta.bottone()
-            if errore == 0:
-                cprint(error)
+            error = accetta.bottone()
+            if error == 0:
+                cprint(problema)
                 break
             print("----------------------------------")
             print(f"Match n: {conta}")
