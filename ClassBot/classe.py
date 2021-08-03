@@ -15,7 +15,7 @@ class bit:
 
     def bottone(self):
         button = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
-        logging.debug(f"bottone = {button}")
+        logging.debug(f"{self.getImage()}= {button}")
         if button is not None:
             time.sleep(3)
             pyautogui.click(button)
@@ -28,7 +28,7 @@ class bit:
 
     def ispresence(self):
         presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
-        logging.debug(f"presence = {presente}")
+        #logging.debug(f"presence = {presente}")
         if presente is not None:
             #logging.debug("DEBUG: è presente!")
             return 1
