@@ -11,6 +11,7 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
 def invasione(run):
+    logging.debug("---------INVASION----------")
     print(colored("\n-----INVASION-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0

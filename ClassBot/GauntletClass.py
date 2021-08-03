@@ -11,6 +11,7 @@ errore = colored("Please report this bug/error on github", 'red', attrs=['bold']
 
 
 def cimento(run):
+    logging.debug("---------GAUNTLET----------")
     conta = 0
     logging.debug(f"run = {run}")
     cprint("\n-----GAUNTLET-----", 'cyan', attrs=['bold'])

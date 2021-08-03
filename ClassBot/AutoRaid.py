@@ -20,6 +20,7 @@ Raid function that uses the class to simplify the code and its reuse
 
 
 def raid(run, difficult):
+    logging.debug("---------RAID----------")
     hero = "heroic"
     hard = "hard"
     norm = "normal"
@@ -27,7 +28,7 @@ def raid(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\eroic.png", 0.7)
+        difficulty = classe.bit(r"image\raid\heroic.png", 0.7)
     else:
         if difficult == hard:
             difficulty = classe.bit(r"image\raid\hard.png", 0.7)
@@ -47,7 +48,7 @@ def raid(run, difficult):
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
           colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
     print(" ")
-    logging.debug(f"run = {run}, difficoltà = {difficult}")
+    logging.debug(f"run = {run}, difficult = {difficult}")
     # caso in cui le run sono minori di 0, ritorna 0
     if int(run) <= 0:
         logging.debug("run < 0")

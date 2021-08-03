@@ -12,6 +12,7 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def gvg(run):
+    logging.debug("---------GVG----------")
     print(colored("\n-----GVG-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0

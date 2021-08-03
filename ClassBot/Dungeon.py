@@ -19,6 +19,7 @@ Dungeon function that uses the class to simplify the code and its reuse
 
 
 def dungeon(run):
+    logging.debug("---------DUNGEON4----------")
     hero = "heroic"
     hard = "hard"
     norm = "normal"

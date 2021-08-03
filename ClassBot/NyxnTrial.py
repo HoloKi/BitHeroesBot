@@ -12,7 +12,8 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def prove(run):
-    print(colored("\n-----NYXN_TRIAL-----", 'cyan', attrs=['bold']))
+    logging.debug("---------NYXN-TRIAL----------")
+    print(colored("\n-----NYXN-TRIAL-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
     logging.debug(f"run = {run}")

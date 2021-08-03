@@ -22,6 +22,7 @@ Dungeon function that uses the class to simplify the code and its reuse
 
 
 def dungeonrepeat(run, difficult):
+    logging.debug("---------DUNGEON----------")
     hero = "heroic"
     hard = "hard"
     norm = "normal"
@@ -29,7 +30,7 @@ def dungeonrepeat(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\eroic.png", 0.6)
+        difficulty = classe.bit(r"image\raid\heroic.png", 0.6)
     else:
         if difficult == hard:
             difficulty = classe.bit(r"image\raid\hard.png", 0.6)
@@ -97,7 +98,7 @@ def dungeonrepeat(run, difficult):
                 if int(count) >= int(run):
                     logging.debug("end")
                     error = si.bottone()
-                    if error == 0:
+                    if int(error) == 0:
                         cprint(errore)
                         print("Probably Insufficient time!")
                         break
@@ -108,6 +109,7 @@ def dungeonrepeat(run, difficult):
                 else:
                     pyautogui.press('esc')
                     time.sleep(3)
+        return 0
 
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)

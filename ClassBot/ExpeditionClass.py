@@ -10,6 +10,7 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github",'red',attrs=['bold'])
 
 def expedition(run):
+    logging.debug("---------EXPEDITION----------")
     count = 0
     logging.debug(f"run = {run}")
     cprint("\n-----EXPEDITION-----", 'cyan', attrs=['bold'])
