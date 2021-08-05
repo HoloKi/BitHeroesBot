@@ -6,7 +6,7 @@ import os.path
 
 init(autoreset=True)
 
-VERSION = "5.4.2"
+VERSION = "5.5.2"
 
 
 '''
