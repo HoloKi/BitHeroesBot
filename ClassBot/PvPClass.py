@@ -21,6 +21,7 @@ def pvp(run):
         print(colored("\n-----PVP-----", 'cyan', attrs=['bold']))
         print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'), colored("\n"))
         # load class-------------------------------------
+        auto = classe.bit(r"image\autogreen.png", 0.7)
         pvp = classe.bit(r"image\pvp.png", 0.5)
         play = classe.bit(r"image\play.png", 0.4)
         select = classe.bit(r"image\battle2.png", 0.5)
@@ -48,6 +49,9 @@ def pvp(run):
             if error == 0:
                 cprint(problema)
                 break
+            error = auto.ispresence()
+            if error == 0:
+                pyautogui.press('space')
             print("----------------------------------")
             print(f"Match n: {conta}")
             asyncio.run(test())
