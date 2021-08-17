@@ -1,6 +1,6 @@
 import json
 import logging
-from ClassBot import Menu,checkers
+from ClassBot import Menu, checkers
 from colorama import *
 import os.path
 
@@ -33,6 +33,7 @@ def main():
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")
+    # check if there isnt a data.json
     file = os.path.isfile("data.json")
     logging.debug(f"data.json = {file}")
     if file is False:
@@ -41,10 +42,10 @@ def main():
         json.dump(data_dict, f)
         f.close()
         # time.sleep(3)
-    checkers.check()
+    #checkers.check()
     while True:
-        ciclo = Menu.menu()
-        if ciclo == 0:
+        cycle = Menu.menu()
+        if cycle == 0:
             exit()
 
 

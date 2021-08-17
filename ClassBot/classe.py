@@ -36,6 +36,16 @@ class bit:
             #logging.debug("DEBUG:non è presente!")
             return 0
 
+    def SafeControl(self):
+        presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
+        #logging.debug(f"presence = {presente}")
+        if presente is not None:
+            #logging.debug("DEBUG: è presente!")
+            return 1
+        else:
+            #logging.debug("DEBUG:non è presente!")
+            return 0
+
     def timer(self):
         for i in range(10, 0, -1):
             sys.stdout.write("\r")
