@@ -23,6 +23,7 @@ def cimento(run):
         return 0
     else:
         # load-----------------------------
+        auto = classe.bit(r"image\autogreen.png", 0.7)
         gaunt = classe.bit(r"image\cimento.png", 0.5)
         play = classe.bit(r"image\play.png", 0.4)
         accept = classe.bit(r"image\accept.png", 0.5)
@@ -41,6 +42,9 @@ def cimento(run):
             if error == 0:
                 cprint(errore)
                 return 0
+            error = auto.ispresence()
+            if error == 0:
+                pyautogui.press('space')
             print("----------------------------------")
             print(f"run number: {conta}")
             asyncio.run(test())

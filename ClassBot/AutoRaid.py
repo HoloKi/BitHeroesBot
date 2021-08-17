@@ -36,6 +36,7 @@ def raid(run, difficult):
             if difficult == norm:
                 difficulty = classe.bit(r"image\raid\normal.png", 0.7)
 
+    auto = classe.bit(r"image\autogreen.png", 0.7)
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
@@ -77,6 +78,11 @@ def raid(run, difficult):
                 cprint(errore)
                 return 0
             while (True):
+                time.sleep(2)
+                error = auto.ispresence()
+                logging.debug(f"auto = {error}")
+                if error == 0:
+                    pyautogui.press('space')
                 count += 1
                 print("----------------------------------")
                 print(f"run number: {count}")
@@ -107,10 +113,11 @@ def raid(run, difficult):
                     pyautogui.press('esc')
                     time.sleep(3)
 
+
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    while(True):
+    while (True):
         await asyncio.sleep(1)
         test = morte.ispresence()
         if test == 1:
@@ -118,6 +125,7 @@ async def fine():
         test = fine.ispresence()
         if test == 1:
             return 1
+
 
 async def test():
     prova = asyncio.create_task(fine())

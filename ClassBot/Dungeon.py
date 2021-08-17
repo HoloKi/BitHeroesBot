@@ -26,6 +26,7 @@ def dungeon(run):
     difficulty = None  # default
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
+    auto = classe.bit(r"image\autogreen.png", 0.7)
     quest = classe.bit(r"image\quest.png",0.5)
     dun = classe.bit(r"image\d4\d4.png", 0.5)
     enter = classe.bit(r"image\entra.png",0.5)
@@ -66,6 +67,9 @@ def dungeon(run):
                 cprint(errore)
                 return 0
             while (True):
+                error = auto.ispresence()
+                if error == 0:
+                    pyautogui.press("space")
                 count += 1
                 print("----------------------------------")
                 print(f"run number: {count}")
