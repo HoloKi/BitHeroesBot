@@ -37,7 +37,7 @@ def dungeonrepeat(run, difficult):
         else:
             if difficult == norm:
                 difficulty = classe.bit(r"image\raid\normal.png", 0.6)
-    auto = classe.bit(r"image\autogreen.png", 0.7)
+    auto = classe.bit(r"image\autored.png", 0.7)
     quest = classe.bit(r"image\quest.png",0.5)
     dungeon = classe.bit(r"image\dungeon\dungeon.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
@@ -83,6 +83,7 @@ def dungeonrepeat(run, difficult):
             while (True):
                 error = auto.ispresence()
                 if error == 0:
+                    logging.debug("auto is not green")
                     pyautogui.press('space')
                 count += 1
                 print("----------------------------------")

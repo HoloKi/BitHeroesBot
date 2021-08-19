@@ -23,7 +23,7 @@ def cimento(run):
         return 0
     else:
         # load-----------------------------
-        auto = classe.bit(r"image\autogreen.png", 0.7)
+        auto = classe.bit(r"image\autored.png", 0.7)
         gaunt = classe.bit(r"image\cimento.png", 0.5)
         play = classe.bit(r"image\play.png", 0.4)
         accept = classe.bit(r"image\accept.png", 0.5)

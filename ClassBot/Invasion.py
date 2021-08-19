@@ -26,7 +26,7 @@ def invasione(run):
             return 0
         else:
             # load_class---------------------------
-            auto = classe.bit(r"image\autogreen.png", 0.7)
+            auto = classe.bit(r"image\autored.png", 0.7)
             trial = classe.bit(r"image\invasione.png", 0.5)
             play = classe.bit(r"image\play.png", 0.4)
             accept = classe.bit(r"image\accept.png", 0.5)

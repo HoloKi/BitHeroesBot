@@ -21,7 +21,7 @@ def expedition(run):
         exit(0)
     else:
         #load_class-------------------------
-        auto = classe.bit(r"image\autogreen.png", 0.7)
+        auto = classe.bit(r"image\autored.png", 0.7)
         expe = classe.bit(r"image\entra.png", 0.5)
         accept = classe.bit(r"image\accept.png", 0.5)
         xbutt = classe.bit(r"image\xbutton.png", 0.5)

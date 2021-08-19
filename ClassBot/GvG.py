@@ -27,7 +27,7 @@ def gvg(run):
             return 0
         else:
             # load_class---------------------------
-            auto = classe.bit(r"image\autogreen.png", 0.7)
+            auto = classe.bit(r"image\autored.png", 0.7)
             gvg = classe.bit(r"image\gvg.png", 0.5)
             play = classe.bit(r"image\play.png", 0.5)
             select = classe.bit(r"image\battle2.png", 0.5)
