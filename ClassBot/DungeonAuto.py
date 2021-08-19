@@ -121,10 +121,10 @@ async def fine():
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while(True):
         await asyncio.sleep(1)
-        test = morte.ispresence()
+        test = morte.SafeControl()
         if test == 1:
             return 2
-        test = fine.ispresence()
+        test = fine.SafeControl()
         if test == 1:
             return 1
 
