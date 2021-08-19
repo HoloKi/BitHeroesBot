@@ -17,7 +17,7 @@ async def foo():
         webhook = Webhook.from_url(
             'https://discord.com/api/webhooks/870586161620484146/jdALZsGh3qe51e9J5fT8YPxIhYVsXCcdiaJBHZ4vKAbwBfdzKveqpxWYTqP-Ow81kg6i',
             adapter=AsyncWebhookAdapter(session))
-        await webhook.send(f'{USER} is using the bot with version {VERSION}', username=USER)
+        await webhook.send(f'{USER} is using the bot with version', username=USER)
 
 
 def check():
