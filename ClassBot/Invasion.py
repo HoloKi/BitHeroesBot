@@ -10,6 +10,7 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
+
 def invasione(run):
     logging.debug("---------INVASION----------")
     print(colored("\n-----INVASION-----", 'cyan', attrs=['bold']))
@@ -36,7 +37,7 @@ def invasione(run):
             if error == 0:
                 cprint(errore)
                 return 0
-            while(True):
+            while True:
                 conta += 1
                 error = play.bottone()
                 if error == 0:
@@ -46,9 +47,11 @@ def invasione(run):
                 if error == 0:
                     cprint(errore)
                     return 0
+                '''
                 error = auto.ispresence()
                 if error == 0:
                     pyautogui.press('space')
+                '''
                 print("----------------------------------")
                 print(f"run number: {conta}")
                 asyncio.run(test())
@@ -61,12 +64,13 @@ def invasione(run):
 
 
 async def fine():
-    fine = classe.bit(r"image\endinv.png", 0.7)
-    while(True):
+    end = classe.bit(r"image\endinv.png", 0.7)
+    while True:
         await asyncio.sleep(1)
-        test = fine.ispresence()
-        if test==1:
+        prova = end.SafeControl()
+        if prova == 1:
             return 1
+
 
 async def test():
     prova = asyncio.create_task(fine())
