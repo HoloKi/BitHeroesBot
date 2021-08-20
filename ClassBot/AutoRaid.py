@@ -40,7 +40,7 @@ def raid(run, difficult):
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
-    si = classe.bit(r"image\yes.png", 0.5)
+    cittadina = classe.bit(r"image\cittadina.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     # ---------------------------------------------------------------------------------
@@ -78,11 +78,13 @@ def raid(run, difficult):
                 cprint(errore)
                 return 0
             while (True):
+                '''
                 time.sleep(2)
                 error = auto.ispresence()
                 logging.debug(f"auto = {error}")
                 if error == 0:
                     pyautogui.press('space')
+                '''
                 count += 1
                 print("----------------------------------")
                 print(f"run number: {count}")
@@ -100,7 +102,7 @@ def raid(run, difficult):
                 print("----------------------------------\n")
                 if int(count) >= int(run):
                     logging.debug("end")
-                    error = si.bottone()
+                    error = cittadina.bottone()
                     if error == 0:
                         cprint(errore)
                         print("Probably Insufficient time!")
@@ -119,10 +121,10 @@ async def fine():
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while (True):
         await asyncio.sleep(1)
-        test = morte.ispresence()
+        test = morte.SafeControl()
         if test == 1:
             return 2
-        test = fine.ispresence()
+        test = fine.SafeControl()
         if test == 1:
             return 1
 

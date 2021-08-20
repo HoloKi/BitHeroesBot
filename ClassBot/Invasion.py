@@ -57,14 +57,14 @@ def invasione(run):
                 asyncio.run(test())
                 print("----------------------------------\n")
                 pyautogui.press('esc')
-                time.sleep(2)
+                time.sleep(3)
                 if conta == int(run):
                     pyautogui.press('esc')
                     break
 
 
 async def fine():
-    end = classe.bit(r"image\endinv.png", 0.7)
+    end = classe.bit(r"image\raid\raiddie.png", 0.7)
     while True:
         await asyncio.sleep(1)
         prova = end.SafeControl()
