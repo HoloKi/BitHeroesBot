@@ -41,7 +41,7 @@ def dungeonrepeat(run, difficult):
     quest = classe.bit(r"image\quest.png",0.5)
     dungeon = classe.bit(r"image\dungeon\dungeon.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
-    si = classe.bit(r"image\yes.png", 0.5)
+    cittadina = classe.bit(r"image\cittadina.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     # ---------------------------------------------------------------------------------
@@ -81,10 +81,12 @@ def dungeonrepeat(run, difficult):
                 cprint(errore)
                 return 0
             while (True):
+                ''' cause error #see discord support
                 error = auto.ispresence()
                 if error == 0:
                     logging.debug("auto is not green")
                     pyautogui.press('space')
+                '''
                 count += 1
                 print("----------------------------------")
                 print(f"run number: {count}")
@@ -102,7 +104,7 @@ def dungeonrepeat(run, difficult):
                 print("----------------------------------\n")
                 if int(count) >= int(run):
                     logging.debug("end")
-                    error = si.bottone()
+                    error = cittadina.bottone()
                     if int(error) == 0:
                         cprint(errore)
                         print("Probably Insufficient time!")
