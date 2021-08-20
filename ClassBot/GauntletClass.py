@@ -42,9 +42,11 @@ def cimento(run):
             if error == 0:
                 cprint(errore)
                 return 0
+            '''
             error = auto.ispresence()
             if error == 0:
                 pyautogui.press('space')
+            '''
             print("----------------------------------")
             print(f"run number: {conta}")
             asyncio.run(test())
@@ -64,10 +66,10 @@ async def fine():
     sconfitta = classe.bit(r"image\endinv.png", 0.7)
     while (True):
         await asyncio.sleep(1)
-        test = vittoria.ispresence()
+        test = vittoria.SafeControl()
         if test == 1:
             return 2
-        test = sconfitta.ispresence()
+        test = sconfitta.SafeControl()
         if test == 1:
             return 1
 
