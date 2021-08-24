@@ -6,7 +6,7 @@ import os.path
 
 init(autoreset=True)
 
-VERSION = "5.6.0-beta"
+VERSION = "5.6.1-beta"
 
 
 '''
