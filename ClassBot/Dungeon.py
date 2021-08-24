@@ -34,6 +34,7 @@ def dungeon(run):
     si = classe.bit(r"image\yes.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    fine = classe.bit(r"image\fine.png", 0.5)
     # ---------------------------------------------------------------------------------)
     print(colored("\n-----DUNGEON4-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
@@ -96,7 +97,10 @@ def dungeon(run):
                         pyautogui.press('esc')
                         break
                 else:
-                    pyautogui.press('esc')
+                    error = fine.bottone()
+                    if error == 0:
+                        cprint(errore)
+                        return 0
                     time.sleep(3)
 
 async def fine():
