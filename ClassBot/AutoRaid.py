@@ -36,7 +36,7 @@ def raid(run, difficult):
             if difficult == norm:
                 difficulty = classe.bit(r"image\raid\normal.png", 0.7)
 
-    auto = classe.bit(r"image\autogreen.png", 0.7)
+    # auto = classe.bit(r"image\autogreen.png", 0.7)
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
@@ -123,7 +123,7 @@ def raid(run, difficult):
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    while (True):
+    while True:
         await asyncio.sleep(1)
         test = morte.SafeControl()
         if test == 1:
