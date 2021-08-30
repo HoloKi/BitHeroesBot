@@ -32,7 +32,7 @@ def cimento(run):
         if error == 0:
             cprint(errore)
             return 0
-        while (True):
+        while True:
             conta += 1
             error = play.bottone()
             if error == 0:
@@ -62,16 +62,13 @@ def cimento(run):
 
 
 async def fine():
-    vittoria = classe.bit(r"image\gvgvict.png", 0.7)
-    sconfitta = classe.bit(r"image\endinv.png", 0.7)
+    vittoria = classe.bit(r"image\cittadina.png", 0.7)
+    # sconfitta = classe.bit(r"image\endinv.png", 0.7)
     while (True):
         await asyncio.sleep(1)
         test = vittoria.SafeControl()
         if test == 1:
-            return 2
-        test = sconfitta.SafeControl()
-        if test == 1:
-            return 1
+            return 1 # return 2 in caso ci sia sconfitta
 
 
 async def test():

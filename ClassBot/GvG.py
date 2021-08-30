@@ -16,7 +16,7 @@ def gvg(run):
     print(colored("\n-----GVG-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     conta = 0
-    logging.debug(f"run = {run}")
+    logging.debug(f"run = {run}\n")
     if run < 0:
         logging.debug("Run < 0")
         pyautogui.alert(text="Run must be > 0", button="OK")
@@ -27,14 +27,13 @@ def gvg(run):
             return 0
         else:
             # load_class---------------------------
-            auto = classe.bit(r"image\autored.png", 0.7)
-            gvg = classe.bit(r"image\gvg.png", 0.5)
+            # auto = classe.bit(r"image\autored.png", 0.7)
+            gvg_button = classe.bit(r"image\gvg.png", 0.5)
             play = classe.bit(r"image\play.png", 0.5)
             select = classe.bit(r"image\battle2.png", 0.5)
             accept = classe.bit(r"image\accept.png", 0.5)
-            yes = classe.bit(r"image\yes.png", 0.5)
             # -------------------------------------
-            error = gvg.bottone()
+            error = gvg_button.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
@@ -52,17 +51,17 @@ def gvg(run):
                 if error == 0:
                     cprint(errore)
                     return 0
+                '''
                 error = auto.ispresence()
                 if error == 0:
                     pyautogui.press('space')
+                '''
                 print("----------------------------------")
                 print(f"run number: {conta}")
                 asyncio.run(test())
                 print("----------------------------------\n")
-                error = yes.bottone()
-                if error == 0:
-                    cprint(errore)
-                    return 0
+                time.sleep(2)
+                pyautogui.press('esc')
                 time.sleep(2)
                 if conta == int(run):
                     pyautogui.press('esc')
@@ -70,14 +69,11 @@ def gvg(run):
 
 
 async def fine():
-    vittoria = classe.bit(r"image\gvgvict.png", 0.7)
-    sconfitta = classe.bit(r"image\endinv.png", 0.7)
+    vittoria = classe.bit(r"image\cittadina.png", 0.7) # check red end button
+    # sconfitta = classe.bit(r"image\sconfitta.png", 0.7) # Check Defeat screen
     while (True):
         await asyncio.sleep(1)
-        test = vittoria.ispresence()
-        if test == 1:
-            return 2
-        test = sconfitta.ispresence()
+        test = vittoria.SafeControl()
         if test == 1:
             return 1
 
