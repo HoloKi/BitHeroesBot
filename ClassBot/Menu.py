@@ -2,7 +2,7 @@ import pyautogui
 import time
 import json
 import logging
-from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon, DungeonAuto, checkers
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon, checkers
 from termcolor import colored, cprint
 
 
@@ -120,7 +120,7 @@ def menu():
                                         if int(a) == 10:
                                             cprint("How many dungeon4 runs do you want to do?", 'green', attrs=['bold'])
                                             dunrun = input()
-                                            Dungeon.dungeon(int(dunrun))
+                                            Dungeon4.dungeon(int(dunrun))
                                             return 1
                                         else:
                                             if int(a) == 11:
@@ -133,17 +133,17 @@ def menu():
                                                               attrs=['bold']))
                                                 c = input()
                                                 if int(c) == 1:
-                                                    retraid = DungeonAuto.dungeonrepeat(b, norm)
+                                                    retraid = Dungeon.dungeonrepeat(b, norm)
                                                     logging.debug(f"ritorno del raid = {retraid}")
                                                     return 1
                                                 else:
                                                     if int(c) == 2:
-                                                        retraid = DungeonAuto.dungeonrepeat(b, hard)
+                                                        retraid = Dungeon.dungeonrepeat(b, hard)
                                                         logging.debug(f"ritorno del raid = {retraid}")
                                                         return 1
                                                     else:
                                                         if int(c) == 3:
-                                                            retraid = DungeonAuto.dungeonrepeat(b, hero)
+                                                            retraid = Dungeon.dungeonrepeat(b, hero)
                                                             logging.debug(f"ritorno del raid = {retraid}")
                                                             return 1
                                                         else:
