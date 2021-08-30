@@ -43,7 +43,7 @@ def raid(run, difficult):
     cittadina = classe.bit(r"image\cittadina.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    fine = classe.bit(r"image\fine.png", 0.5)
+    fine = classe.bit(r"image\rerun.png", 0.5)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
