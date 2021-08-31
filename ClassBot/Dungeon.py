@@ -107,6 +107,8 @@ def dungeonrepeat(run, difficult):
                     logging.debug("end")
                     time.sleep(3)
                     pyautogui.press('esc')
+                    time.sleep(3)
+                    pyautogui.press('esc')
                     break
                 else:
                     error = rerun.bottone()
