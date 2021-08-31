@@ -44,7 +44,8 @@ def dungeonrepeat(run, difficult):
     cittadina = classe.bit(r"image\cittadina.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    fine = classe.bit(r"image\fine.png", 0.5)
+    #fine = classe.bit(r"image\rerun.png", 0.5)
+    rerun = classe.bit(r"image\rerun.png", 0.5)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----DUNGEON-----", 'cyan', attrs=['bold']))
@@ -104,17 +105,11 @@ def dungeonrepeat(run, difficult):
                 print("----------------------------------\n")
                 if int(count) >= int(run):
                     logging.debug("end")
-                    error = cittadina.bottone()
-                    if int(error) == 0:
-                        cprint(errore)
-                        print("Probably Insufficient time!")
-                        break
-                    else:
-                        time.sleep(3)
-                        pyautogui.press('esc')
-                        break
+                    time.sleep(3)
+                    pyautogui.press('esc')
+                    break
                 else:
-                    error = fine.bottone()
+                    error = rerun.bottone()
                     if error == 0:
                         cprint(errore)
                         return 0
