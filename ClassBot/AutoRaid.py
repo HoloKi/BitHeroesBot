@@ -78,7 +78,7 @@ def raid(run, difficult):
             if error == 0:
                 cprint(errore)
                 return 0
-            while (True):
+            while True:
                 '''
                 time.sleep(2)
                 error = auto.ispresence()
