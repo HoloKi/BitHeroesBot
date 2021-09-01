@@ -26,7 +26,7 @@ def pvp(run):
         play = classe.bit(r"image\play.png", 0.4)
         select = classe.bit(r"image\battle2.png", 0.5)
         accetta = classe.bit(r"image\accept.png", 0.5)
-        defeat = classe.bit(r"image\defeat.png", 0.7)
+        defeat = classe.bit(r"image\sconfitta.png", 0.6)
         chiudi = classe.bit(r"image\chiudi.png", 0.5)
         # -----------------------------------------------
         conta = 0
@@ -87,8 +87,8 @@ def pvp(run):
 
 
 async def fine():
-    fine = classe.bit(r"image\pvpvick.png", 0.7)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    fine = classe.bit(r"image\pvpvick.png", 0.5)
+    morte = classe.bit(r"image\raid\raiddie.png", 0.5)
     while True:
         await asyncio.sleep(1)
         test = morte.SafeControl()

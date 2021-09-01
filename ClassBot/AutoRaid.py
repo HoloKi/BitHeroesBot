@@ -103,15 +103,11 @@ def raid(run, difficult):
                 print("----------------------------------\n")
                 if int(count) >= int(run):
                     logging.debug("end")
-                    error = cittadina.bottone()
-                    if error == 0:
-                        cprint(errore)
-                        print("Probably Insufficient time!")
-                        break
-                    else:
-                        time.sleep(3)
-                        pyautogui.press('esc')
-                        break
+                    time.sleep(3)
+                    pyautogui.press('esc')
+                    time.sleep(3)
+                    pyautogui.press('esc')
+                    break
                 else:
                     error = fine.bottone()
                     if error == 0:
