@@ -64,7 +64,7 @@ def cimento(run):
 async def fine():
     vittoria = classe.bit(r"image\cittadina.png", 0.4)
     # sconfitta = classe.bit(r"image\endinv.png", 0.7)
-    while (True):
+    while True:
         await asyncio.sleep(1)
         test = vittoria.SafeControl()
         if test == 1:

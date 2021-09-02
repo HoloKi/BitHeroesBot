@@ -69,9 +69,9 @@ def gvg(run):
 
 
 async def fine():
-    vittoria = classe.bit(r"image\cittadina.png", 0.7) # check red end button
+    vittoria = classe.bit(r"image\cittadina.png", 0.5) # check red end button
     # sconfitta = classe.bit(r"image\sconfitta.png", 0.7) # Check Defeat screen
-    while (True):
+    while True:
         await asyncio.sleep(1)
         test = vittoria.SafeControl()
         if test == 1:

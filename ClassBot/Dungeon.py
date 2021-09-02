@@ -103,7 +103,7 @@ def dungeonrepeat(run, difficult):
                     pyautogui.press('esc')
                     break
                 print("----------------------------------\n")
-                if int(count) >= int(run):
+                if int(count) == int(run):
                     logging.debug("end")
                     time.sleep(3)
                     pyautogui.press('esc')
