@@ -20,14 +20,14 @@ def expedition(run):
         pyautogui.alert(text="Run must be > 0", button="OK")
         exit(0)
     else:
-        #load_class-------------------------
+        # load_class-------------------------
         auto = classe.bit(r"image\autored.png", 0.7)
         expe = classe.bit(r"image\entra.png", 0.5)
         accept = classe.bit(r"image\accept.png", 0.5)
-        xbutt = classe.bit(r"image\xbutton.png", 0.5)
+        # xbutt = classe.bit(r"image\xbutton.png", 0.5)
         yes = classe.bit(r"image\yes.png", 0.5)
-        #----------------------------------
-        while(True):
+        # ----------------------------------
+        while True:
             count += 1
             error = expe.bottone()
             if error == 0:
@@ -46,16 +46,14 @@ def expedition(run):
             print(f"Match n: {count}")
             asyncio.run(test())
             print("----------------------------------\n")
-            error = yes.bottone()
-            if error == 0:
-                cprint(errore)
-                return 0
             time.sleep(3)
             if count == int(run):
-                error = xbutt.bottone()
-                if error == 0:
-                    cprint(errore)
-                    return 0
+                pyautogui.press('esc')
+                time.sleep(2)
+                return 1
+            else:
+                pyautogui.press('esc')
+                time.sleep(2)
                 pyautogui.press('esc')
                 time.sleep(2)
                 pyautogui.press('esc')
@@ -63,13 +61,10 @@ def expedition(run):
 
 
 async def fine():
-    fine = classe.bit(r"image\fine.png", 0.7)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    while(True):
+    fine = classe.bit(r"image\cittadina.png", 0.7)
+    #morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    while True:
         await asyncio.sleep(1)
-        test = morte.SafeControl()
-        if test == 1:
-            return 2
         test = fine.SafeControl()
         if test == 1:
             return 1

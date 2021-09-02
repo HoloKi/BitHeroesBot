@@ -56,10 +56,8 @@ def prove(run):
                 print(f"run number: {conta}")
                 asyncio.run(test())
                 print("----------------------------------\n")
-                error = yes.bottone()
-                if error == 0:
-                    cprint(errore)
-                    return 0
+                time.sleep(2)
+                pyautogui.press('esc')
                 time.sleep(3)
                 if conta == int(run):
                     pyautogui.press('esc')
@@ -68,12 +66,9 @@ def prove(run):
 
 async def fine():
     fine = classe.bit(r"image\cittadina.png", 0.7)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
+    #morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while True:
         await asyncio.sleep(1)
-        test = morte.ispresence()
-        if test == 1:
-            return 2
         test = fine.ispresence()
         if test == 1:
             return 1

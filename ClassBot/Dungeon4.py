@@ -31,10 +31,10 @@ def dungeon(run):
     dun = classe.bit(r"image\d4\d4.png", 0.5)
     enter = classe.bit(r"image\entra.png",0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
-    si = classe.bit(r"image\yes.png", 0.5)
+    #si = classe.bit(r"image\yes.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    fine = classe.bit(r"image\fine.png", 0.5)
+    rerun = classe.bit(r"image\rerun.png", 0.5)
     # ---------------------------------------------------------------------------------)
     print(colored("\n-----DUNGEON4-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
@@ -67,7 +67,7 @@ def dungeon(run):
             if error == 0:
                 cprint(errore)
                 return 0
-            while (True):
+            while True:
                 error = auto.ispresence()
                 if error == 0:
                     pyautogui.press("space")
@@ -86,18 +86,15 @@ def dungeon(run):
                     break
                 # -----------------------------------
                 print("----------------------------------\n")
-                if int(count) >= int(run):
+                if int(count) == int(run):
                     logging.debug("end")
-                    error = si.bottone()
-                    if error == 0:
-                        cprint(errore)
-                        break
-                    else:
-                        time.sleep(3)
-                        pyautogui.press('esc')
-                        break
+                    time.sleep(3)
+                    pyautogui.press('esc')
+                    time.sleep(3)
+                    pyautogui.press('esc')
+                    break
                 else:
-                    error = fine.bottone()
+                    error = rerun.bottone()
                     if error == 0:
                         cprint(errore)
                         return 0

@@ -56,6 +56,7 @@ def invasione(run):
                 print(f"run number: {conta}")
                 asyncio.run(test())
                 print("----------------------------------\n")
+                time.sleep(2)
                 pyautogui.press('esc')
                 time.sleep(3)
                 if conta == int(run):
@@ -64,7 +65,7 @@ def invasione(run):
 
 
 async def fine():
-    end = classe.bit(r"image\raid\raiddie.png", 0.7)
+    end = classe.bit(r"image\cittadina.png", 0.5)
     while True:
         await asyncio.sleep(1)
         prova = end.SafeControl()
