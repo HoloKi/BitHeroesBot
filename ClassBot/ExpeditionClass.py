@@ -47,16 +47,15 @@ def expedition(run):
             asyncio.run(test())
             print("----------------------------------\n")
             time.sleep(3)
+            pyautogui.press('esc')
+            time.sleep(3)
             if count == int(run):
                 pyautogui.press('esc')
-                time.sleep(2)
-                return 1
-            else:
+                time.sleep(3)
                 pyautogui.press('esc')
-                time.sleep(2)
+                time.sleep(3)
                 pyautogui.press('esc')
-                time.sleep(2)
-                pyautogui.press('esc')
+                time.sleep(3)
                 break
 
 
