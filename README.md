@@ -6,6 +6,9 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/HoloKi/BitHeroesBot)
 
 # Server Discord
+
+**Come here for the latest update of the bot!**
+
 [Discord](https://discord.gg/h98xsssEpe)
 
 # Bit Heroes Bot
