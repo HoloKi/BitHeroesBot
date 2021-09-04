@@ -3,6 +3,7 @@ import logging
 from ClassBot import Menu, checkers
 from colorama import *
 import os.path
+import pyautogui
 
 init(autoreset=True)
 
@@ -30,6 +31,10 @@ def main():
     logging.info("https://discord.gg/h98xsssEpe")
     logging.info(
         "The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer")
+    logging.info("---------------------------Monitor-Setup----------------------------------")
+    logging.debug(f"monitor size: {pyautogui.size()}")
+    logging.debug(f"mouse pos: {pyautogui.position()}")
+    logging.info("--------------------------------------------------------------------------")
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")

@@ -7,7 +7,10 @@ from termcolor import colored,cprint
 from ClassBot import classe
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
+
+
 errore = colored("Please report this bug/error on github",'red',attrs=['bold'])
+
 
 def expedition(run):
     logging.debug("---------EXPEDITION----------")
@@ -21,15 +24,13 @@ def expedition(run):
         exit(0)
     else:
         # load_class-------------------------
-        auto = classe.bit(r"image\autored.png", 0.7)
-        expe = classe.bit(r"image\entra.png", 0.5)
-        accept = classe.bit(r"image\accept.png", 0.5)
-        # xbutt = classe.bit(r"image\xbutton.png", 0.5)
+        enter = classe.bit(r"image\entra.png", 0.5)
+        accept = classe.bit(r"image\accept.png", 0.6)
         yes = classe.bit(r"image\yes.png", 0.5)
         # ----------------------------------
         while True:
             count += 1
-            error = expe.bottone()
+            error = enter.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
@@ -37,6 +38,7 @@ def expedition(run):
             if error == 0:
                 cprint(errore)
                 return 0
+            accept.ispresence()
             '''
             error = auto.ispresence()
             if error == 0:
@@ -61,7 +63,6 @@ def expedition(run):
 
 async def fine():
     fine = classe.bit(r"image\cittadina.png", 0.7)
-    #morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while True:
         await asyncio.sleep(1)
         test = fine.SafeControl()
