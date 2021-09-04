@@ -44,12 +44,12 @@ def expedition(run):
             print(f"Match n: {count}")
             asyncio.run(test())
             print("----------------------------------\n")
-            time.sleep(3)
             error = cittadina.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
             cittadina.ispresence()
+            time.sleep(5)
             if count == int(run):
                 pyautogui.press('esc')
                 logging.debug("esc 2 count==run ")
