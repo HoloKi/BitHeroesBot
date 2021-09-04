@@ -26,7 +26,7 @@ def expedition(run):
         # load_class-------------------------
         enter = classe.bit(r"image\entra.png", 0.5)
         accept = classe.bit(r"image\accept.png", 0.6)
-        yes = classe.bit(r"image\yes.png", 0.5)
+        cittadina =  classe.bit(r"image\cittadina.png",0.5)
         # ----------------------------------
         while True:
             count += 1
@@ -34,29 +34,31 @@ def expedition(run):
             if error == 0:
                 cprint(errore)
                 return 0
+            enter.ispresence()
             error = accept.bottone()
             if error == 0:
                 cprint(errore)
                 return 0
             accept.ispresence()
-            '''
-            error = auto.ispresence()
-            if error == 0:
-                pyautogui.press('space')
-            '''
             print("----------------------------------")
             print(f"Match n: {count}")
             asyncio.run(test())
             print("----------------------------------\n")
             time.sleep(3)
-            pyautogui.press('esc')
-            time.sleep(3)
+            error = cittadina.bottone()
+            if error == 0:
+                cprint(errore)
+                return 0
+            cittadina.ispresence()
             if count == int(run):
                 pyautogui.press('esc')
+                logging.debug("esc 2 count==run ")
                 time.sleep(3)
                 pyautogui.press('esc')
+                logging.debug("esc 3")
                 time.sleep(3)
                 pyautogui.press('esc')
+                logging.debug("esc 4")
                 time.sleep(3)
                 break
 
