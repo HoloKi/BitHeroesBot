@@ -62,7 +62,7 @@ def cimento(run):
 
 
 async def fine():
-    vittoria = classe.bit(r"image\cittadina.png", 0.4)
+    vittoria = classe.bit(r"image\cittadina.png", 0.5)
     # sconfitta = classe.bit(r"image\endinv.png", 0.7)
     while True:
         await asyncio.sleep(1)
