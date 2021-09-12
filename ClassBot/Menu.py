@@ -18,7 +18,7 @@ def menu():
     print(colored("2) ", 'white'), colored("Pvp", 'green', attrs=['bold']))
     print(colored("3) ", 'white'), colored("Gauntlet", 'green', attrs=['bold']))
     print(colored("4) ", 'white'), colored("Change daily settings", 'red', attrs=['bold']))
-    print(colored("5) ", 'white'), colored("Daily", 'green', attrs=['bold']))
+    print(colored("5) ", 'white'), colored("OneForAll", 'green', attrs=['bold']))
     print(colored("6) ", 'white'), colored("Expedition", 'red', attrs=['bold']))
     print(colored("7) ", 'white'), colored("GvG", 'green', attrs=['bold']))
     print(colored("8) ", 'white'), colored("Nyxn Trial", 'red', attrs=['bold']))
@@ -81,7 +81,7 @@ def menu():
                               colored("n", 'white'))
                         sure = input()
                         if str(sure) == 'y':
-                            daily()
+                            OneForAll()
                             return 1
                         else:
                             if str(sure) or int(sure):
@@ -211,6 +211,18 @@ def daily():
     if g == 0:
         NyxnTrial.prove(int(cimentorun))
 
+def OneForAll():
+    AutoRaid.raid(999, hero)
+    time.sleep(5)
+    PvPClass.pvp(999)
+    time.sleep(5)
+    # prova a fare cimento. Se ritorna None, ritorna 0
+    g = GauntletClass.cimento(999)
+    if g == 0:
+        NyxnTrial.prove(999)
+    time.sleep(5)
+    Invasion.invasione(999)
+    GauntletClass.cimento(999)
 
 def debug():
     print(colored("Debug Mode on. Cerco tutte le immagini", 'red'))
