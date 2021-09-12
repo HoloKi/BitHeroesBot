@@ -27,6 +27,7 @@ def cimento(run):
         gaunt = classe.bit(r"image\cimento.png", 0.5)
         play = classe.bit(r"image\play.png", 0.4)
         accept = classe.bit(r"image\accept.png", 0.5)
+        no_shard = classe.bit(r"image\noshard.png", 0.5)
         # ---------------------------------
         error = gaunt.bottone()
         if error == 0:
@@ -38,6 +39,15 @@ def cimento(run):
             if error == 0:
                 cprint(errore)
                 return 0
+            # check if no shard is presence
+            error = no_shard.SafeControl()
+            if error == 1:
+                logging.debug("No shard available!")
+                pyautogui.press("esc")
+                time.sleep(2)
+                pyautogui.press("esc")
+                return 0
+            # case have shard
             error = accept.bottone()
             if error == 0:
                 cprint(errore)
@@ -51,6 +61,7 @@ def cimento(run):
             print(f"run number: {conta}")
             asyncio.run(test())
             print("----------------------------------\n")
+            time.sleep(2)
             if conta == int(run):
                 pyautogui.press('esc')
                 time.sleep(3)
@@ -63,7 +74,7 @@ def cimento(run):
 
 async def fine():
     vittoria = classe.bit(r"image\cittadina.png", 0.5)
-    # sconfitta = classe.bit(r"image\endinv.png", 0.7)
+    no_shard = classe.bit(r"image\noshard.png", 0.5)
     while True:
         await asyncio.sleep(1)
         test = vittoria.SafeControl()
