@@ -62,14 +62,6 @@ def raid(run, difficult):
             logging.debug("run=0")
             return 0
         else:
-            # check if no shard is presence
-            error = no_shard.SafeControl()
-            if error == 1:
-                logging.debug("No shard available!")
-                print("No shard!\n")
-                pyautogui.press("esc")
-                time.sleep(2)
-                return 0
             error = raid.bottone()
             if error == 0:
                 cprint(errore)
@@ -87,7 +79,8 @@ def raid(run, difficult):
                 cprint(errore)
                 return 0
             # check if no shard is presence
-            error = no_shard.SafeControl()
+            time.sleep(2)
+            error = no_shard.ispresence()
             if error == 1:
                 logging.debug("No shard available!")
                 print("No shard!\n")
@@ -101,13 +94,15 @@ def raid(run, difficult):
                 return 0
             # else
             while True:
-                '''
-                time.sleep(2)
-                error = auto.ispresence()
-                logging.debug(f"auto = {error}")
-                if error == 0:
-                    pyautogui.press('space')
-                '''
+                # check if no shard is presence
+                time.sleep(3)
+                error = no_shard.ispresence()
+                if error == 1:
+                    logging.debug("No shard available!")
+                    print("No shard!\n")
+                    pyautogui.press("esc")
+                    time.sleep(2)
+                    return 0
                 count += 1
                 print("----------------------------------")
                 print(f"run number: {count}")
