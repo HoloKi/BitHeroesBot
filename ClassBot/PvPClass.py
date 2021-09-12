@@ -28,6 +28,7 @@ def pvp(run):
         accetta = classe.bit(r"image\accept.png", 0.5)
         defeat = classe.bit(r"image\sconfitta.png", 0.6)
         chiudi = classe.bit(r"image\chiudi.png", 0.5)
+        no_shard = classe.bit(r"image\noshard.png", 0.5)
         # -----------------------------------------------
         conta = 0
         error = pvp.bottone()
@@ -41,6 +42,14 @@ def pvp(run):
             if error == 0:
                 cprint(problema)
                 break
+            # check if no shard is presence
+            error = no_shard.SafeControl()
+            if error == 1:
+                logging.debug("No shard available!")
+                pyautogui.press("esc")
+                time.sleep(2)
+                pyautogui.press("esc")
+                return 0
             error = select.bottone()
             if error == 0:
                 cprint(problema)

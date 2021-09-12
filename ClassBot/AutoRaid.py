@@ -40,10 +40,10 @@ def raid(run, difficult):
     raid = classe.bit(r"image\raid\raid.png", 0.5)
     evoca = classe.bit(r"image\startraid.png", 0.5)
     accetta = classe.bit(r"image\accept.png", 0.5)
-    cittadina = classe.bit(r"image\cittadina.png", 0.5)
     chiudi = classe.bit(r"image\raid\close.png", 0.5)
     morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     rerun = classe.bit(r"image\rerun.png", 0.5)
+    no_shard = classe.bit(r"image\noshard.png", 0.5)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
@@ -62,6 +62,14 @@ def raid(run, difficult):
             logging.debug("run=0")
             return 0
         else:
+            # check if no shard is presence
+            error = no_shard.SafeControl()
+            if error == 1:
+                logging.debug("No shard available!")
+                print("No shard!\n")
+                pyautogui.press("esc")
+                time.sleep(2)
+                return 0
             error = raid.bottone()
             if error == 0:
                 cprint(errore)
@@ -78,6 +86,20 @@ def raid(run, difficult):
             if error == 0:
                 cprint(errore)
                 return 0
+            # check if no shard is presence
+            error = no_shard.SafeControl()
+            if error == 1:
+                logging.debug("No shard available!")
+                print("No shard!\n")
+                pyautogui.press("esc")
+                time.sleep(2)
+                pyautogui.press("esc")
+                time.sleep(2)
+                pyautogui.press("esc")
+                time.sleep(2)
+                pyautogui.press("esc")
+                return 0
+            # else
             while True:
                 '''
                 time.sleep(2)
@@ -118,12 +140,8 @@ def raid(run, difficult):
 
 async def fine():
     fine = classe.bit(r"image\fine.png", 0.7)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while True:
         await asyncio.sleep(1)
-        test = morte.SafeControl()
-        if test == 1:
-            return 2
         test = fine.SafeControl()
         if test == 1:
             return 1
