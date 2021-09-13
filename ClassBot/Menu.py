@@ -2,9 +2,9 @@ import pyautogui
 import time
 import json
 import logging
-from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon, checkers
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon, \
+    checkers
 from termcolor import colored, cprint
-
 
 hero = "heroic"
 hard = "hard"
@@ -17,14 +17,14 @@ def menu():
     print(colored("1) ", 'white'), colored("Raid", 'green', attrs=['bold']))
     print(colored("2) ", 'white'), colored("Pvp", 'green', attrs=['bold']))
     print(colored("3) ", 'white'), colored("Gauntlet", 'green', attrs=['bold']))
-    print(colored("4) ", 'white'), colored("Change daily settings", 'red', attrs=['bold']))
+    print(colored("4) ", 'white'), colored("Error", 'red', attrs=['bold']))
     print(colored("5) ", 'white'), colored("OneForAll", 'green', attrs=['bold']))
     print(colored("6) ", 'white'), colored("Expedition", 'red', attrs=['bold']))
-    print(colored("7) ", 'white'), colored("GvG", 'green', attrs=['bold']))
+    print(colored("7) ", 'white'), colored("GvG", 'red', attrs=['bold']))
     print(colored("8) ", 'white'), colored("Nyxn Trial", 'red', attrs=['bold']))
-    print(colored("9) ", 'white'), colored("Invasion", 'red', attrs=['bold']))
-    print(colored("10)", 'white'), colored("Dungeon4", 'green', attrs=['bold']))
-    print(colored("11)", 'white'), colored("Dungeon", 'green', attrs=['bold']))
+    print(colored("9) ", 'white'), colored("Invasion", 'green', attrs=['bold']))
+    print(colored("10)", 'white'), colored("Dungeon4", 'red', attrs=['bold']))
+    print(colored("11)", 'white'), colored("Dungeon", 'red', attrs=['bold']))
     print(colored("check wiki to check how to set dungeon", 'red', attrs=['bold']))
     print(f"0)  To close the program\n")
     cprint("Select number: \n", 'cyan', attrs=['bold'])
@@ -69,7 +69,7 @@ def menu():
                 return 1
             else:
                 if int(a) == 4:
-                    setconfig()
+                    print("deprecated!")
                     return 1
                 else:
                     if int(a) == 5:
@@ -164,7 +164,7 @@ command to edit json file that store information about daily raid etc
 
 """
 
-
+''' deprecated
 def setconfig():
     f = open("data.json", "r")
     data = json.loads(f.read())
@@ -187,11 +187,6 @@ def setconfig():
     f.close()
 
 
-"""
-Function to do daily task
-"""
-
-
 def daily():
     # loading daily from data.json-------
     f = open('data.json', "r")
@@ -210,6 +205,8 @@ def daily():
     g = GauntletClass.cimento(int(cimentorun))
     if g == 0:
         NyxnTrial.prove(int(cimentorun))
+'''
+
 
 def OneForAll():
     AutoRaid.raid(999, hero)
@@ -222,7 +219,7 @@ def OneForAll():
         NyxnTrial.prove(999)
     time.sleep(5)
     Invasion.invasione(999)
-    GauntletClass.cimento(999)
+
 
 def debug():
     print(colored("Debug Mode on. Cerco tutte le immagini", 'red'))

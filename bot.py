@@ -5,23 +5,21 @@ from colorama import *
 import os.path
 import pyautogui
 
-init(autoreset=True)
-
-VERSION = "5.6.4-beta"
-
-
 '''
 Function to resize bot window
 '''
 from ctypes import windll, byref
 import ctypes.wintypes as wintypes
 
+init(autoreset=True)
+
+VERSION = "5.7.0-beta"
+
 STDOUT = -11
 
 hdl = windll.kernel32.GetStdHandle(STDOUT)
 rect = wintypes.SMALL_RECT(0, 0, 56, 26)  # (left, top, right, bottom)
 windll.kernel32.SetConsoleWindowInfo(hdl, True, byref(rect))
-
 
 
 def main():
@@ -31,14 +29,11 @@ def main():
     logging.info("https://discord.gg/h98xsssEpe")
     logging.info(
         "The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer")
-    logging.info("---------------------------Monitor-Setup----------------------------------")
-    logging.debug(f"monitor size: {pyautogui.size()}")
-    logging.debug(f"mouse pos: {pyautogui.position()}")
-    logging.info("--------------------------------------------------------------------------")
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")
     # check if there isnt a data.json
+    '''
     file = os.path.isfile("data.json")
     logging.debug(f"data.json = {file}")
     if file is False:
@@ -48,6 +43,7 @@ def main():
         f.close()
         # time.sleep(3)
     #checkers.check()
+    '''
     while True:
         cycle = Menu.menu()
         if cycle == 0:

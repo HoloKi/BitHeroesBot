@@ -1,7 +1,7 @@
 import pyautogui
 import time
 import cv2 as cv
-import classe
+from ClassBot import classe
 
 
 def test(name, numero):

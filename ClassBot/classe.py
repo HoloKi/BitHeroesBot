@@ -36,6 +36,7 @@ class bit:
             # logging.debug("DEBUG:non è presente!")
             return 0
     # isPresence  without cdebug control so no spam on logging
+
     def SafeControl(self):
         presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
         # logging.debug(f"presence = {presente}")
