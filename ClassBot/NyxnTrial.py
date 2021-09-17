@@ -31,7 +31,7 @@ def prove(run):
             trial = classe.bit(r"image\prove.png", 0.5)
             play = classe.bit(r"image\play.png", 0.4)
             accept = classe.bit(r"image\accept.png", 0.5)
-            yes = classe.bit(r"image\yes.png", 0.5)
+            no_shard = classe.bit(r"image\noshard.png", 0.5)
             # -------------------------------------
             error = trial.bottone()
             if error == 0:
@@ -42,6 +42,14 @@ def prove(run):
                 error = play.bottone()
                 if error == 0:
                     cprint(errore)
+                    return 0
+                # check if no shard is presence
+                error = no_shard.SafeControl()
+                if error == 1:
+                    logging.debug("No shard available!")
+                    pyautogui.press("esc")
+                    time.sleep(2)
+                    pyautogui.press("esc")
                     return 0
                 error = accept.bottone()
                 if error == 0:
