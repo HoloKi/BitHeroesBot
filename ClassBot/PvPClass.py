@@ -27,7 +27,7 @@ def pvp(run):
         select = classe.bit(r"image\battle2.png", 0.5)
         accetta = classe.bit(r"image\accept.png", 0.5)
         defeat = classe.bit(r"image\sconfitta.png", 0.6)
-        chiudi = classe.bit(r"image\chiudi.png", 0.5)
+        cittadina = classe.bit(r"image\cittadina.png", 0.5)
         no_shard = classe.bit(r"image\noshard.png", 0.5)
         # -----------------------------------------------
         conta = 0
@@ -77,7 +77,7 @@ def pvp(run):
             print("----------------------------------\n")
             time.sleep(2)
             if perso == True:
-                chiudi.bottone()
+                cittadina.bottone()
                 time.sleep(2)
             if conta == int(run):
                 if perso == False:
@@ -87,7 +87,7 @@ def pvp(run):
                 return 1
             else:
                 if perso == True:
-                    chiudi.bottone()
+                    cittadina.bottone()
                     time.sleep(2)
                 else:
                     pyautogui.press('esc')
