@@ -73,19 +73,23 @@ def menu():
                     return 1
                 else:
                     if int(a) == 5:
-                        cprint("ATTENTION: This command will initiate Raid, Pvp, Trial or Trials of Nynx!", 'red',
+                        cprint("ATTENTION: This command will consume all your\n"
+                               " resources by doing everything", 'red',
                                attrs=['bold'])
-                        cprint("Make sure you have set the settings of the daily Command 4)", 'cyan', attrs=['bold'])
-                        print(colored("Press", 'cyan', attrs=['bold']), colored("y", 'white'),
-                              colored("if you are ready to start the daily, otherwise type", 'cyan', attrs=['bold']),
-                              colored("n", 'white'))
+                        print(colored("Press", 'cyan', attrs=['bold']), colored("1", 'white'),
+                              colored("if you want rerun Dungeon\n"
+                                      " otherwise for Dungeon4 type", 'cyan', attrs=['bold']),
+                              colored("2", 'white'))
                         sure = input()
-                        if str(sure) == 'y':
-                            OneForAll()
+                        if int(sure) == 1:
+                            OneForAll(1)
                             return 1
                         else:
-                            if str(sure) or int(sure):
+                            if int(sure) == 2:
+                                OneForAll(2)
                                 return 1
+                            else:
+                                print("something wrong")
                     else:
                         if int(a) == 6:
                             cprint("ATTENTION: This mode requires you to select expedition first!", 'red',
@@ -208,7 +212,7 @@ def daily():
 '''
 
 
-def OneForAll():
+def OneForAll(dungeon):
     AutoRaid.raid(999, hero)
     time.sleep(5)
     PvPClass.pvp(999)
@@ -219,6 +223,12 @@ def OneForAll():
         NyxnTrial.prove(999)
     time.sleep(5)
     Invasion.invasione(999)
+    if int(dungeon) == 1:
+        # Dungeon
+        Dungeon.dungeonrepeat(999, hero)
+    if int(dungeon) == 2:
+        # Dungeon4
+        Dungeon4.dungeon(999)
 
 
 def debug():
