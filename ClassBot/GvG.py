@@ -32,6 +32,7 @@ def gvg(run):
             play = classe.bit(r"image\play.png", 0.5)
             select = classe.bit(r"image\battle2.png", 0.5)
             accept = classe.bit(r"image\accept.png", 0.5)
+            no_shard = classe.bit(r"image\noshard.png", 0.5)
             # -------------------------------------
             error = gvg_button.bottone()
             if error == 0:
@@ -42,6 +43,15 @@ def gvg(run):
                 if error == 0:
                     cprint(errore)
                     return 0
+                # check if no shard is presence
+                error = no_shard.SafeControl()
+                if error == 1:
+                    logging.debug("No shard available!")
+                    pyautogui.press("esc")
+                    time.sleep(2)
+                    pyautogui.press("esc")
+                    return 0
+                # case have shard
                 error = select.bottone()
                 if error == 0:
                     cprint(errore)
