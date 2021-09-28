@@ -1,6 +1,6 @@
 import json
 import logging
-from ClassBot import Menu, checkers
+from ClassBot import Menu, checkers, Controllo
 from colorama import *
 import os.path
 import pyautogui
@@ -32,6 +32,7 @@ def main():
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")
+    Controllo.controllotot()
     # check if there isnt a data.json
     '''
     file = os.path.isfile("data.json")
