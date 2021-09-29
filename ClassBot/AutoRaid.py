@@ -5,6 +5,7 @@ from colorama import *
 from termcolor import colored, cprint
 from ClassBot import classe
 import asyncio
+import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
@@ -17,6 +18,18 @@ Raid function that uses the class to simplify the code and its reuse
 @: return 1 if everything went well
 @: return 0 if it went wrong
 """
+
+f = open("data.json","r")
+data = json.loads(f.read())
+
+raid_data = float(data['Function'][0]['raid'][0]['raid'])
+evoca_data = float(data['Function'][0]['raid'][0]['evoca'])
+accetta_data = float(data['Function'][0]['raid'][0]['accept'])
+chiudi_data = float(data['Function'][0]['raid'][0]['chiudi'])
+morte_data = float(data['Function'][0]['raid'][0]['morte'])
+rerun_data = float(data['Function'][0]['raid'][0]['rerun'])
+no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
+
 
 
 def raid(run, difficult):
@@ -37,13 +50,13 @@ def raid(run, difficult):
                 difficulty = classe.bit(r"image\raid\normal.png", 0.7)
 
     # auto = classe.bit(r"image\autogreen.png", 0.7)
-    raid = classe.bit(r"image\raid\raid.png", 0.5)
-    evoca = classe.bit(r"image\startraid.png", 0.5)
-    accetta = classe.bit(r"image\accept.png", 0.5)
-    chiudi = classe.bit(r"image\raid\close.png", 0.5)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    rerun = classe.bit(r"image\rerun.png", 0.5)
-    no_shard = classe.bit(r"image\noshard.png", 0.5)
+    raid = classe.bit(r"image\raid\raid.png", raid_data)
+    evoca = classe.bit(r"image\startraid.png", evoca_data)
+    accetta = classe.bit(r"image\accept.png", accetta_data)
+    chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
+    morte = classe.bit(r"image\raid\raiddie.png", morte_data)
+    rerun = classe.bit(r"image\rerun.png", rerun_data)
+    no_shard = classe.bit(r"image\noshard.png", no_shard_data)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
