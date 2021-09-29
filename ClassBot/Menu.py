@@ -2,8 +2,7 @@ import pyautogui
 import time
 import json
 import logging
-from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon, \
-    checkers
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon,DeveloperMode
 from termcolor import colored, cprint
 
 hero = "heroic"
@@ -17,7 +16,7 @@ def menu():
     print(colored("1) ", 'white'), colored("Raid", 'green', attrs=['bold']))
     print(colored("2) ", 'white'), colored("Pvp", 'green', attrs=['bold']))
     print(colored("3) ", 'white'), colored("Gauntlet", 'green', attrs=['bold']))
-    print(colored("4) ", 'white'), colored("Error", 'red', attrs=['bold']))
+    print(colored("4) ", 'white'), colored("DeveloperMode", 'red', attrs=['bold']))
     print(colored("5) ", 'white'), colored("OneForAll", 'green', attrs=['bold']))
     print(colored("6) ", 'white'), colored("Expedition", 'red', attrs=['bold']))
     print(colored("7) ", 'white'), colored("GvG", 'red', attrs=['bold']))
@@ -69,7 +68,7 @@ def menu():
                 return 1
             else:
                 if int(a) == 4:
-                    print("deprecated!")
+                    devmenu()
                     return 1
                 else:
                     if int(a) == 5:
@@ -231,39 +230,35 @@ def OneForAll(dungeon):
         Dungeon4.dungeon(999)
 
 
-def debug():
-    print(colored("Debug Mode on. Cerco tutte le immagini", 'red'))
-    raid = pyautogui.locateCenterOnScreen(r"image\prova.png", grayscale=False, confidence=0.5)
-    if raid is not None:
-        print(colored("Raid funzionante!", 'blue', attrs=['bold']))
+def devmenu():
+    print("\n\n")
+    print(colored("Enter the number to select the desired option:\n", 'red', attrs=['bold']))
+    print(colored("1) ", 'white'), colored("Check&Click", 'green', attrs=['bold']))
+    print(colored("2) ", 'white'), colored("Visibility", 'green', attrs=['bold']))
+    print(colored("3) ", 'white'), colored("Debug", 'green', attrs=['bold']))
+    print(colored("4) ", 'white'), colored("Error", 'red', attrs=['bold']))
+    print(colored("5) ", 'white'), colored("OneForAll", 'green', attrs=['bold']))
+
+    print(f"0)  To close the program\n")
+    cprint("Select number: \n", 'cyan', attrs=['bold'])
+    a = input()
+    logging.debug(f'Menu input = {a}')
+    if int(a) == 1:
+        print("Insert insert file name\n")
+        name = input()
+        print("Insert confidency, from 0.3 to 1 es : 0.5 (default)")
+        confi = input()
+        DeveloperMode.test(name,confi)
     else:
-        print(f"Raid = {raid}")
-    pvp = pyautogui.locateCenterOnScreen(r"image\pvp.png", grayscale=False, confidence=0.5)
-    if pvp is not None:
-        print(colored("PvP funzionante!", 'blue', attrs=['bold']))
-    else:
-        print(f"PvP = {pvp}")
-    gvg = pyautogui.locateCenterOnScreen(r"image\gvg.png", grayscale=False, confidence=0.5)
-    if gvg is not None:
-        print(colored("GvG Presente!", 'blue', attrs=['bold']))
-    else:
-        print(f"GvG = {gvg}")
-    cimento = pyautogui.locateCenterOnScreen(r"image\cimento.png", grayscale=False, confidence=0.5)
-    if cimento is not None:
-        print(colored("Cimento presente!", 'blue', attrs=['bold']))
-    else:
-        print(f"Cimento = {cimento}")
-    prove = pyautogui.locateCenterOnScreen(r"image\prove.png", grayscale=False, confidence=0.5)
-    if prove is not None:
-        print(colored("Prove presente!", 'blue', attrs=['bold']))
-    else:
-        print(f"Prove di Nyxn = {prove}")
-    invasione = pyautogui.locateCenterOnScreen(r"image\invasione.png", grayscale=False, confidence=0.5)
-    if invasione is not None:
-        print(colored("Invasione presente!", 'blue', attrs=['bold']))
-    else:
-        print(f"Invasione = {invasione}")
-    print(colored("\nNel caso ci fossero dei None, assicurati che siano disponibili, in tal caso spostati", 'red',
-                  attrs=['bold']))
-    time.sleep(5)
-    return 1
+        if int(a) == 2:
+            print("Insert insert file name\n")
+            name = input()
+            print("Insert confidency, from 0.3 to 1 es : 0.5 (default)")
+            confi = input()
+            DeveloperMode.visibility(name, confi)
+        else:
+            if int(a) == 3:
+                DeveloperMode.debug()
+            else:
+                return 0
+

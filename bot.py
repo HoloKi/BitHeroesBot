@@ -1,6 +1,6 @@
 import json
 import logging
-from ClassBot import Menu, checkers, Controllo,DeveloperMode
+from ClassBot import Menu, Controllo,DeveloperMode
 from colorama import *
 import os.path
 import pyautogui
@@ -35,17 +35,11 @@ def main():
     Controllo.controllotot()
     DeveloperMode.Populate()
     # check if there isnt a data.json
-    '''
     file = os.path.isfile("data.json")
     logging.debug(f"data.json = {file}")
     if file is False:
-        f = open("data.json", "x")
-        data_dict = {"name": checkers.USER, "raid": "0", "difficulty": "heroic", "pvp": "0", "gauntlet": "0", "yes": "0"}
-        json.dump(data_dict, f)
-        f.close()
-        # time.sleep(3)
-    #checkers.check()
-    '''
+        DeveloperMode.Populate()
+        time.sleep(3)
     while True:
         cycle = Menu.menu()
         if cycle == 0:
