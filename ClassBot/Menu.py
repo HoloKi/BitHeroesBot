@@ -68,8 +68,11 @@ def menu():
                 return 1
             else:
                 if int(a) == 4:
-                    devmenu()
-                    return 1
+                    while True:
+                        cycle = devmenu()
+                        if cycle == 0:
+                            exit()
+
                 else:
                     if int(a) == 5:
                         cprint("ATTENTION: This command will consume all your\n"
@@ -237,28 +240,34 @@ def devmenu():
     print(colored("2) ", 'white'), colored("Visibility", 'green', attrs=['bold']))
     print(colored("3) ", 'white'), colored("Debug", 'green', attrs=['bold']))
     print(colored("4) ", 'white'), colored("Error", 'red', attrs=['bold']))
-    print(colored("5) ", 'white'), colored("OneForAll", 'green', attrs=['bold']))
+    print(colored("0) ", 'white'), colored("Exit", 'green', attrs=['bold']))
 
     print(f"0)  To close the program\n")
     cprint("Select number: \n", 'cyan', attrs=['bold'])
     a = input()
     logging.debug(f'Menu input = {a}')
     if int(a) == 1:
-        print("Insert insert file name\n")
+        print("Insert folder name, if is only image write image else raid or dungeon for the rispective folder\n")
+        folder = input()
+        print("Insert file name\n")
         name = input()
         print("Insert confidency, from 0.3 to 1 es : 0.5 (default)")
         confi = input()
-        DeveloperMode.test(name,confi)
+        DeveloperMode.test(folder,name,confi)
     else:
         if int(a) == 2:
+            print("Insert folder name, if is only image write image else raid or dungeon for the rispective folder\n")
+            folder = input()
             print("Insert insert file name\n")
             name = input()
             print("Insert confidency, from 0.3 to 1 es : 0.5 (default)")
             confi = input()
-            DeveloperMode.visibility(name, confi)
+            DeveloperMode.visibility(folder,name, confi)
         else:
             if int(a) == 3:
                 DeveloperMode.debug()
             else:
+                if int(a) == 0:
+                    return 0
                 return 0
 
