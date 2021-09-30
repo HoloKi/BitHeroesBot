@@ -1,9 +1,11 @@
 import json
 import logging
-from ClassBot import Menu, Controllo,DeveloperMode
+from ClassBot import Menu,DeveloperMode
 from colorama import *
 import os.path
 import pyautogui
+import time
+import traceback
 
 '''
 Function to resize bot window
@@ -13,7 +15,7 @@ import ctypes.wintypes as wintypes
 
 init(autoreset=True)
 
-VERSION = "5.7.0-beta"
+VERSION = "5.8.1-beta"
 
 STDOUT = -11
 
@@ -32,8 +34,6 @@ def main():
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")
-    Controllo.controllotot()
-    DeveloperMode.Populate()
     # check if there isnt a data.json
     file = os.path.isfile("data.json")
     logging.debug(f"data.json = {file}")
@@ -50,4 +50,4 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:
-        logging.error(e)
+        logging.error(traceback.format_exc())
