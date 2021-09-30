@@ -176,7 +176,7 @@ Function to return into folder Image -> visibility and test
 def imageFolder():
     # actually folder
     now = os.path.basename(os.getcwd())
-    if now is not "image":
+    if now != "image":
         try:
             # if its on BitHeroes main folder go to C:...\image
             os.chdir("image")

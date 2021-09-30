@@ -19,20 +19,20 @@ Raid function that uses the class to simplify the code and its reuse
 @: return 0 if it went wrong
 """
 
-f = open("data.json","r")
-data = json.loads(f.read())
-
-raid_data = float(data['Function'][0]['raid'][0]['raid'])
-evoca_data = float(data['Function'][0]['raid'][0]['evoca'])
-accetta_data = float(data['Function'][0]['raid'][0]['accept'])
-chiudi_data = float(data['Function'][0]['raid'][0]['chiudi'])
-morte_data = float(data['Function'][0]['raid'][0]['morte'])
-rerun_data = float(data['Function'][0]['raid'][0]['rerun'])
-no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
-
-
-
 def raid(run, difficult):
+    #---------------------------------------------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    raid_data = float(data['Function'][0]['raid'][0]['raid'])
+    evoca_data = float(data['Function'][0]['raid'][0]['evoca'])
+    accetta_data = float(data['Function'][0]['raid'][0]['accept'])
+    chiudi_data = float(data['Function'][0]['raid'][0]['chiudi'])
+    morte_data = float(data['Function'][0]['raid'][0]['morte'])
+    rerun_data = float(data['Function'][0]['raid'][0]['rerun'])
+    no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
+    f.close()
+    #--------------------------------------------------------------
     logging.debug("---------RAID----------")
     hero = "heroic"
     hard = "hard"
