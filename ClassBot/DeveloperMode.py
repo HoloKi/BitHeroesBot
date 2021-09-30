@@ -2,23 +2,26 @@ import os.path
 from ClassBot import *
 import json
 import logging
+import pyautogui
+import traceback
+import os
+import time
 
-logging.basicConfig(filename="DeveloperLog.log", filemode="w", format='%(asctime)s - %(funcName)s :   %(message)s',
-                        level=logging.DEBUG)
+
 
 def Populate():
     # check if there isnt a data.json
     file = os.path.isfile("data.json")
     logging.debug(f"data.json = {file}")
-    if file is True: # To edit cause i need this to debug
-        f = open("data.json", "w")
+    if file is False: # To edit cause i need this to debug
+        f = open("data.json", "x")
         data = {'Function':[{
             'raid':[{
                 'raid':'0.5',
                 'evoca':'0.5',
                 'accept':'0.5',
                 'chiudi': '0.5',
-                'morte': '0.5',
+                'morte': '0.7',
                 'rerun':'0.5',
                 'no_shard': '0.5'
             }],
@@ -62,24 +65,43 @@ def Populate():
             }]
         }
         ]}
-
         json.dump(data,f, indent=4)
-        f.close
+        f.close()
+
+    else:
+        return 0
 
 '''
 Test function
 find image and click it
+@:param folder
 @:param name = String with file name es: "play.png"
 @:param confidence = Float or Integer number from 0.3 to 1
 @:return if image bot find image return cords or None
+ES: raid,hard.png,0.5
 '''
-def test(name, confidence):
-    raidcord = pyautogui.locateCenterOnScreen(name, grayscale=False, confidence=confidence)
-    print(raidcord)
-    logging.debug(f"{name} with confidence {confidence} result {raidcord}")
-    time.sleep(1)
-    pyautogui.click(raidcord)
-    return raidcord
+def test(folder,name, confidence):
+
+    imageFolder()
+
+    if str(folder) == "raid":
+        os.chdir("raid")
+    if str(folder) == "dungeon":
+        os.chdir("dungeon")
+    logging.debug(f"current directory {os.getcwd()}")
+    try:
+        raidcord = pyautogui.locateCenterOnScreen(name, grayscale=False, confidence=confidence)
+        print(raidcord)
+        logging.debug(f"{name} with confidence {confidence} result {raidcord}")
+        if raidcord is not None:
+            time.sleep(1)
+            pyautogui.click(raidcord)
+            return 0
+    except Exception as e:
+        logging.error(traceback.format_exc())
+        logging.debug(f"error with test name {name} and confidence {confidence}")
+        print("name or confidence error!")
+
 
 '''
 Test function
@@ -88,12 +110,25 @@ find image, no click
 @:param confidence = Float or Integer number from 0.3 to 1
 @:return if image bot find image return cords or None
 '''
-def visibility(name, confidence):
-    raidcord = pyautogui.locateCenterOnScreen(name, grayscale=False, confidence=confidence)
-    print(raidcord)
-    logging.debug(f"{name} with confidence {confidence} result {raidcord}")
-    if raidcord is None:
-        print("Image not found. Please change confidence or change the image with that of your game")
+def visibility(folder,name, confidence):
+
+    imageFolder()
+
+    if str(folder) == "raid":
+        os.chdir("raid")
+    if str(folder) == "dungeon":
+        os.chdir("dungeon")
+    logging.debug(f"current directory {os.getcwd()}")
+    try:
+        raidcord = pyautogui.locateCenterOnScreen(name, grayscale=False, confidence=confidence)
+        print(raidcord)
+        logging.debug(f"{name} with confidence {confidence} result {raidcord}")
+        if raidcord is None:
+            print("Image not found. Please change confidence or change the image with that of your game")
+    except Exception as e:
+        logging.error(traceback.format_exc())
+        logging.debug(f"error with test name {name} and confidence {confidence}")
+        print("name or confidence error!")
 
 
 def debug():
@@ -132,6 +167,29 @@ def debug():
                   attrs=['bold']))
     time.sleep(5)
     return 1
+
+'''
+ImageFolder()
+Function to return into folder Image -> visibility and test 
+@:param nothing
+'''
+def imageFolder():
+    # actually folder
+    now = os.path.basename(os.getcwd())
+    if now is not "image":
+        try:
+            # if its on BitHeroes main folder go to C:...\image
+            os.chdir("image")
+            return 0
+        except:
+            #if its on image\raid or image\dungeon, urn back into image folder
+            now = os.path.basename(os.getcwd())
+            while str(now) != "image":
+                os.chdir("..")
+                now = os.path.basename(os.getcwd())
+    else:
+        return 0
+
 
 
 
