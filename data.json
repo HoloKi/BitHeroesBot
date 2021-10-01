@@ -7,7 +7,7 @@
                     "evoca": "0.5",
                     "accept": "0.5",
                     "chiudi": "0.5",
-                    "morte": "0.5",
+                    "morte": "0.7",
                     "rerun": "0.5",
                     "no_shard": "0.5"
                 }
@@ -15,9 +15,10 @@
             "pvp": [
                 {
                     "pvp": "0.5",
-                    "play": "0.5",
+                    "play": "0.4",
                     "accetta": "0.5",
-                    "defeat": "0.5",
+                    "select": "0.5",
+                    "defeat": "0.6",
                     "cittadina": "0.5",
                     "no_shard": "0.5"
                 }
