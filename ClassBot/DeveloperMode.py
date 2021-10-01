@@ -28,7 +28,7 @@ def Populate():
             'pvp':[{
                 'pvp': '0.5',
                 'play': '0.4',
-                'accetta': '0.5',
+                'accept': '0.5',
                 'select': '0.5',
                 'defeat': '0.6',
                 'cittadina': '0.5',
