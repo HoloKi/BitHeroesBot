@@ -5,11 +5,26 @@ import asyncio
 from colorama import *
 from termcolor import colored, cprint
 from ClassBot import classe
+import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 
 def pvp(run):
+    #-----------------
+    f= open("data.json","r")
+    data = json.loads(f.read())
+
+    pvp_data = float(data['Function'][0]['pvp'][0]['pvp'])
+    play_data = float(data['Function'][0]['pvp'][0]['play'])
+    select_data = float(data['Function'][0]['pvp'][0]['select'])
+    accetta_data = float(data['Function'][0]['pvp'][0]['accept'])
+    defeat_data =  float(data['Function'][0]['pvp'][0]['defeat'])
+    cittadina_data = float(data['Function'][0]['pvp'][0]['cittadina'])
+    no_shard_data =  float(data['Function'][0]['pvp'][0]['no_shard'])
+
+    #-----------------
+
     logging.debug("---------PVP----------")
     problema = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
     # Case run <=0
@@ -21,14 +36,13 @@ def pvp(run):
         print(colored("\n-----PVP-----", 'cyan', attrs=['bold']))
         print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'), colored("\n"))
         # load class-------------------------------------
-        auto = classe.bit(r"image\autored.png", 0.7)
-        pvp = classe.bit(r"image\pvp.png", 0.5)
-        play = classe.bit(r"image\play.png", 0.4)
-        select = classe.bit(r"image\battle2.png", 0.5)
-        accetta = classe.bit(r"image\accept.png", 0.5)
-        defeat = classe.bit(r"image\sconfitta.png", 0.6)
-        cittadina = classe.bit(r"image\cittadina.png", 0.5)
-        no_shard = classe.bit(r"image\noshard.png", 0.5)
+        pvp = classe.bit(r"image\pvp.png", pvp_data)
+        play = classe.bit(r"image\play.png", play_data)
+        select = classe.bit(r"image\battle2.png", select_data)
+        accetta = classe.bit(r"image\accept.png", accetta_data)
+        defeat = classe.bit(r"image\sconfitta.png", defeat_data)
+        cittadina = classe.bit(r"image\cittadina.png", cittadina_data)
+        no_shard = classe.bit(r"image\noshard.png", no_shard_data)
         # -----------------------------------------------
         conta = 0
         error = pvp.bottone()
