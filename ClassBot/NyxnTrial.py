@@ -12,6 +12,12 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def prove(run):
+    # --------------
+    trial_data = float(data['Function'][0]['nynx_trial'][0]['gaunt'])
+    play_data = float(data['Function'][0]['nynx_trial'][0]['play'])
+    accept_data = float(data['Function'][0]['nynx_trial'][0]['accept'])
+    no_shard_data = float(data['Function'][0]['nynx_trial'][0]['no_shard'])
+    # --------------
     logging.debug("---------NYXN-TRIAL----------")
     print(colored("\n-----NYXN-TRIAL-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
@@ -27,11 +33,10 @@ def prove(run):
             return 0
         else:
             # load_class---------------------------
-            auto = classe.bit(r"image\autored.png", 0.7)
-            trial = classe.bit(r"image\prove.png", 0.5)
-            play = classe.bit(r"image\play.png", 0.4)
-            accept = classe.bit(r"image\accept.png", 0.5)
-            no_shard = classe.bit(r"image\noshard.png", 0.5)
+            trial = classe.bit(r"image\prove.png", trial_data)
+            play = classe.bit(r"image\play.png", play_data)
+            accept = classe.bit(r"image\accept.png", accept_data)
+            no_shard = classe.bit(r"image\noshard.png", no_shard_data)
             # -------------------------------------
             error = trial.bottone()
             if error == 0:

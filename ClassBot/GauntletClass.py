@@ -11,6 +11,13 @@ errore = colored("Please report this bug/error on github", 'red', attrs=['bold']
 
 
 def cimento(run):
+    #--------------
+    gaunt_data = float(data['Function'][0]['gauntlet'][0]['gaunt'])
+    play_data = float(data['Function'][0]['gauntlet'][0]['play'])
+    accept_data = float(data['Function'][0]['gauntlet'][0]['accept'])
+    no_shard_data = float(data['Function'][0]['gauntlet'][0]['no_shard'])
+    #--------------
+
     logging.debug("---------GAUNTLET----------")
     conta = 0
     logging.debug(f"run = {run}")
@@ -23,11 +30,10 @@ def cimento(run):
         return 0
     else:
         # load-----------------------------
-        auto = classe.bit(r"image\autored.png", 0.7)
-        gaunt = classe.bit(r"image\cimento.png", 0.5)
-        play = classe.bit(r"image\play.png", 0.4)
-        accept = classe.bit(r"image\accept.png", 0.5)
-        no_shard = classe.bit(r"image\noshard.png", 0.5)
+        gaunt = classe.bit(r"image\cimento.png", gaunt_data)
+        play = classe.bit(r"image\play.png", play_data)
+        accept = classe.bit(r"image\accept.png", accept_data)
+        no_shard = classe.bit(r"image\noshard.png", no_shard_data)
         # ---------------------------------
         error = gaunt.bottone()
         if error == 0:
