@@ -5,6 +5,7 @@ from colorama import *
 from termcolor import colored, cprint
 from ClassBot import classe
 import asyncio
+import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
@@ -83,7 +84,6 @@ def prove(run):
 
 async def fine():
     fine = classe.bit(r"image\cittadina.png", 0.7)
-    #morte = classe.bit(r"image\raid\raiddie.png", 0.7)
     while True:
         await asyncio.sleep(1)
         test = fine.ispresence()

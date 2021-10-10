@@ -5,6 +5,7 @@ from colorama import *
 from termcolor import colored, cprint
 from ClassBot import classe
 import asyncio
+import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
@@ -12,7 +13,7 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def invasione(run):
-    #---------------------------
+    # ---------------------------
     f = open("data.json", "r")
     data = json.loads(f.read())
 
@@ -21,7 +22,7 @@ def invasione(run):
     accept_data = float(data['Function'][0]['invasion'][0]['accept'])
     no_shard_data = float(data['Function'][0]['invasion'][0]['no_shard'])
     f.close()
-    #---------------------------
+    # ---------------------------
     logging.debug("---------INVASION----------")
     print(colored("\n-----INVASION-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))

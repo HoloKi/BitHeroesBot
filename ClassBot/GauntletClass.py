@@ -5,6 +5,7 @@ import asyncio
 from colorama import *
 from termcolor import colored, cprint
 from ClassBot import classe
+import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github", 'red', attrs=['bold'])

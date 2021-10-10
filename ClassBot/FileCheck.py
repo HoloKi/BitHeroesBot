@@ -1,5 +1,4 @@
 # Check inside image folder if all file are presents
-from ClassBot import classe
 import os.path
 from pathlib import Path
 import logging
@@ -7,8 +6,8 @@ import logging
 
 class FileCheck:
 
-    def __init__(self,filename):
-        self.filename= filename
+    def __init__(self, filename):
+        self.filename = filename
 
 
     def getFilename(self):
