@@ -23,7 +23,8 @@ def Populate():
                 'chiudi': '0.5',
                 'morte': '0.7',
                 'rerun':'0.5',
-                'no_shard': '0.5'
+                'no_shard': '0.5',
+                'difficult': '0.7'
             }],
             'pvp':[{
                 'pvp': '0.5',
@@ -55,13 +56,33 @@ def Populate():
             }],
             'expedition':[{
                 'enter':'0.5',
-                'accept':'0.5',
+                'accept':'0.6',
                 'cittadina':'0.5'
             }],
             'invasion':[{
                 'invasion': '0.5',
                 'accept': '0.5',
                 'play': '0.4',
+                'no_shard': '0.5'
+            }],
+            'dungeon':[{
+                'quest':'0.5',
+                'dungeon':'0.5',
+                'accept':'0.5',
+                'chiudi': '0.5',
+                'morte': '0.7',
+                'rerun':'0.5',
+                'no_shard': '0.5',
+                'difficult': '0.7'
+            }],
+            'dungeonfour': [{
+                'quest': '0.5',
+                'dungeon': '0.5',
+                'enter':'0.5',
+                'accept': '0.5',
+                'chiudi': '0.5',
+                'morte': '0.7',
+                'rerun': '0.5',
                 'no_shard': '0.5'
             }]
         }

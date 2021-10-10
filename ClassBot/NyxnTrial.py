@@ -13,10 +13,14 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 def prove(run):
     # --------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
     trial_data = float(data['Function'][0]['nynx_trial'][0]['gaunt'])
     play_data = float(data['Function'][0]['nynx_trial'][0]['play'])
     accept_data = float(data['Function'][0]['nynx_trial'][0]['accept'])
     no_shard_data = float(data['Function'][0]['nynx_trial'][0]['no_shard'])
+    f.close()
     # --------------
     logging.debug("---------NYXN-TRIAL----------")
     print(colored("\n-----NYXN-TRIAL-----", 'cyan', attrs=['bold']))

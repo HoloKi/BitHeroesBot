@@ -23,6 +23,8 @@ def pvp(run):
     cittadina_data = float(data['Function'][0]['pvp'][0]['cittadina'])
     no_shard_data =  float(data['Function'][0]['pvp'][0]['no_shard'])
 
+    f.close()
+
     #-----------------
 
     logging.debug("---------PVP----------")

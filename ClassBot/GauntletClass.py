@@ -12,10 +12,14 @@ errore = colored("Please report this bug/error on github", 'red', attrs=['bold']
 
 def cimento(run):
     #--------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
     gaunt_data = float(data['Function'][0]['gauntlet'][0]['gaunt'])
     play_data = float(data['Function'][0]['gauntlet'][0]['play'])
     accept_data = float(data['Function'][0]['gauntlet'][0]['accept'])
     no_shard_data = float(data['Function'][0]['gauntlet'][0]['no_shard'])
+    f.close()
     #--------------
 
     logging.debug("---------GAUNTLET----------")

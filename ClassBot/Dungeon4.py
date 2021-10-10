@@ -19,6 +19,21 @@ Dungeon function that uses the class to simplify the code and its reuse
 
 
 def dungeon(run):
+    # ---------------------------------------------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    quest_data = float(data['Function'][0]['dungeonfour'][0]['quest'])
+    dungeon_data = float(data['Function'][0]['dungeonfour'][0]['dungeon'])
+    enter_data = float(data['Function'][0]['dungeonfour'][0]['enter'])
+    accetta_data = float(data['Function'][0]['dungeonfour'][0]['accept'])
+    chiudi_data = float(data['Function'][0]['dungeonfour'][0]['chiudi'])
+    morte_data = float(data['Function'][0]['dungeonfour'][0]['morte'])
+    rerun_data = float(data['Function'][0]['dungeonfour'][0]['rerun'])
+
+    no_shard_data = float(data['Function'][0]['dungeonfour'][0]['no_shard'])
+    f.close()
+    # --------------------------------------------------------------
     logging.debug("---------DUNGEON4----------")
     hero = "heroic"
     hard = "hard"
@@ -26,15 +41,13 @@ def dungeon(run):
     difficulty = None  # default
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
-    auto = classe.bit(r"image\autogreen.png", 0.7)
-    quest = classe.bit(r"image\quest.png",0.5)
-    dun = classe.bit(r"image\d4\d4.png", 0.5)
-    enter = classe.bit(r"image\entra.png",0.5)
-    accetta = classe.bit(r"image\accept.png", 0.5)
-    #si = classe.bit(r"image\yes.png", 0.5)
-    chiudi = classe.bit(r"image\raid\close.png", 0.5)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    rerun = classe.bit(r"image\rerun.png", 0.5)
+    quest = classe.bit(r"image\quest.png",quest_data)
+    dun = classe.bit(r"image\d4\d4.png", dungeon_data)
+    enter = classe.bit(r"image\entra.png",enter_data)
+    accetta = classe.bit(r"image\accept.png", accetta_data)
+    chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
+    morte = classe.bit(r"image\raid\raiddie.png", morte_data)
+    rerun = classe.bit(r"image\rerun.png", rerun_data)
     # ---------------------------------------------------------------------------------)
     print(colored("\n-----DUNGEON4-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))

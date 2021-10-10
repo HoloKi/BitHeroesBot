@@ -13,6 +13,15 @@ errore = colored("Please report this bug/error on github",'red',attrs=['bold'])
 
 
 def expedition(run):
+    # ---------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    enter_data = float(data['Function'][0]['expedition'][0]['enter'])
+    accept_data = float(data['Function'][0]['expedition'][0]['accept'])
+    cittadina_data = float(data['Function'][0]['expedition'][0]['cittadina'])
+    f.close()
+    # ---------------------------
     logging.debug("---------EXPEDITION----------")
     count = 0
     logging.debug(f"run = {run}")
@@ -24,9 +33,9 @@ def expedition(run):
         exit(0)
     else:
         # load_class-------------------------
-        enter = classe.bit(r"image\entra.png", 0.5)
-        accept = classe.bit(r"image\accept.png", 0.6)
-        cittadina =  classe.bit(r"image\cittadina.png",0.5)
+        enter = classe.bit(r"image\entra.png", enter_data)
+        accept = classe.bit(r"image\accept.png", accept_data)
+        cittadina =  classe.bit(r"image\cittadina.png",cittadina_data)
         # ----------------------------------
         while True:
             count += 1

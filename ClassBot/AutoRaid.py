@@ -31,6 +31,8 @@ def raid(run, difficult):
     morte_data = float(data['Function'][0]['raid'][0]['morte'])
     rerun_data = float(data['Function'][0]['raid'][0]['rerun'])
     no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
+    difficult_data = float(data['Function'][0]['raid'][0]['difficult'])
+
     f.close()
     #--------------------------------------------------------------
     logging.debug("---------RAID----------")
@@ -41,15 +43,14 @@ def raid(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\heroic.png", 0.7)
+        difficulty = classe.bit(r"image\raid\heroic.png", difficult_data)
     else:
         if difficult == hard:
-            difficulty = classe.bit(r"image\raid\hard.png", 0.7)
+            difficulty = classe.bit(r"image\raid\hard.png", difficult_data)
         else:
             if difficult == norm:
-                difficulty = classe.bit(r"image\raid\normal.png", 0.7)
+                difficulty = classe.bit(r"image\raid\normal.png", difficult_data)
 
-    # auto = classe.bit(r"image\autogreen.png", 0.7)
     raid = classe.bit(r"image\raid\raid.png", raid_data)
     evoca = classe.bit(r"image\startraid.png", evoca_data)
     accetta = classe.bit(r"image\accept.png", accetta_data)

@@ -12,6 +12,16 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def invasione(run):
+    #---------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    inv_data = float(data['Function'][0]['invasion'][0]['invasion'])
+    play_data = float(data['Function'][0]['invasion'][0]['play'])
+    accept_data = float(data['Function'][0]['invasion'][0]['accept'])
+    no_shard_data = float(data['Function'][0]['invasion'][0]['no_shard'])
+    f.close()
+    #---------------------------
     logging.debug("---------INVASION----------")
     print(colored("\n-----INVASION-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
@@ -27,10 +37,10 @@ def invasione(run):
             return 0
         else:
             # load_class---------------------------
-            trial = classe.bit(r"image\invasione.png", 0.5)
-            play = classe.bit(r"image\play.png", 0.4)
-            accept = classe.bit(r"image\accept.png", 0.5)
-            no_shard = classe.bit(r"image\noshard.png", 0.5)
+            trial = classe.bit(r"image\invasione.png", inv_data)
+            play = classe.bit(r"image\play.png", play_data)
+            accept = classe.bit(r"image\accept.png", accept_data)
+            no_shard = classe.bit(r"image\noshard.png", no_shard_data)
             # -------------------------------------
             error = trial.bottone()
             if error == 0:

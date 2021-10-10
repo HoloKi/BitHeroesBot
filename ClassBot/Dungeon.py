@@ -22,6 +22,21 @@ Dungeon function that uses the class to simplify the code and its reuse
 
 
 def dungeonrepeat(run, difficult):
+    # ---------------------------------------------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    quest_data = float(data['Function'][0]['dungeon'][0]['quest'])
+    dungeon_data = float(data['Function'][0]['dungeon'][0]['dungeon'])
+    accetta_data = float(data['Function'][0]['dungeon'][0]['accept'])
+    chiudi_data = float(data['Function'][0]['dungeon'][0]['chiudi'])
+    morte_data = float(data['Function'][0]['dungeon'][0]['morte'])
+    rerun_data = float(data['Function'][0]['dungeon'][0]['rerun'])
+    difficult_data = float(data['Function'][0]['dungeon'][0]['difficult'])
+
+    no_shard_data = float(data['Function'][0]['dungeon'][0]['no_shard'])
+    f.close()
+    # --------------------------------------------------------------
     logging.debug("---------DUNGEON----------")
     hero = "heroic"
     hard = "hard"
@@ -30,22 +45,19 @@ def dungeonrepeat(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\heroic.png", 0.6)
+        difficulty = classe.bit(r"image\raid\heroic.png", difficult_data)
     else:
         if difficult == hard:
-            difficulty = classe.bit(r"image\raid\hard.png", 0.6)
+            difficulty = classe.bit(r"image\raid\hard.png", difficult_data)
         else:
             if difficult == norm:
-                difficulty = classe.bit(r"image\raid\normal.png", 0.6)
-    auto = classe.bit(r"image\autored.png", 0.7)
-    quest = classe.bit(r"image\quest.png",0.5)
-    dungeon = classe.bit(r"image\dungeon\dungeon.png", 0.5)
-    accetta = classe.bit(r"image\accept.png", 0.5)
-    cittadina = classe.bit(r"image\cittadina.png", 0.5)
-    chiudi = classe.bit(r"image\raid\close.png", 0.5)
-    morte = classe.bit(r"image\raid\raiddie.png", 0.7)
-    #fine = classe.bit(r"image\rerun.png", 0.5)
-    rerun = classe.bit(r"image\rerun.png", 0.5)
+                difficulty = classe.bit(r"image\raid\normal.png", difficult_data)
+    quest = classe.bit(r"image\quest.png",quest_data)
+    dungeon = classe.bit(r"image\dungeon\dungeon.png", dungeon_data)
+    accetta = classe.bit(r"image\accept.png", accetta_data)
+    chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
+    morte = classe.bit(r"image\raid\raiddie.png", morte_data)
+    rerun = classe.bit(r"image\rerun.png", rerun_data)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----DUNGEON-----", 'cyan', attrs=['bold']))

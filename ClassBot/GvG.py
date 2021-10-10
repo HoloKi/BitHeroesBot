@@ -12,6 +12,17 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def gvg(run):
+    # ---------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    gvg_data = float(data['Function'][0]['gvg'][0]['gvg'])
+    play_data = float(data['Function'][0]['gvg'][0]['play'])
+    select_data = float(data['Function'][0]['gvg'][0]['select'])
+    accept_data = float(data['Function'][0]['gvg'][0]['accept'])
+    no_shard_data = float(data['Function'][0]['gvg'][0]['cittadina'])
+    f.close()
+    # ---------------------------
     logging.debug("---------GVG----------")
     print(colored("\n-----GVG-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
@@ -28,11 +39,11 @@ def gvg(run):
         else:
             # load_class---------------------------
             # auto = classe.bit(r"image\autored.png", 0.7)
-            gvg_button = classe.bit(r"image\gvg.png", 0.5)
-            play = classe.bit(r"image\play.png", 0.5)
-            select = classe.bit(r"image\battle2.png", 0.5)
-            accept = classe.bit(r"image\accept.png", 0.5)
-            no_shard = classe.bit(r"image\noshard.png", 0.5)
+            gvg_button = classe.bit(r"image\gvg.png", gvg_data)
+            play = classe.bit(r"image\play.png", play_data)
+            select = classe.bit(r"image\battle2.png", select_data)
+            accept = classe.bit(r"image\accept.png", accept_data)
+            no_shard = classe.bit(r"image\noshard.png", no_shard_data)
             # -------------------------------------
             error = gvg_button.bottone()
             if error == 0:
