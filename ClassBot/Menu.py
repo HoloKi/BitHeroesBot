@@ -160,7 +160,6 @@ def menu():
                                                             return 1
                                             else:
                                                 if int(a) == 12:
-                                                    if int(a) == 11:
                                                         print(colored("Enter the number of runs: ", 'green',
                                                                       attrs=['bold']))
                                                         b = input()
