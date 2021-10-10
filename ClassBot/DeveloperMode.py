@@ -1,4 +1,7 @@
 import os.path
+
+from termcolor import colored
+
 from ClassBot import *
 import json
 import logging
