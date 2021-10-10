@@ -21,7 +21,7 @@ def gvg(run):
     play_data = float(data['Function'][0]['gvg'][0]['play'])
     select_data = float(data['Function'][0]['gvg'][0]['select'])
     accept_data = float(data['Function'][0]['gvg'][0]['accept'])
-    no_shard_data = float(data['Function'][0]['gvg'][0]['cittadina'])
+    no_shard_data = float(data['Function'][0]['gvg'][0]['no_shard'])
     f.close()
     # ---------------------------
     logging.debug("---------GVG----------")
