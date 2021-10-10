@@ -160,10 +160,10 @@ def menu():
                                                             return 1
                                             else:
                                                 if int(a) == 12:
-                                                        print(colored("Enter the number of runs: ", 'green',
-                                                                      attrs=['bold']))
-                                                        b = input()
-                                                        DungeonTeam.dungeonteam(b)
+                                                    print(colored("Enter the number of runs: ", 'green',
+                                                                  attrs=['bold']))
+                                                    b = input()
+                                                    DungeonTeam.dungeonteam(b)
                                                 else:
                                                     if int(a) == 0:
                                                         return 0
