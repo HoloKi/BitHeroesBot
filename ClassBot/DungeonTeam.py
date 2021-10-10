@@ -22,6 +22,7 @@ Dungeon function that uses the class to simplify the code and its reuse
 
 
 def dungeonteam(run):
+
     logging.debug("---------DUNGEON----------")
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
