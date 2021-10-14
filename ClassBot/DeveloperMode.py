@@ -11,25 +11,24 @@ import os
 import time
 
 
-
 def Populate():
     # check if there isnt a data.json
     file = os.path.isfile("data.json")
     logging.debug(f"data.json = {file}")
-    if file is False: # To edit cause i need this to debug
+    if file is False:  # To edit cause i need this to debug
         f = open("data.json", "x")
-        data = {'Function':[{
-            'raid':[{
-                'raid':'0.5',
-                'evoca':'0.5',
-                'accept':'0.5',
+        data = {'Function': [{
+            'raid': [{
+                'raid': '0.5',
+                'evoca': '0.5',
+                'accept': '0.5',
                 'chiudi': '0.5',
                 'morte': '0.7',
-                'rerun':'0.5',
+                'rerun': '0.5',
                 'no_shard': '0.5',
                 'difficult': '0.7'
             }],
-            'pvp':[{
+            'pvp': [{
                 'pvp': '0.5',
                 'play': '0.4',
                 'accept': '0.5',
@@ -38,50 +37,50 @@ def Populate():
                 'cittadina': '0.5',
                 'no_shard': '0.5'
             }],
-            'gauntlet':[{
+            'gauntlet': [{
                 'gaunt': '0.5',
                 'accept': '0.5',
                 'play': '0.4',
                 'no_shard': '0.5'
             }],
-            'nynx_trial':[{
+            'nynx_trial': [{
                 'trial': '0.5',
                 'accept': '0.5',
                 'play': '0.4',
                 'no_shard': '0.5'
             }],
-            'gvg':[{
-                'gvg':'0.5',
-                'play' :'0.5',
-                'select':'0.5',
-                'accept':'0.5',
-                'no_shard':'0.5'
+            'gvg': [{
+                'gvg': '0.5',
+                'play': '0.5',
+                'select': '0.5',
+                'accept': '0.5',
+                'no_shard': '0.5'
             }],
-            'expedition':[{
-                'enter':'0.5',
-                'accept':'0.6',
-                'cittadina':'0.5'
+            'expedition': [{
+                'enter': '0.5',
+                'accept': '0.6',
+                'cittadina': '0.5'
             }],
-            'invasion':[{
+            'invasion': [{
                 'invasion': '0.5',
                 'accept': '0.5',
                 'play': '0.4',
                 'no_shard': '0.5'
             }],
-            'dungeon':[{
-                'quest':'0.5',
-                'dungeon':'0.5',
-                'accept':'0.5',
+            'dungeon': [{
+                'quest': '0.5',
+                'dungeon': '0.5',
+                'accept': '0.5',
                 'chiudi': '0.5',
                 'morte': '0.7',
-                'rerun':'0.5',
+                'rerun': '0.5',
                 'no_shard': '0.5',
                 'difficult': '0.7'
             }],
             'dungeonfour': [{
                 'quest': '0.5',
                 'dungeon': '0.5',
-                'enter':'0.5',
+                'enter': '0.5',
                 'accept': '0.5',
                 'chiudi': '0.5',
                 'morte': '0.7',
@@ -90,11 +89,12 @@ def Populate():
             }]
         }
         ]}
-        json.dump(data,f, indent=4)
+        json.dump(data, f, indent=4)
         f.close()
 
     else:
         return 0
+
 
 '''
 Test function
@@ -105,8 +105,9 @@ find image and click it
 @:return if image bot find image return cords or None
 ES: raid,hard.png,0.5
 '''
-def test(folder,name, confidence):
 
+
+def test(folder, name, confidence):
     imageFolder()
 
     if str(folder) == "raid":
@@ -135,8 +136,9 @@ find image, no click
 @:param confidence = Float or Integer number from 0.3 to 1
 @:return if image bot find image return cords or None
 '''
-def visibility(folder,name, confidence):
 
+
+def visibility(folder, name, confidence):
     imageFolder()
 
     if str(folder) == "raid":
@@ -158,7 +160,7 @@ def visibility(folder,name, confidence):
 
 def debug():
     print(colored("Debug Mode on. Cerco tutte le immagini", 'red'))
-    raid = pyautogui.locateCenterOnScreen(r"image\prova.png", grayscale=False, confidence=0.5)
+    raid = pyautogui.locateCenterOnScreen(r"image\raid\raid.png", grayscale=False, confidence=0.5)
     if raid is not None:
         print(colored("Raid funzionante!", 'blue', attrs=['bold']))
     else:
@@ -193,11 +195,14 @@ def debug():
     time.sleep(5)
     return 1
 
+
 '''
 ImageFolder()
 Function to return into folder Image -> visibility and test 
 @:param nothing
 '''
+
+
 def imageFolder():
     # actually folder
     now = os.path.basename(os.getcwd())
@@ -207,14 +212,10 @@ def imageFolder():
             os.chdir("image")
             return 0
         except:
-            #if its on image\raid or image\dungeon, urn back into image folder
+            # if its on image\raid or image\dungeon, urn back into image folder
             now = os.path.basename(os.getcwd())
             while str(now) != "image":
                 os.chdir("..")
                 now = os.path.basename(os.getcwd())
     else:
         return 0
-
-
-
-
