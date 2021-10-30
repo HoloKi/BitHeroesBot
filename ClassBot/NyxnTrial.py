@@ -17,7 +17,7 @@ def prove(run):
     f = open("data.json", "r")
     data = json.loads(f.read())
 
-    trial_data = float(data['Function'][0]['nynx_trial'][0]['gaunt'])
+    trial_data = float(data['Function'][0]['nynx_trial'][0]['trial'])
     play_data = float(data['Function'][0]['nynx_trial'][0]['play'])
     accept_data = float(data['Function'][0]['nynx_trial'][0]['accept'])
     no_shard_data = float(data['Function'][0]['nynx_trial'][0]['no_shard'])
