@@ -73,7 +73,7 @@ def menu():
                     while True:
                         cycle = devmenu()
                         if cycle == 0:
-                            exit()
+                            return 1
 
                 else:
                     if int(a) == 5:
