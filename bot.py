@@ -35,11 +35,7 @@ def main():
     print("Translate by PastShadie")
     print("All info on latest.log")
     # check if there isnt a data.json
-    file = os.path.isfile("data.json")
-    logging.debug(f"data.json = {file}")
-    if file is False:
-        DeveloperMode.Populate()
-        time.sleep(3)
+    DeveloperMode.Populate()
     while True:
         cycle = Menu.menu()
         if cycle == 0:
