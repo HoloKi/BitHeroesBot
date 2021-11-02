@@ -2,7 +2,8 @@ import pyautogui
 import time
 import json
 import logging
-from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon,DeveloperMode,DungeonTeam
+from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon, \
+    DeveloperMode, DungeonTeam
 from termcolor import colored, cprint
 
 hero = "heroic"
@@ -29,7 +30,7 @@ def menu():
     print(f"0)  To close the program\n")
     cprint("Select number: \n", 'cyan', attrs=['bold'])
     a = input()
-    logging.debug(f'Menu input = {a}')
+    # logging.debug(f'Menu input = {a}')
     if int(a) == 1:
         print(colored("Enter the number of runs: ", 'green', attrs=['bold']))
         b = input()
@@ -38,17 +39,17 @@ def menu():
         c = input()
         if int(c) == 1:
             retraid = AutoRaid.raid(b, norm)
-            logging.debug(f"ritorno del raid = {retraid}")
+            # logging.debug(f"ritorno del raid = {retraid}")
             return 1
         else:
             if int(c) == 2:
                 retraid = AutoRaid.raid(b, hard)
-                logging.debug(f"ritorno del raid = {retraid}")
+                # logging.debug(f"ritorno del raid = {retraid}")
                 return 1
             else:
                 if int(c) == 3:
                     retraid = AutoRaid.raid(b, hero)
-                    logging.debug(f"ritorno del raid = {retraid}")
+                    # logging.debug(f"ritorno del raid = {retraid}")
                     return 1
                 else:
                     print(colored("Something went wrong with typing the numbers", 'red', attrs=['bold']))
@@ -130,6 +131,9 @@ def menu():
                                             Dungeon4.dungeon(int(dunrun))
                                             return 1
                                         else:
+                                            # ------------
+                                            # DUNGEON
+                                            # ------------
                                             if int(a) == 11:
                                                 print(colored("Enter the number of runs: ", 'green', attrs=['bold']))
                                                 b = input()
@@ -141,17 +145,14 @@ def menu():
                                                 c = input()
                                                 if int(c) == 1:
                                                     retraid = Dungeon.dungeonrepeat(b, norm)
-                                                    logging.debug(f"ritorno del raid = {retraid}")
                                                     return 1
                                                 else:
                                                     if int(c) == 2:
                                                         retraid = Dungeon.dungeonrepeat(b, hard)
-                                                        logging.debug(f"ritorno del raid = {retraid}")
                                                         return 1
                                                     else:
                                                         if int(c) == 3:
                                                             retraid = Dungeon.dungeonrepeat(b, hero)
-                                                            logging.debug(f"ritorno del raid = {retraid}")
                                                             return 1
                                                         else:
                                                             print(
@@ -172,52 +173,10 @@ def menu():
                                                                attrs=['bold'])
 
 
-"""
-command to edit json file that store information about daily raid etc
-
-"""
-
-''' deprecated
-def setconfig():
-    f = open("data.json", "r")
-    data = json.loads(f.read())
-    f.close()
-    f = open("data.json", "w")
-    cprint("Enter the number of raids you can do daily:", 'cyan', attrs=['bold'])
-    a = input()
-    cprint("For now the difficulty will be preset to heroic for error runtime", 'red', attrs=['bold'])
-    # diff = input("Inserisci la difficoltà del raid\n")
-    cprint("Enter the number of pvp runs you can do daily:", 'cyan', attrs=['bold'])
-    b = input()
-    cprint("Enter the number of Gauntlet / Trials runs you can do daily:", 'cyan', attrs=['bold'])
-    c = input()
-    data['name'] = checkers.USER
-    data['raid'] = a
-    data['difficulty'] = hero
-    data['pvp'] = b
-    data['gauntlet'] = c
-    json.dump(data, f)
-    f.close()
-
-
-def daily():
-    # loading daily from data.json-------
-    f = open('data.json', "r")
-    data = json.loads(f.read())
-    raidshard = int(data['raid'])
-    pvprun = int(data['pvp'])
-    cimentorun = int(data['gauntlet'])
-    f.close()
-    # ------------------------------------
-
-    AutoRaid.raid(int(raidshard), hero)
-    time.sleep(5)
-    PvPClass.pvp(int(pvprun))
-    time.sleep(5)
-    # prova a fare cimento. Se ritorna None, ritorna 0
-    g = GauntletClass.cimento(int(cimentorun))
-    if g == 0:
-        NyxnTrial.prove(int(cimentorun))
+'''
+Function to do all functions 999 times
+@param dungeon = select dungeon
+@:return void 
 '''
 
 
@@ -240,17 +199,20 @@ def OneForAll(dungeon):
         Dungeon4.dungeon(999)
 
 
+'''
+DevMenu function menu about developer mode
+'''
+
+
 def devmenu():
     print("\n\n")
     print(colored("Enter the number to select the desired option:\n", 'red', attrs=['bold']))
     print(colored("1) ", 'white'), colored("Check&Click", 'green', attrs=['bold']))
     print(colored("2) ", 'white'), colored("Visibility", 'green', attrs=['bold']))
     print(colored("3) ", 'white'), colored("Debug", 'green', attrs=['bold']))
-    print(colored("4) ", 'white'), colored("Error", 'red', attrs=['bold']))
-    print(colored("0) ", 'white'), colored("Exit", 'green', attrs=['bold']))
+    print(colored("0) ", 'white'), colored("Close the program", 'green', attrs=['bold']))
 
-    print(f"0)  To close the program\n")
-    cprint("Select number: \n", 'cyan', attrs=['bold'])
+    cprint("\nSelect number: \n", 'cyan', attrs=['bold'])
     a = input()
     logging.debug(f'Menu input = {a}')
     if int(a) == 1:
@@ -258,23 +220,24 @@ def devmenu():
         folder = input()
         print("Insert file name\n")
         name = input()
-        print("Insert confidency, from 0.3 to 1 es : 0.5 (default)")
+        print("Insert confidency, from 0.3 to 1 es : 0.5 (default)\n")
         confi = input()
-        DeveloperMode.test(folder,name,confi)
+        DeveloperMode.test(folder, name, confi)
     else:
         if int(a) == 2:
             print("Insert folder name, if is only image write image else raid or dungeon for the rispective folder\n")
             folder = input()
             print("Insert insert file name\n")
             name = input()
-            print("Insert confidency, from 0.3 to 1 es : 0.5 (default)")
+            print("Insert confidency, from 0.3 to 1 es : 0.5 (default)\n")
             confi = input()
-            DeveloperMode.visibility(folder,name, confi)
+            DeveloperMode.visibility(folder, name, confi)
         else:
             if int(a) == 3:
                 DeveloperMode.debug()
             else:
                 if int(a) == 0:
                     return 0
-                return 0
-
+                else:
+                    print("No funct with this number!")
+                    return 0

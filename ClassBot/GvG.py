@@ -13,7 +13,7 @@ errore = colored("Please report this bug/error on github or discord\n", 'red', a
 
 
 def gvg(run):
-    # ---------------------------
+    # open data.json, read and load
     f = open("data.json", "r")
     data = json.loads(f.read())
 
@@ -39,7 +39,6 @@ def gvg(run):
             return 0
         else:
             # load_class---------------------------
-            # auto = classe.bit(r"image\autored.png", 0.7)
             gvg_button = classe.bit(r"image\gvg.png", gvg_data)
             play = classe.bit(r"image\play.png", play_data)
             select = classe.bit(r"image\battle2.png", select_data)
@@ -73,11 +72,6 @@ def gvg(run):
                 if error == 0:
                     cprint(errore)
                     return 0
-                '''
-                error = auto.ispresence()
-                if error == 0:
-                    pyautogui.press('space')
-                '''
                 print("----------------------------------")
                 print(f"run number: {conta}")
                 asyncio.run(test())
@@ -90,6 +84,11 @@ def gvg(run):
                     break
 
 
+'''
+async -> check docu
+fine check end screen 
+@:return 1 if it found the screen
+'''
 async def fine():
     vittoria = classe.bit(r"image\cittadina.png", 0.5) # check red end button
     # sconfitta = classe.bit(r"image\sconfitta.png", 0.7) # Check Defeat screen
@@ -99,7 +98,9 @@ async def fine():
         if test == 1:
             return 1
 
-
+'''
+create task 
+'''
 async def test():
     prova = asyncio.create_task(fine())
     await prova

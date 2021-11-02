@@ -34,7 +34,7 @@ def raid(run, difficult):
     difficult_data = float(data['Function'][0]['raid'][0]['difficult'])
 
     f.close()
-    #--------------------------------------------------------------
+    # --------------------------------------------------------------
     logging.debug("---------RAID----------")
     hero = "heroic"
     hard = "hard"
