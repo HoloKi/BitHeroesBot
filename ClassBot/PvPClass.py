@@ -11,21 +11,21 @@ init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
 
 def pvp(run):
-    #-----------------
-    f= open("data.json","r")
+    # -----------------------------------------------------
+    f = open("data.json", "r")
     data = json.loads(f.read())
 
     pvp_data = float(data['Function'][0]['pvp'][0]['pvp'])
     play_data = float(data['Function'][0]['pvp'][0]['play'])
     select_data = float(data['Function'][0]['pvp'][0]['select'])
     accetta_data = float(data['Function'][0]['pvp'][0]['accept'])
-    defeat_data =  float(data['Function'][0]['pvp'][0]['defeat'])
+    defeat_data = float(data['Function'][0]['pvp'][0]['defeat'])
     cittadina_data = float(data['Function'][0]['pvp'][0]['cittadina'])
-    no_shard_data =  float(data['Function'][0]['pvp'][0]['no_shard'])
+    no_shard_data = float(data['Function'][0]['pvp'][0]['no_shard'])
 
     f.close()
 
-    #-----------------
+    # -----------------------------------------------------
 
     logging.debug("---------PVP----------")
     problema = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
@@ -96,13 +96,15 @@ def pvp(run):
                 cittadina.bottone()
                 time.sleep(2)
             if conta == int(run):
-                if perso == False:
+                if not perso:
+                    # (perso == False)
                     pyautogui.press('esc')
                     time.sleep(2)
                 pyautogui.press('esc')
                 return 1
             else:
-                if perso == True:
+                if perso:
+                    # (perso == True)
                     cittadina.bottone()
                     time.sleep(2)
                 else:

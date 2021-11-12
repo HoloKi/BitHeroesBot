@@ -6,7 +6,7 @@ from termcolor import colored, cprint
 import sys
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
-
+errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
 
 class bit:
     def __init__(self, image, confi):
@@ -15,7 +15,7 @@ class bit:
 
     def bottone(self):
         button = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
-        logging.debug(f"{self.getImage()}= {button}")
+        logging.debug(f"{self.getImage()} = {button}")
         if button is not None:
             time.sleep(3)
             pyautogui.click(button)
@@ -23,6 +23,7 @@ class bit:
             return 1
         else:
             cprint(f"Error, {self.image} not found!", "red", attrs=['bold'])
+            cprint(errore)
             logging.error(f"{self.image} not found!")
             return 0
 
@@ -36,6 +37,14 @@ class bit:
             # logging.debug("DEBUG:non è presente!")
             return 0
     # isPresence  without cdebug control so no spam on logging
+
+    def no_shardControl(self):
+        no_shard = self.__init__(r"image\noshard.png", 0.5)
+        res = no_shard.ispresence()
+        if res == 1:
+            print("No shards!")
+        else:
+            print("Ok!")
 
     def SafeControl(self):
         presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))

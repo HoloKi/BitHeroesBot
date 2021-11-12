@@ -9,7 +9,7 @@ import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 
-errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
+
 """
 Raid function that uses the class to simplify the code and its reuse
 @: param run = number of runs that the player does (assumes it is already int)
@@ -78,23 +78,20 @@ def raid(run, difficult):
         else:
             error = raid.bottone()
             if error == 0:
-                cprint(errore)
                 return 0
             error = evoca.bottone()
             if error == 0:
-                cprint(errore)
                 return 0
             error = difficulty.bottone()
             if error == 0:
-                cprint(errore)
                 return 0
             error = accetta.bottone()
             if error == 0:
-                cprint(errore)
                 return 0
-            # check if no shard is presence
+            # check if no shard is presence after accept click
             time.sleep(2)
             error = no_shard.ispresence()
+            # ------------- NO SHARDS
             if error == 1:
                 logging.debug("No shard available!")
                 print("No shard!\n")
@@ -108,7 +105,7 @@ def raid(run, difficult):
                 return 0
             # else
             while True:
-                # check if no shard is presence
+                # check if no shard is presence after rerun button
                 time.sleep(3)
                 error = no_shard.ispresence()
                 if error == 1:
@@ -142,7 +139,6 @@ def raid(run, difficult):
                 else:
                     error = rerun.bottone()
                     if error == 0:
-                        cprint(errore)
                         return 0
                     time.sleep(3)
 
