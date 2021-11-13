@@ -1,0 +1,104 @@
+import pyautogui
+import time
+import logging
+from colorama import *
+from termcolor import colored, cprint
+from ClassBot import classe
+import asyncio
+import json
+
+init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
+
+"""
+WordBoss function that uses the class to simplify the code and its reuse
+@: param run = number of runs that the player does (assumes it is already int)
+@: param difficult = level difficulty (assumes it is already a string from the menu)
+@: param duration = time in seconds to complete the run (assumes it is already int)
+@: return 1 if everything went well
+@: return 0 if it went wrong
+"""
+
+
+def raid(run, difficult):
+    # ---------------------------------------------------------------
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    wb_data = float(data['Function'][0]['raid'][0]['wb'])
+    # evoca_data = float(data['Function'][0]['raid'][0]['evoca'])
+    accetta_data = float(data['Function'][0]['raid'][0]['accept'])
+    chiudi_data = float(data['Function'][0]['raid'][0]['chiudi'])
+    morte_data = float(data['Function'][0]['raid'][0]['morte'])
+    rerun_data = float(data['Function'][0]['raid'][0]['rerun'])
+    no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
+    difficult_data = float(data['Function'][0]['raid'][0]['difficult'])
+
+    f.close()
+    # --------------------------------------------------------------
+    logging.debug("---------RAID----------")
+    hero = "heroic"
+    hard = "hard"
+    norm = "normal"
+    difficulty = None  # default
+    count = 0
+    # LOAD CLASS FIRST-----------------------------------------------------------------
+    if difficult == hero:
+        difficulty = classe.bit(r"image\raid\heroic.png", difficult_data)
+    else:
+        if difficult == hard:
+            difficulty = classe.bit(r"image\raid\hard.png", difficult_data)
+        else:
+            if difficult == norm:
+                difficulty = classe.bit(r"image\raid\normal.png", difficult_data)
+
+    raid = classe.bit(r"image\raid\raid.png", raid_data)
+    evoca = classe.bit(r"image\startraid.png", evoca_data)
+    accetta = classe.bit(r"image\accept.png", accetta_data)
+    chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
+    morte = classe.bit(r"image\raid\raiddie.png", morte_data)
+    rerun = classe.bit(r"image\rerun.png", rerun_data)
+    no_shard = classe.bit(r"image\noshard.png", no_shard_data)
+    # ---------------------------------------------------------------------------------
+    logging.debug(f"difficult = {difficulty.getImage()}.")
+    print(colored("\n-----WB-----", 'cyan', attrs=['bold']))
+    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
+          colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
+    print(" ")
+    logging.debug(f"run = {run}, difficult = {difficult}")
+    # case in cui le run sono minori di 0, return 0
+    if int(run) <= 0:
+        logging.debug("run < 0")
+        pyautogui.alert(text='the number of raid runs must be 1 or greater', button='OK')
+        return 0
+    else:
+        # Caso in cui non voglio fare raid RUN=0, ritorna 0
+        if int(run) == 0:
+            logging.debug("run=0")
+            return 0
+        else:
+            return 1
+            #boss
+            #evoca 1
+            #evoca 2
+            #evoca 3 -> evoca in modo da avere le impostazioni predefinite usate per ultimo
+            #inizio
+            #la tua squdra non è al completo, clicca si o enter (meglio enter, un immagine in meno)
+            #raggruppare o esc FINE
+
+
+
+
+
+
+async def fine():
+    fine = classe.bit(r"image\fine.png", 0.7)
+    while True:
+        await asyncio.sleep(1)
+        test = fine.SafeControl()
+        if test == 1:
+            return 1
+
+
+async def test():
+    prova = asyncio.create_task(fine())
+    await prova
