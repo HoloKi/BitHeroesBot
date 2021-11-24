@@ -41,11 +41,11 @@ def worldboss(run):
     # LOAD CLASS FIRST-----------------------------------------------------------------
     wb = classe.bit(r"image\wb\wb.png", wb_data)
     evoca1 = classe.bit(r"image\wb\wbevoca.png", evoca1_data)
-    evoca2 = classe.bit(r"image\wb\wbevocagrande.png", evoca2_data)
+    evoca2 = classe.bit(r"image\wb\wbevocagrosso.png", evoca2_data)
     evoca3 = classe.bit(r"image\wb\wbevocapiccolo.png", evoca3_data)
     inizio = classe.bit(r"image\wb\startwb.png", inizio_data)
     #morte = classe.bit(r"image\wb\raiddie.png", morte_data)
-    rerun = classe.bit(r"image\wb\rerun.png", rerun_data)
+    rerun = classe.bit(r"image\wb\regroup.png", rerun_data)
     cittadina = classe.bit(r"image\cittadina.png", end_data)
     #no_shard = classe.bit(r"image\wb\noshard.png", no_shard_data)
     # ---------------------------------------------------------------------------------
@@ -66,36 +66,45 @@ def worldboss(run):
         else:
             # boss
             error = wb.bottone()
-            if error ==1:
+            if error == 0:
                 return 0
             #evoca 1
             error = evoca1.bottone()
-            if error ==1:
+            if error == 0:
                 return 0
             #evoca 2
             error = evoca2.bottone()
-            if error == 1:
+            if error == 0:
                 return 0
             #evoca 3 -> evoca in modo da avere le impostazioni predefinite usate per ultimo
             error = evoca3.bottone()
-            if error == 1:
+            if error == 0:
                 return 0
             while(True):
                 count = count + 1
                 # inizio -> restart from here
                 error = inizio.bottone()
-                if error == 1:
+                if error == 0:
                     return 0
                 # la tua squdra non è al completo, clicca si o enter (meglio enter, un immagine in meno)
                 time.sleep(2)
                 pyautogui.press('enter')
+                print("----------------------------------")
+                print(f"Match n: {count}")
+                asyncio.run(test())
+                print("----------------------------------")
                 # raggruppare o esc FINE
                 if count == int(run):
                     error = cittadina.bottone()
-                    if error == 1:
+                    if error == 0:
                         return 0
+                    return 0
                 else:
                     rerun.bottone()
+                    if error == 0:
+                        return 0
+                    time.sleep(3)
+
 
 
 
