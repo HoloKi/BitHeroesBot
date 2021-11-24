@@ -22,6 +22,8 @@ def pvp(run):
     defeat_data = float(data['Function'][0]['pvp'][0]['defeat'])
     cittadina_data = float(data['Function'][0]['pvp'][0]['cittadina'])
     no_shard_data = float(data['Function'][0]['pvp'][0]['no_shard'])
+    x = int(data['Function'][0]['class'][0]['x'])
+    y = int(data['Function'][0]['class'][0]['y'])
 
     f.close()
 
@@ -66,7 +68,7 @@ def pvp(run):
                 time.sleep(2)
                 pyautogui.press("esc")
                 return 0
-            error = select.bottoneright(2) #under test
+            error = select.buttonmodif(x, y) #under test
             if error == 0:
                 cprint(problema)
                 break
