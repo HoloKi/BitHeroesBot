@@ -87,6 +87,18 @@ def Populate():
                 'morte': '0.7',
                 'rerun': '0.5',
                 'no_shard': '0.5'
+            }],
+            'wb': [{
+                'wb': '0.5',
+                'evoca1': '0.5',
+                'evoca2': '0.5',
+                'evoca3': '0.5',
+                'morte': '0.5',
+                'inizio': '0.5',
+                'rerun': '0.5',
+                'no_shard': '0.5',
+                'end': '0.5'
+
             }]
         }
         ]}
