@@ -19,7 +19,7 @@ WordBoss function that uses the class to simplify the code and its reuse
 """
 
 
-def raid(run, difficult):
+def worldboss(run):
     # ---------------------------------------------------------------
     f = open("data.json", "r")
     data = json.loads(f.read())
