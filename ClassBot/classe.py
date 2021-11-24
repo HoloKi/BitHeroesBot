@@ -68,3 +68,17 @@ class bit:
 
     def getImage(self):
         return self.image
+
+    def bottoneright(self):
+        x,y = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
+        logging.debug(f"{self.getImage()} = {(x,y)}")
+        if (x,y) is not None:
+            time.sleep(3)
+            pyautogui.click(x+2,y)
+            time.sleep(1)
+            return 1
+        else:
+            cprint(f"Error, {self.image} not found!", "red", attrs=['bold'])
+            cprint(errore)
+            logging.error(f"{self.image} not found!")
+            return 0
