@@ -22,8 +22,8 @@ def pvp(run):
     defeat_data = float(data['Function'][0]['pvp'][0]['defeat'])
     cittadina_data = float(data['Function'][0]['pvp'][0]['cittadina'])
     no_shard_data = float(data['Function'][0]['pvp'][0]['no_shard'])
-    x = int(data['Function'][0]['class'][0]['x'])
-    y = int(data['Function'][0]['class'][0]['y'])
+    x = int(data['Function'][0]['pvp'][0]['x'])
+    y = int(data['Function'][0]['pvp'][0]['y'])
 
     f.close()
 
