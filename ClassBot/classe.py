@@ -4,6 +4,7 @@ import logging
 from colorama import *
 from termcolor import colored, cprint
 import sys
+import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
@@ -12,6 +13,15 @@ class bit:
     def __init__(self, image, confi):
         self.image = image
         self.confi = confi
+
+    """
+    f = open("data.json", "r")
+    data = json.loads(f.read())
+
+    x = float(data['Function'][0]['class'][0]['x'])
+    y = float(data['Function'][0]['class'][0]['y'])
+    f.close()
+    """
 
 
     # Function to find image and click it
@@ -76,12 +86,12 @@ class bit:
     # button return (x,y) as coordinates or None if image not found
     # using x,y to permit x editing (right)
     # modifier
-    def bottoneright(self, modifier):
+    def buttonmodif(self, xmodifier,ymodifier):
         x,y = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
         logging.debug(f"{self.getImage()} = {(x,y)}")
         if (x,y) is not None:
             time.sleep(3)
-            pyautogui.click(x+int(modifier),y)
+            pyautogui.click(x+int(xmodifier),y+int(ymodifier))
             time.sleep(1)
             return 1
         else:
