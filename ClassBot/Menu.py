@@ -3,7 +3,7 @@ import time
 import json
 import logging
 from ClassBot import AutoRaid, GvG, GauntletClass, ExpeditionClass, Invasion, NyxnTrial, PvPClass, Dungeon4, Dungeon, \
-    DeveloperMode, DungeonTeam
+    DeveloperMode, DungeonTeam, WorldBoss
 from termcolor import colored, cprint
 
 hero = "heroic"
@@ -25,7 +25,8 @@ def menu():
     print(colored("9) ", 'white'), colored("Invasion", 'green', attrs=['bold']))
     print(colored("10)", 'white'), colored("Dungeon4", 'green', attrs=['bold']))
     print(colored("11)", 'white'), colored("Dungeon", 'green', attrs=['bold']))
-    print(colored("12)", 'white'), colored("DungeonTeam", 'red', attrs=['bold']))
+    print(colored("12)", 'red'), colored("DungeonTeam", 'red', attrs=['bold']))
+    print(colored("13)", 'white'), colored("World Boss", 'red', attrs=['bold']))
     print(colored("check wiki to check how to set dungeon", 'red', attrs=['bold']))
     print(f"0)  To close the program\n")
     cprint("Select number: \n", 'cyan', attrs=['bold'])
@@ -166,11 +167,25 @@ def menu():
                                                     b = input()
                                                     DungeonTeam.dungeonteam(b)
                                                 else:
-                                                    if int(a) == 0:
-                                                        return 0
-                                                    else:
-                                                        cprint("Non esiste un'opzione relativo a questo numero!", 'red',
+                                                    if int(a) == 13:
+                                                        cprint(
+                                                            "ATTENTION: This mode requires you to select expedition first!",
+                                                            'red',
+                                                            attrs=['bold'])
+                                                        cprint(
+                                                            "You have to select which of the 3/4 shipments to make! The BOT will take care of the rest!",
+                                                            'red', attrs=['bold'])
+                                                        cprint("How many expedition runs do you want to do?", 'green',
                                                                attrs=['bold'])
+                                                        wbrun = input()
+                                                        WorldBoss.worldboss(wbrun)
+                                                        return 1
+                                                    else:
+                                                        if int(a) == 0:
+                                                            return 0
+                                                        else:
+                                                            cprint("Non esiste un'opzione relativo a questo numero!", 'red',
+                                                                   attrs=['bold'])
 
 
 '''
