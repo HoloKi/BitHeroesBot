@@ -34,7 +34,9 @@ def Populate():
                 'select': '0.5',
                 'defeat': '0.6',
                 'cittadina': '0.5',
-                'no_shard': '0.5'
+                'no_shard': '0.5',
+                'x': '0',
+                'y': '0'
             }],
             'gauntlet': [{
                 'gaunt': '0.5',
