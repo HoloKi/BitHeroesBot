@@ -24,47 +24,35 @@ def raid(run, difficult):
     f = open("data.json", "r")
     data = json.loads(f.read())
 
-    wb_data = float(data['Function'][0]['raid'][0]['wb'])
-    # evoca_data = float(data['Function'][0]['raid'][0]['evoca'])
-    accetta_data = float(data['Function'][0]['raid'][0]['accept'])
-    chiudi_data = float(data['Function'][0]['raid'][0]['chiudi'])
-    morte_data = float(data['Function'][0]['raid'][0]['morte'])
-    rerun_data = float(data['Function'][0]['raid'][0]['rerun'])
-    no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
-    difficult_data = float(data['Function'][0]['raid'][0]['difficult'])
+    wb_data = float(data['Function'][0]['wb'][0]['wb'])
+    evoca1_data = float(data['Function'][0]['wb'][0]['evoca1'])
+    evoca2_data = float(data['Function'][0]['wb'][0]['evoca2'])
+    evoca3_data = float(data['Function'][0]['wb'][0]['evoca3'])
+    inizio_data = float(data['Function'][0]['wb'][0]['inizio'])
+    #morte_data = float(data['Function'][0]['wb'][0]['morte'])
+    rerun_data = float(data['Function'][0]['wb'][0]['rerun'])
+    #no_shard_data = float(data['Function'][0]['raid'][0]['no_shard'])
+    end_data = float(data['Function'][0]['wb'][0]['end'])
 
     f.close()
     # --------------------------------------------------------------
-    logging.debug("---------RAID----------")
-    hero = "heroic"
-    hard = "hard"
-    norm = "normal"
-    difficulty = None  # default
+    logging.debug("---------WORLD BOSS----------")
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
-    if difficult == hero:
-        difficulty = classe.bit(r"image\raid\heroic.png", difficult_data)
-    else:
-        if difficult == hard:
-            difficulty = classe.bit(r"image\raid\hard.png", difficult_data)
-        else:
-            if difficult == norm:
-                difficulty = classe.bit(r"image\raid\normal.png", difficult_data)
-
-    raid = classe.bit(r"image\raid\raid.png", raid_data)
-    evoca = classe.bit(r"image\startraid.png", evoca_data)
-    accetta = classe.bit(r"image\accept.png", accetta_data)
-    chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
-    morte = classe.bit(r"image\raid\raiddie.png", morte_data)
-    rerun = classe.bit(r"image\rerun.png", rerun_data)
-    no_shard = classe.bit(r"image\noshard.png", no_shard_data)
+    wb = classe.bit(r"image\wb\wb.png", wb_data)
+    evoca1 = classe.bit(r"image\wb\wbevoca.png", evoca1_data)
+    evoca2 = classe.bit(r"image\wb\wbevocagrande.png", evoca2_data)
+    evoca3 = classe.bit(r"image\wb\wbevocapiccolo.png", evoca3_data)
+    inizio = classe.bit(r"image\wb\startwb.png", inizio_data)
+    #morte = classe.bit(r"image\wb\raiddie.png", morte_data)
+    rerun = classe.bit(r"image\wb\rerun.png", rerun_data)
+    cittadina = classe.bit(r"image\cittadina.png", end_data)
+    #no_shard = classe.bit(r"image\wb\noshard.png", no_shard_data)
     # ---------------------------------------------------------------------------------
-    logging.debug(f"difficult = {difficulty.getImage()}.")
-    print(colored("\n-----WB-----", 'cyan', attrs=['bold']))
-    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'),
-          colored(" difficult = ", 'green', attrs=['bold']), colored(difficult, 'white'))
+    print(colored("\n-----WORLD BOSS-----", 'cyan', attrs=['bold']))
+    print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
     print(" ")
-    logging.debug(f"run = {run}, difficult = {difficult}")
+    logging.debug(f"run = {run}")
     # case in cui le run sono minori di 0, return 0
     if int(run) <= 0:
         logging.debug("run < 0")
@@ -76,14 +64,38 @@ def raid(run, difficult):
             logging.debug("run=0")
             return 0
         else:
-            return 1
-            #boss
+            # boss
+            error = wb.bottone()
+            if error ==1:
+                return 0
             #evoca 1
+            error = evoca1.bottone()
+            if error ==1:
+                return 0
             #evoca 2
+            error = evoca2.bottone()
+            if error == 1:
+                return 0
             #evoca 3 -> evoca in modo da avere le impostazioni predefinite usate per ultimo
-            #inizio
-            #la tua squdra non è al completo, clicca si o enter (meglio enter, un immagine in meno)
-            #raggruppare o esc FINE
+            error = evoca3.bottone()
+            if error == 1:
+                return 0
+            while(True):
+                count = count + 1
+                # inizio -> restart from here
+                error = inizio.bottone()
+                if error == 1:
+                    return 0
+                # la tua squdra non è al completo, clicca si o enter (meglio enter, un immagine in meno)
+                time.sleep(2)
+                pyautogui.press('enter')
+                # raggruppare o esc FINE
+                if count == int(run):
+                    error = cittadina.bottone()
+                    if error == 1:
+                        return 0
+                else:
+                    rerun.bottone()
 
 
 
@@ -91,11 +103,11 @@ def raid(run, difficult):
 
 
 async def fine():
-    fine = classe.bit(r"image\fine.png", 0.7)
+    end = classe.bit(r"image\cittadina.png", 0.5)
     while True:
         await asyncio.sleep(1)
-        test = fine.SafeControl()
-        if test == 1:
+        prova = end.SafeControl()
+        if prova == 1:
             return 1
 
 
