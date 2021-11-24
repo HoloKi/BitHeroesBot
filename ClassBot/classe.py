@@ -13,6 +13,9 @@ class bit:
         self.image = image
         self.confi = confi
 
+
+    # Function to find image and click it
+    # button return (x,y) as coordinates or None if image not found
     def bottone(self):
         button = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
         logging.debug(f"{self.getImage()} = {button}")
@@ -69,12 +72,16 @@ class bit:
     def getImage(self):
         return self.image
 
-    def bottoneright(self):
+    # Function to find image and click it
+    # button return (x,y) as coordinates or None if image not found
+    # using x,y to permit x editing (right)
+    # modifier
+    def bottoneright(self, modifier):
         x,y = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
         logging.debug(f"{self.getImage()} = {(x,y)}")
         if (x,y) is not None:
             time.sleep(3)
-            pyautogui.click(x+2,y)
+            pyautogui.click(x+int(modifier),y)
             time.sleep(1)
             return 1
         else:
