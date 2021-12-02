@@ -59,6 +59,7 @@ def dungeonrepeat(run, difficult):
     chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
     morte = classe.bit(r"image\raid\raiddie.png", morte_data)
     rerun = classe.bit(r"image\rerun.png", rerun_data)
+    noteam = classe.bit(r"image\noteam.png", 0.5)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----DUNGEON-----", 'cyan', attrs=['bold']))
@@ -95,6 +96,10 @@ def dungeonrepeat(run, difficult):
             if error == 0:
                 cprint(errore)
                 return 0
+            error = noteam.ispresence()
+            if error == 1:
+                pyautogui.press('enter')
+
             while True:
                 ''' cause error #see discord support
                 error = auto.ispresence()

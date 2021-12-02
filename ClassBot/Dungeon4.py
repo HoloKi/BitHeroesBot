@@ -49,6 +49,7 @@ def dungeon(run):
     chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
     morte = classe.bit(r"image\raid\raiddie.png", morte_data)
     rerun = classe.bit(r"image\rerun.png", rerun_data)
+    noteam = classe.bit(r"image\noteam.png", 0.5)
     # ---------------------------------------------------------------------------------)
     print(colored("\n-----DUNGEON4-----", 'cyan', attrs=['bold']))
     print(colored("run = ", 'green', attrs=['bold']), colored(run, 'white'))
@@ -81,10 +82,10 @@ def dungeon(run):
             if error == 0:
                 cprint(errore)
                 return 0
+            error = noteam.ispresence()
+            if error == 1:
+                pyautogui.press('enter')
             while True:
-                error = auto.ispresence()
-                if error == 0:
-                    pyautogui.press("space")
                 count += 1
                 print("----------------------------------")
                 print(f"run number: {count}")

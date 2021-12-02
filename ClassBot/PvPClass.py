@@ -47,6 +47,7 @@ def pvp(run):
         defeat = classe.bit(r"image\sconfitta.png", defeat_data)
         cittadina = classe.bit(r"image\cittadina.png", cittadina_data)
         no_shard = classe.bit(r"image\noshard.png", no_shard_data)
+        noteam = classe.bit(r"image\noteam.png", 0.5)
         # -----------------------------------------------
         conta = 0
         error = pvp.bottone()
@@ -76,6 +77,9 @@ def pvp(run):
             if error == 0:
                 cprint(problema)
                 break
+            error = noteam.ispresence()
+            if error == 1:
+                pyautogui.press('enter')
             ''' 
             error = auto.ispresence()
             if error == 0:
