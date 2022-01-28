@@ -6,6 +6,7 @@ import os.path
 import pyautogui
 import time
 import traceback
+import cv2
 
 '''
 Function to resize bot window
