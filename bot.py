@@ -16,7 +16,7 @@ import ctypes.wintypes as wintypes
 
 init(autoreset=True)
 
-VERSION = "5.9.0-alpha"
+VERSION = "6.0.0"
 
 STDOUT = -11
 

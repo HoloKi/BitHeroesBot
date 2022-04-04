@@ -1,0 +1,6 @@
+python-dotenv
+pyautogui
+pillow
+opencv-python
+colorama
+termcolor

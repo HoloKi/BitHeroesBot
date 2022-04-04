@@ -9,18 +9,21 @@
                     "chiudi": "0.5",
                     "morte": "0.7",
                     "rerun": "0.5",
-                    "no_shard": "0.5"
+                    "no_shard": "0.5",
+                    "difficult": "0.7"
                 }
             ],
             "pvp": [
                 {
                     "pvp": "0.5",
                     "play": "0.4",
-                    "accetta": "0.5",
+                    "accept": "0.5",
                     "select": "0.5",
                     "defeat": "0.6",
                     "cittadina": "0.5",
-                    "no_shard": "0.5"
+                    "no_shard": "0.5",
+                    "x": "0",
+                    "y": "0"
                 }
             ],
             "gauntlet": [
@@ -51,7 +54,7 @@
             "expedition": [
                 {
                     "enter": "0.5",
-                    "accept": "0.5",
+                    "accept": "0.6",
                     "cittadina": "0.5"
                 }
             ],
@@ -61,6 +64,43 @@
                     "accept": "0.5",
                     "play": "0.4",
                     "no_shard": "0.5"
+                }
+            ],
+            "dungeon": [
+                {
+                    "quest": "0.5",
+                    "dungeon": "0.5",
+                    "accept": "0.5",
+                    "chiudi": "0.5",
+                    "morte": "0.7",
+                    "rerun": "0.5",
+                    "no_shard": "0.5",
+                    "difficult": "0.7"
+                }
+            ],
+            "dungeonfour": [
+                {
+                    "quest": "0.5",
+                    "dungeon": "0.5",
+                    "enter": "0.5",
+                    "accept": "0.5",
+                    "chiudi": "0.5",
+                    "morte": "0.7",
+                    "rerun": "0.5",
+                    "no_shard": "0.5"
+                }
+            ],
+            "wb": [
+                {
+                    "wb": "0.5",
+                    "evoca1": "0.5",
+                    "evoca2": "0.5",
+                    "evoca3": "0.5",
+                    "morte": "0.5",
+                    "inizio": "0.5",
+                    "rerun": "0.5",
+                    "no_shard": "0.5",
+                    "end": "0.5"
                 }
             ]
         }

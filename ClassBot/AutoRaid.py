@@ -3,7 +3,7 @@ import time
 import logging
 from colorama import *
 from termcolor import colored, cprint
-from ClassBot import classe
+from ClassBot import Click_Class,classe
 import asyncio
 import json
 
@@ -43,21 +43,21 @@ def raid(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = classe.bit(r"image\raid\heroic.png", difficult_data)
+        difficulty = Click_Class.bit(r"image\raid\heroic.png", difficult_data)
     else:
         if difficult == hard:
-            difficulty = classe.bit(r"image\raid\hard.png", difficult_data)
+            difficulty = Click_Class.bit(r"image\raid\hard.png", difficult_data)
         else:
             if difficult == norm:
-                difficulty = classe.bit(r"image\raid\normal.png", difficult_data)
+                difficulty = Click_Class.bit(r"image\raid\normal.png", difficult_data)
 
-    raid = classe.bit(r"image\raid\raid.png", raid_data)
-    evoca = classe.bit(r"image\startraid.png", evoca_data)
-    accetta = classe.bit(r"image\accept.png", accetta_data)
-    chiudi = classe.bit(r"image\raid\close.png", chiudi_data)
-    morte = classe.bit(r"image\raid\raiddie.png", morte_data)
-    rerun = classe.bit(r"image\rerun.png", rerun_data)
-    no_shard = classe.bit(r"image\noshard.png", no_shard_data)
+    raid = Click_Class.bit(r"image\raid\raid.png", raid_data)
+    evoca = Click_Class.bit(r"image\startraid.png", evoca_data)
+    accetta = Click_Class.bit(r"image\accept.png", accetta_data)
+    chiudi = Click_Class.bit(r"image\raid\close.png", chiudi_data)
+    morte = Click_Class.bit(r"image\raid\raiddie.png", morte_data)
+    rerun = Click_Class.bit(r"image\rerun.png", rerun_data)
+    no_shard = Click_Class.bit(r"image\noshard.png", no_shard_data)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
@@ -76,16 +76,16 @@ def raid(run, difficult):
             logging.debug("run=0")
             return 0
         else:
-            error = raid.bottone()
+            error = raid.search_and_click()
             if error == 0:
                 return 0
-            error = evoca.bottone()
+            error = evoca.search_and_click()
             if error == 0:
                 return 0
-            error = difficulty.bottone()
+            error = difficulty.search_and_click()
             if error == 0:
                 return 0
-            error = accetta.bottone()
+            error = accetta.search_and_click()
             if error == 0:
                 return 0
             # check if no shard is presence after accept click
@@ -121,7 +121,7 @@ def raid(run, difficult):
                 # controllo se è morto---------------
                 error = morte.ispresence()
                 if error == 1:  # se è morto clicca
-                    chiudi.bottone()
+                    chiudi.search_and_click()
                     print("your team is dead!")
                     print("----------------------------------\n")
                     time.sleep(5)
@@ -137,7 +137,7 @@ def raid(run, difficult):
                     pyautogui.press('esc')
                     break
                 else:
-                    error = rerun.bottone()
+                    error = rerun.search_and_click()
                     if error == 0:
                         return 0
                     time.sleep(3)
