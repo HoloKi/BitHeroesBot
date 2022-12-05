@@ -1,23 +1,8 @@
-2022-03-27 20:13:27,274 - main :   VERSION : 6.0.0 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2022-03-27 20:13:27,275 - main :   https://discord.gg/h98xsssEpe
-2022-03-27 20:13:27,275 - main :   The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer
-2022-03-27 20:13:27,317 - Populate :   data.json = True
-2022-03-27 20:13:31,275 - raid :   ---------RAID----------
-2022-03-27 20:13:31,276 - raid :   difficult = image\raid\heroic.png.
-2022-03-27 20:13:31,340 - raid :   run = 1, difficult = heroic
-2022-03-27 20:13:31,688 - search_and_click :   risultato match= [[ 430007.9     625083.2     -75380.836  ...  150761.67    399181.38
-   322476.1   ]
- [ 495033.4     430008.4    -205430.83   ...   74056.125    -2649.4167
-  -209404.45  ]
- [ 619664.2     489613.9    -210849.33   ...  373893.75    243843.75
-  -146306.25  ]
- ...
- [-120295.81   -250345.69   -185321.     ...   72490.836    30826.666
-    54187.375 ]
- [-200493.94    -70443.875  -135468.75   ... -396291.3    -437955.4
-  -349569.47  ]
- [-200492.94   -265518.     -265518.     ...  165572.8     384008.62
-   407369.34  ]]
-2022-03-27 20:13:31,691 - search_and_click :   posizione click  = (155, 181)
-2022-03-27 20:13:31,691 - search_and_click :   debug  = 1
-2022-03-27 20:13:32,079 - search_and_click :   image\raid\raid.png = None
+2022-12-05 12:39:52,914 - main :   VERSION : 6.0.0 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2022-12-05 12:39:52,914 - main :   https://discord.gg/h98xsssEpe
+2022-12-05 12:39:52,914 - main :   The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer
+2022-12-05 12:39:52,928 - Populate :   data.json = True
+2022-12-05 12:40:18,929 - raid :   ---------RAID----------
+2022-12-05 12:40:18,929 - raid :   difficult = image\raid\normal.png.
+2022-12-05 12:40:18,956 - raid :   run = -1, difficult = normal
+2022-12-05 12:40:18,956 - raid :   run < 0

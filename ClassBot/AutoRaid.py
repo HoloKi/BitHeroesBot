@@ -3,12 +3,11 @@ import time
 import logging
 from colorama import *
 from termcolor import colored, cprint
-from ClassBot import Click_Class,classe
+from ClassBot import Click_Class, classe
 import asyncio
 import json
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
-
 
 """
 Raid function that uses the class to simplify the code and its reuse
@@ -19,8 +18,9 @@ Raid function that uses the class to simplify the code and its reuse
 @: return 0 if it went wrong
 """
 
+
 def raid(run, difficult):
-    #---------------------------------------------------------------
+    # ---------------------------------------------------------------
     f = open("data.json", "r")
     data = json.loads(f.read())
 
