@@ -69,7 +69,10 @@ def pvp(run):
                 time.sleep(2)
                 pyautogui.press("esc")
                 return 0
-            error = select.buttonmodif(x, y) #under test
+            print(x,y)
+            time.sleep(1)
+            #error = select.buttonmodif(x, y) #under test
+            error = select.bottone()
             if error == 0:
                 cprint(problema)
                 break
