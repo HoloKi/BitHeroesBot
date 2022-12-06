@@ -2,3 +2,4 @@ _pycache_
 .idea
 data.json
 latest.txt
+ClassBot/Debug
