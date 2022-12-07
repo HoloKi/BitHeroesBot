@@ -29,7 +29,7 @@ class bit:
     # button return (x,y) as coordinates or None if image not found
     #
     def search_and_click(self):
-        print(os.getenv('DEBUG'))
+        #print("Debug= "+os.getenv('DEBUG'))
         # Faccio lo screenshot dell'intero monitor pc
         screen = pyautogui.screenshot()
         # lo apro con opencv in bianco e nero
@@ -79,17 +79,18 @@ class bit:
         else:
             return False
 
-
     def no_shardControl(self):
         no_shard = self.__init__(r"image\noshard.png", 0.5)
-        res = no_shard.ispresence()
-        if res == 1:
+        res = no_shard.is_present()
+        if res == True:
             print("No shards!")
         else:
             print("Ok!")
 
     # is_present  without debug control so no spam on logging
     def is_present(self):
+        if self.debug == 1:
+            print(self.image)
         presente = pyautogui.locateCenterOnScreen(self.image, grayscale=False, confidence=float(self.confi))
         if presente is not None:
             return True

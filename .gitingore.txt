@@ -3,3 +3,4 @@ _pycache_
 data.json
 latest.txt
 ClassBot/Debug
+latest.log

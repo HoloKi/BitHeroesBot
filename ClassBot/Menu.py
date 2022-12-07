@@ -36,7 +36,7 @@ def menu():
     # logging.debug(f'Menu input = {a}')
     try:
         if int(a) == 1:
-            print(colored("Enter the number of runs: ", 'green', attrs=['bold']))
+            print(colored("\nEnter the number of runs: ", 'green', attrs=['bold']))
             b = input()
             print(colored("Enter the number:\n", 'green', attrs=['bold']), colored("1) normal\n"), colored("2) hard\n"),
                   colored("3) heroic\n"), colored("According to the difficulty you want", 'green', attrs=['bold']))
