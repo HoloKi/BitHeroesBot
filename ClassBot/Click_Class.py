@@ -48,6 +48,7 @@ class bit:
         canny_screenshot = cv.Canny(img, 100, 200)
         img_da_confrontare = cv.imread(self.image, 0)
         w, h = img_da_confrontare.shape[::-1]
+        logging.debug(f"dim immagine prima {w,h}")
 
 
         print("mio",monitor_width,monitor_height,"utente",monitor_x,monitor_y)
@@ -63,11 +64,14 @@ class bit:
         diff_x= 1 + (user_x - scaling_factor_width)
         diff_y= 1 + (user_y - scaling_factor_height)
         print(diff_x,diff_y)
+        logging.debug(f"differenza= {diff_x,diff_y}")
         try:
             resized_image = cv.resize(img_da_confrontare, (0, 0), fx=diff_x, fy=diff_y)
+            w, h = resized_image.shape[::-1]
+            logging.debug(f"dim immagine dopo {w,h}")
             print(resized_image)
             test = pathlib.Path(__file__).parent.resolve()
-            resized_image.save(rf"{test}\Debug\{self.count}" + "resized.png")
+            cv.imwrite("{self.count}" + "resized.png",resized_image)
             self.count = int(self.count) + 1
 
             # Funzione per confrontare le due immagini

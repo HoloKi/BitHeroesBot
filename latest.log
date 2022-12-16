@@ -1,5 +1,28 @@
-2022-12-16 23:23:25,378 - main :   VERSION : 7.1.0 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2022-12-16 23:23:25,379 - main :   https://discord.gg/h98xsssEpe
-2022-12-16 23:23:25,379 - main :   (1366, 768)
-2022-12-16 23:23:25,379 - main :   The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer
-2022-12-16 23:23:25,392 - Populate :   data.json = True
+2022-12-16 23:52:47,682 - main :   VERSION : 7.1.0 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2022-12-16 23:52:47,683 - main :   https://discord.gg/h98xsssEpe
+2022-12-16 23:52:47,683 - main :   (1360, 768)
+2022-12-16 23:52:47,683 - main :   The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer
+2022-12-16 23:52:47,696 - Populate :   data.json = True
+2022-12-16 23:53:00,733 - raid :   ---------RAID----------
+2022-12-16 23:53:00,734 - raid :   difficult = image\raid\heroic.png.
+2022-12-16 23:53:00,751 - raid :   run = 1, difficult = heroic
+2022-12-16 23:53:00,751 - __init__ :   Using proactor: IocpProactor
+2022-12-16 23:53:03,300 - search_and_click :   dim immagine prima (45, 72)
+2022-12-16 23:53:03,332 - search_and_click :   differenza= (0.9924999999999999, 1.0)
+2022-12-16 23:53:03,333 - search_and_click :   dim immagine dopo (45, 72)
+2022-12-16 23:53:03,380 - search_and_click :   risultato match= [[-1159853.4   -1199953.1    -192667.67  ...   299476.25    -90673.69
+    169426.31 ]
+ [ -981515.75   -761514.5    -469503.6   ...   169426.25    104401.19
+    494551.12 ]
+ [ -986573.25  -1091697.5   -1124812.1   ...   364501.25    234451.19
+    104401.25 ]
+ ...
+ [ 2137275.5    1263531.6    1232344.6   ...  1250406.9    1263291.
+    144620.17 ]
+ [ 1108556.9     234813.      593774.56  ...   275031.66     39496.668
+   -298874.16 ]
+ [ 1397073.6     263230.84    362092.9   ...   600156.2     181226.83
+   -482269.   ]]
+2022-12-16 23:53:03,381 - search_and_click :   posizione click  = (537, 481)
+2022-12-16 23:53:03,381 - search_and_click :   debug  = 1
+2022-12-16 23:53:03,561 - search_and_click :   image\raid\raid.png = None
