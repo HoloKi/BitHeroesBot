@@ -11,11 +11,20 @@ import os
 import numpy
 from PIL import Image
 import pathlib
+import ctypes
 
 load_dotenv()
 
 init(autoreset=True)  # Permette ad ogni print di ritornare al suo colore base
 errore = colored("Please report this bug/error on github or discord\n", 'red', attrs=['bold'])
+
+# default perchè le immagini vengono dal mio pc
+game_width, game_height = 800, 480
+monitor_width, monitor_height = 1366, 768
+
+user32 = ctypes.windll.user32
+monitor_x = user32.GetSystemMetrics(0) #width
+monitor_y = user32.GetSystemMetrics(1)
 
 
 class bit:
@@ -29,7 +38,8 @@ class bit:
     # button return (x,y) as coordinates or None if image not found
     #
     def search_and_click(self):
-        #print("Debug= "+os.getenv('DEBUG'))
+
+        # print("Debug= "+os.getenv('DEBUG'))
         # Faccio lo screenshot dell'intero monitor pc
         screen = pyautogui.screenshot()
         # lo apro con opencv in bianco e nero
@@ -38,10 +48,34 @@ class bit:
         canny_screenshot = cv.Canny(img, 100, 200)
         img_da_confrontare = cv.imread(self.image, 0)
         w, h = img_da_confrontare.shape[::-1]
-        canny_img_confronto = cv.Canny(img_da_confrontare, 100, 200)
 
-        # Funzione per confrontare le due immagini
-        res = cv.matchTemplate(canny_screenshot, canny_img_confronto, cv.TM_CCOEFF)
+
+        print("mio",monitor_width,monitor_height,"utente",monitor_x,monitor_y)
+        # Calculate the scaling factor for the image
+        scaling_factor_width = monitor_width / game_width
+        scaling_factor_height = monitor_height / game_height
+        print("prop mio con game", scaling_factor_width, scaling_factor_height)
+        # sottraggo proporzione immagine gioco mio con quello dell'utente per ottenere la differenza di proporzione
+        user_x = monitor_x / game_width
+        user_y = monitor_y / game_height
+        print("proporzione utente con game", user_x, user_y)
+
+        diff_x= 1 + (user_x - scaling_factor_width)
+        diff_y= 1 + (user_y - scaling_factor_height)
+        print(diff_x,diff_y)
+        try:
+            resized_image = cv.resize(img_da_confrontare, (0, 0), fx=diff_x, fy=diff_y)
+            print(resized_image)
+            test = pathlib.Path(__file__).parent.resolve()
+            resized_image.save(rf"{test}\Debug\{self.count}" + "resized.png")
+            self.count = int(self.count) + 1
+
+            # Funzione per confrontare le due immagini
+            canny_img_confronto = cv.Canny(resized_image, 100, 200)
+            res = cv.matchTemplate(canny_screenshot, canny_img_confronto, cv.TM_CCOEFF)
+        except Exception as e:
+            print(e)
+
         logging.debug(f"risultato match= {res}")
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
         top_left = max_loc
@@ -126,3 +160,42 @@ class bit:
             cprint(errore)
             logging.error(f"{self.image} not found!")
             return 0
+
+    '''
+    def search_and_click(self):
+        #print("Debug= "+os.getenv('DEBUG'))
+        # Faccio lo screenshot dell'intero monitor pc
+        screen = pyautogui.screenshot()
+        # lo apro con opencv in bianco e nero
+        img = cv.cvtColor(numpy.array(screen), cv.COLOR_BGR2GRAY)
+        # Faccio il canny + edge del gioco
+        canny_screenshot = cv.Canny(img, 100, 200)
+        img_da_confrontare = cv.imread(self.image, 0)
+        w, h = img_da_confrontare.shape[::-1]
+        canny_img_confronto = cv.Canny(img_da_confrontare, 100, 200)
+
+        # Funzione per confrontare le due immagini
+        res = cv.matchTemplate(canny_screenshot, canny_img_confronto, cv.TM_CCOEFF)
+        logging.debug(f"risultato match= {res}")
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+        top_left = max_loc
+        bottom_right = (top_left[0] + w, top_left[1] + h)
+        # Calcolo il centro dell'immagine
+        x, y = self.center(top_left, bottom_right)
+        logging.debug(f"posizione click  = {x, y}")
+        logging.debug(f"debug  = {self.debug}")
+        if self.debug == '1':
+            print("disegno")
+            # Draw Rectangle
+            cv.rectangle(img, top_left, bottom_right, 255, 1)
+            # cv.circle(screen, (x, y), radius=0, color=(255, 0, 0), thickness=10)
+            print("salvo")
+            im = Image.fromarray(img)
+            test = pathlib.Path(__file__).parent.resolve()
+            im.save(rf"{test}\Debug\{self.count}" + "raid.png")
+            self.count = int(self.count) + 1
+
+        button = pyautogui.click(x, y)
+        logging.debug(f"{self.getImage()} = {button}")
+        time.sleep(2)  # debug purpose
+    '''

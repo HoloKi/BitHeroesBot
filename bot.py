@@ -8,6 +8,11 @@ import time
 import traceback
 import cv2 as cv
 import os
+import ctypes
+
+user32 = ctypes.windll.user32
+screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+
 
 '''
 Function to resize bot window
@@ -33,6 +38,7 @@ def main():
                         level=logging.DEBUG)
     logging.info(f"VERSION : {VERSION} - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot")
     logging.info("https://discord.gg/h98xsssEpe")
+    logging.debug(screensize)
     logging.info(
         "The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer")
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")

@@ -157,16 +157,36 @@ async def s_click(file):
         if res is True:
             time.sleep(1)
             while file.is_present() == True:  # Dovrei controllare se è andato a buon fine il click
-                if file != fine:# Clicca se non è fine
-                    #TODO da testare
-                    file.search_and_click()
-                    print("cliccato")
+
+                file.search_and_click()
+                print("cliccato")
                 return 1
+
+
+async def s_search(file):
+    print(file.image)
+    pos = 0
+    while True:
+        # TODO metterlo opzionale perchè consuma
+        sys.stdout.write("\033[F")
+        print("loading." + "." * (pos % 3) + "\r", end="\r")
+        pos = pos + 1
+        await asyncio.sleep(1)
+        sys.stdout.write('\033[2K\033[1G')
+        res = file.is_present()
+        if res is True: #Quando trova l'immagine
+            print("immagine presente")
+            time.sleep(3)
+            return 1
 
 
 # Dato un immagine crea una task dove deve riconoscere prova
 async def test1(file, timeout):
-    prova = asyncio.create_task(s_click(file))
+    if file == r"image\fine.png":
+        print("file immagine")
+        prova = asyncio.create_task(s_check(file))
+    else:
+        prova = asyncio.create_task(s_click(file))
     try:
         await asyncio.wait_for(prova, timeout=timeout)
     except Exception:
