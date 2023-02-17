@@ -12,6 +12,7 @@ import numpy
 from PIL import Image
 import pathlib
 import ctypes
+import asyncio
 
 load_dotenv()
 
@@ -23,11 +24,16 @@ game_width, game_height = 800, 480
 monitor_width, monitor_height = 1366, 768
 
 user32 = ctypes.windll.user32
-monitor_x = user32.GetSystemMetrics(0) #width
-monitor_y = user32.GetSystemMetrics(1)
+# specs monitor utente
+monitor_x = user32.GetSystemMetrics(0)  # width
+monitor_y = user32.GetSystemMetrics(1)  # height
+
+# Calculate the scaling factor for the image
+scaling_factor_width = monitor_width / game_width
+scaling_factor_height = monitor_height / game_height
 
 
-class bit:
+class immagini:
     def __init__(self, image, confi):
         self.image = image
         self.confi = confi
@@ -35,11 +41,9 @@ class bit:
         self.count = 0
 
     # Function to find image and click it
-    # button return (x,y) as coordinates or None if image not found
-    #
+    # buttons return (x,y) as coordinates or None if image not found
     def search_and_click(self):
 
-        # print("Debug= "+os.getenv('DEBUG'))
         # Faccio lo screenshot dell'intero monitor pc
         screen = pyautogui.screenshot()
         # lo apro con opencv in bianco e nero
@@ -48,31 +52,25 @@ class bit:
         canny_screenshot = cv.Canny(img, 100, 200)
         img_da_confrontare = cv.imread(self.image, 0)
         w, h = img_da_confrontare.shape[::-1]
-        logging.debug(f"dim immagine prima {w,h}")
+        logging.debug(f"dim immagine prima {w, h}")
 
-
-        print("mio",monitor_width,monitor_height,"utente",monitor_x,monitor_y)
-        # Calculate the scaling factor for the image
-        scaling_factor_width = monitor_width / game_width
-        scaling_factor_height = monitor_height / game_height
-        print("prop mio con game", scaling_factor_width, scaling_factor_height)
+        #print("mio", monitor_width, monitor_height, "utente", monitor_x, monitor_y)
         # sottraggo proporzione immagine gioco mio con quello dell'utente per ottenere la differenza di proporzione
         user_x = monitor_x / game_width
         user_y = monitor_y / game_height
-        print("proporzione utente con game", user_x, user_y)
 
-        diff_x= 1 + (user_x - scaling_factor_width)
-        diff_y= 1 + (user_y - scaling_factor_height)
-        print(diff_x,diff_y)
-        logging.debug(f"differenza= {diff_x,diff_y}")
+        diff_x = 1 + (user_x - scaling_factor_width)
+        diff_y = 1 + (user_y - scaling_factor_height)
+        print(diff_x, diff_y)
+        logging.debug(f"differenza= {diff_x, diff_y}")
         try:
             resized_image = cv.resize(img_da_confrontare, (0, 0), fx=diff_x, fy=diff_y)
-            w, h = resized_image.shape[::-1]
-            logging.debug(f"dim immagine dopo {w,h}")
-            print(resized_image)
-            test = pathlib.Path(__file__).parent.resolve()
-            cv.imwrite("{self.count}" + "resized.png",resized_image)
-            self.count = int(self.count) + 1
+            if self.debug == '1' and diff_x != 0.0 and diff_y != 0.0:
+                w, h = resized_image.shape[::-1]
+                logging.debug(f"dim immagine dopo {w, h}")
+                test = pathlib.Path(__file__).parent.resolve()
+                cv.imwrite("{self.count}" + "resized.png", resized_image)
+                self.count = int(self.count) + 1
 
             # Funzione per confrontare le due immagini
             canny_img_confronto = cv.Canny(resized_image, 100, 200)
@@ -80,7 +78,7 @@ class bit:
         except Exception as e:
             print(e)
 
-        logging.debug(f"risultato match= {res}")
+        # logging.debug(f"risultato match= {res}")
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
         top_left = max_loc
         bottom_right = (top_left[0] + w, top_left[1] + h)
@@ -165,41 +163,117 @@ class bit:
             logging.error(f"{self.image} not found!")
             return 0
 
-    '''
-    def search_and_click(self):
-        #print("Debug= "+os.getenv('DEBUG'))
-        # Faccio lo screenshot dell'intero monitor pc
-        screen = pyautogui.screenshot()
-        # lo apro con opencv in bianco e nero
-        img = cv.cvtColor(numpy.array(screen), cv.COLOR_BGR2GRAY)
-        # Faccio il canny + edge del gioco
-        canny_screenshot = cv.Canny(img, 100, 200)
-        img_da_confrontare = cv.imread(self.image, 0)
-        w, h = img_da_confrontare.shape[::-1]
-        canny_img_confronto = cv.Canny(img_da_confrontare, 100, 200)
 
-        # Funzione per confrontare le due immagini
-        res = cv.matchTemplate(canny_screenshot, canny_img_confronto, cv.TM_CCOEFF)
-        logging.debug(f"risultato match= {res}")
-        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
-        top_left = max_loc
-        bottom_right = (top_left[0] + w, top_left[1] + h)
-        # Calcolo il centro dell'immagine
-        x, y = self.center(top_left, bottom_right)
-        logging.debug(f"posizione click  = {x, y}")
-        logging.debug(f"debug  = {self.debug}")
-        if self.debug == '1':
-            print("disegno")
-            # Draw Rectangle
-            cv.rectangle(img, top_left, bottom_right, 255, 1)
-            # cv.circle(screen, (x, y), radius=0, color=(255, 0, 0), thickness=10)
-            print("salvo")
-            im = Image.fromarray(img)
-            test = pathlib.Path(__file__).parent.resolve()
-            im.save(rf"{test}\Debug\{self.count}" + "raid.png")
-            self.count = int(self.count) + 1
+#  Funzione che fa partirein modo asincrono  i bottoni iniziali
+def asinc_run(file, timeout, flag):
+    # faccio runnare un thread per testare
+    error = asyncio.run(test1(file, timeout, flag))
+    if error == -1:
+        return -1
 
-        button = pyautogui.click(x, y)
-        logging.debug(f"{self.getImage()} = {button}")
-        time.sleep(2)  # debug purpose
-    '''
+
+# trova il file, gira finche non trova se c'è l'immagine. se c'è clicca.
+async def s_click(file):
+    print(file.image)
+    pos = 0
+    while True:
+        # TODO metterlo opzionale perchè consuma
+        sys.stdout.write("\033[F")
+        print("loading." + "." * (pos % 3) + "\r", end="\r")
+        pos = pos + 1
+        await asyncio.sleep(1)
+        sys.stdout.write('\033[2K\033[1G')
+        res = file.is_present()
+        if res is True:
+            file.search_and_click()
+            print("clicked")
+            return 1
+
+
+async def s_search(file):
+    pos = 0
+    while True:
+        # TODO metterlo opzionale perchè consuma
+        sys.stdout.write("\033[F")
+        print("searching." + "." * (pos % 3) + "\r", end="\r")
+        pos = pos + 1
+        await asyncio.sleep(1)
+        sys.stdout.write('\033[2K\033[1G')
+        res = file.is_present()
+        if res is True:  # Quando trova l'immagine
+            print("immagine presente")
+            time.sleep(3)
+            return 1
+
+
+# Dato un immagine crea una task dove deve riconoscere prova
+async def test1(file, timeout, flag):
+    if not flag: #flag == False
+        prova = asyncio.create_task(s_search(file))
+    else:
+        prova = asyncio.create_task(s_click(file))
+    try:
+        print(prova)
+        await asyncio.wait_for(prova, timeout=timeout)
+    except Exception:
+        sys.stdout.write('\033[2K\033[1G')
+        cprint(colored("\nThe long operation timed out, probably image not found\n\n ", 'red', attrs=['bold']))
+        return -1
+
+#  Funzione che fa partirein modo asincrono  i bottoni iniziali
+@staticmethod
+def asinc_run(file, timeout, flag):
+    # faccio runnare un thread per testare
+    error = asyncio.run(test1(file, timeout, flag))
+    if error == -1:
+        return -1
+
+# trova il file, gira finche non trova se c'è l'immagine. se c'è clicca.
+@staticmethod
+async def s_click(file):
+    print(file.image)
+    pos = 0
+    while True:
+        # TODO metterlo opzionale perchè consuma
+        sys.stdout.write("\033[F")
+        print("loading." + "." * (pos % 3) + "\r", end="\r")
+        pos = pos + 1
+        await asyncio.sleep(1)
+        sys.stdout.write('\033[2K\033[1G')
+        res = file.is_present()
+        if res is True:
+            file.search_and_click()
+            print("clicked")
+            return 1
+
+@staticmethod
+async def s_search(file):
+    pos = 0
+    while True:
+        # TODO metterlo opzionale perchè consuma
+        sys.stdout.write("\033[F")
+        print("searching." + "." * (pos % 3) + "\r", end="\r")
+        pos = pos + 1
+        await asyncio.sleep(1)
+        sys.stdout.write('\033[2K\033[1G')
+        res = file.is_present()
+        if res is True:  # Quando trova l'immagine
+            print("immagine presente")
+            time.sleep(3)
+            return 1
+
+# Dato un immagine crea una task dove deve riconoscere prova
+@staticmethod
+async def test1(file, timeout, flag):
+    if not flag:  # flag == False
+        prova = asyncio.create_task(s_search(file))
+    else:
+        prova = asyncio.create_task(s_click(file))
+    try:
+        print(prova)
+        await asyncio.wait_for(prova, timeout=timeout)
+    except Exception:
+        sys.stdout.write('\033[2K\033[1G')
+        cprint(colored("\nThe long operation timed out, probably image not found\n\n ", 'red', attrs=['bold']))
+        return -1
+

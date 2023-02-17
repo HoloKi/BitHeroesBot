@@ -3,7 +3,7 @@ import time
 import logging
 from colorama import *
 from termcolor import colored, cprint
-from ClassBot import Click_Class, classe
+from ClassBot import Click, classe
 import asyncio
 import json
 import sys
@@ -21,11 +21,12 @@ Raid function that uses the class to simplify the code and its reuse
 
 loading = ["loading.", "loading..", "loading..."]
 
+
 def raid(run, difficult):
     # ---------------------------------------------------------------
     f = open("data.json", "r")
     data = json.loads(f.read())
-
+    #RIMOVIBILE SE FUNZIONA IL RESCALE
     raid_data = float(data['Function'][0]['raid'][0]['raid'])
     evoca_data = float(data['Function'][0]['raid'][0]['evoca'])
     accetta_data = float(data['Function'][0]['raid'][0]['accept'])
@@ -45,20 +46,20 @@ def raid(run, difficult):
     count = 0
     # LOAD CLASS FIRST-----------------------------------------------------------------
     if difficult == hero:
-        difficulty = Click_Class.bit(r"image\raid\heroic.png", difficult_data)
+        difficulty = Click.immagini(r"image\raid\heroic.png", difficult_data)
     elif difficult == hard:
-        difficulty = Click_Class.bit(r"image\raid\hard.png", difficult_data)
+        difficulty = Click.immagini(r"image\raid\hard.png", difficult_data)
     elif difficult == norm:
-        difficulty = Click_Class.bit(r"image\raid\normal.png", difficult_data)
+        difficulty = Click.immagini(r"image\raid\normal.png", difficult_data)
 
-    raid = Click_Class.bit(r"image\raid\raid.png", raid_data)
-    evoca = Click_Class.bit(r"image\startraid.png", evoca_data)
-    accetta = Click_Class.bit(r"image\accept.png", accetta_data)
-    chiudi = Click_Class.bit(r"image\raid\close.png", chiudi_data)
-    morte = Click_Class.bit(r"image\raid\raiddie.png", morte_data)
-    rerun = Click_Class.bit(r"image\rerun.png", rerun_data)
-    no_shard = Click_Class.bit(r"image\noshard.png", no_shard_data)
-    fine = Click_Class.bit(r"image\fine.png", 0.7)
+    raid = Click.immagini(r"image\raid\raid.png", raid_data)
+    evoca = Click.immagini(r"image\startraid.png", evoca_data)
+    accetta = Click.immagini(r"image\accept.png", accetta_data)
+    chiudi = Click.immagini(r"image\raid\close.png", chiudi_data)
+    morte = Click.immagini(r"image\raid\raiddie.png", morte_data)
+    rerun = Click.immagini(r"image\rerun.png", rerun_data)
+    no_shard = Click.immagini(r"image\noshard.png", no_shard_data)
+    fine = Click.immagini(r"image\fine.png", 0.7)
     # ---------------------------------------------------------------------------------
     logging.debug(f"difficult = {difficulty.getImage()}.")
     print(colored("\n-----RAID-----", 'cyan', attrs=['bold']))
@@ -75,29 +76,27 @@ def raid(run, difficult):
         arr = [raid, evoca, difficulty, accetta]
         for x in arr:
             # Fai partire thread che cliccano quando trovano l'immagine.
-            # TODO controllare se fallisce il click
-            # TODO controllare se trova l'immagine
-            res = asinc_run(x, 10)
+            res = Click.asinc_run(x, 10, True)
             if res == -1:
                 return 0
         # check if no shard is presence after accept click
         time.sleep(2)
-        error = no_shard.is_present()
+        error = Click.asinc_run(no_shard, 7, False)
         # ------------- NO SHARDS -> turn back
-        if error == True:
-            # TODO rindondante quindi ciclo
+        print(f"errore del noshard {error}")
+        if error is None:
             logging.debug("No shard available!")
             print("No shard!\n")
-            for y in range(3):
+            for y in range(4):
                 pyautogui.press("esc")
                 time.sleep(2)
-                return 0
+            return 0
         # else --------- WITH SHARDS
         while True:
             # check if no shard is presence after rerun button
-            time.sleep(3)
-            error = no_shard.is_present()
-            if error == 1:
+            time.sleep(2)
+            error = Click.asinc_run(no_shard, 13, False)
+            if error is None:
                 logging.debug("No shard available!")
                 print("No shard!\n")
                 pyautogui.press("esc")
@@ -106,12 +105,12 @@ def raid(run, difficult):
             count += 1
             print("----------------------------------")
             print(f"run number: {count}")
-            res = asinc_run(fine, 1000)  # THREAD che aspetta la schermata di fine partita
+            res = Click.asinc_run(fine, 1000, False)  # THREAD che aspetta la schermata di fine partita
             if res == -1:
                 return 0
-            # controllo se è morto---------------
+            # controllo se è morto
             error = morte.is_present()
-            if error == True:  # se è morto clicca
+            if error:  # se è morto clicca #Error == True
                 chiudi.search_and_click()
                 print("your team is dead!")
                 print("----------------------------------\n")
@@ -120,80 +119,18 @@ def raid(run, difficult):
                 break
             # -----------------------------------
             print("----------------------------------\n")
-            if int(count) >= int(run):  # If end run
-                # controllare qui---------------
-                # TODO semplificare sta parte
+            if int(count) >= int(run):  # Fine della Run
+                time.sleep(3)
                 for x in range(2):
-                    time.sleep(4)
+                    time.sleep(5)
+                    pyautogui.press('esc')
                     logging.debug("end")
                 break
             else:
-                res = asinc_run(rerun, 10)
+                print("PROVO A CLICCARE")
+                asyncio.sleep(7)
+
+                # Funziona ma da testare ancora meglio
+                res = Click.asinc_run(rerun, 10, True)
                 if res == -1:
                     return 0
-                time.sleep(3)
-
-
-#  Funzione che fa partirein modo asincrono  i bottoni iniziali
-def asinc_run(file, timeout):
-    # faccio runnare un thread per testare
-    error = asyncio.run(test1(file, timeout))
-    if error == -1:
-        return -1
-
-
-# trova il file, gira finche non trova se c'è l'immagine. se c'è clicca.
-async def s_click(file):
-    print(file.image)
-    pos = 0
-    while True:
-        #TODO metterlo opzionale perchè consuma
-        sys.stdout.write("\033[F")
-        print("loading."+"."*(pos % 3)+"\r", end="\r")
-        pos = pos + 1
-        await asyncio.sleep(1)
-        sys.stdout.write('\033[2K\033[1G')
-        res = file.is_present()
-        if res is True:
-            time.sleep(1)
-            while file.is_present() == True:  # Dovrei controllare se è andato a buon fine il click
-
-                file.search_and_click()
-                print("cliccato")
-                return 1
-
-
-async def s_search(file):
-    print(file.image)
-    pos = 0
-    while True:
-        # TODO metterlo opzionale perchè consuma
-        sys.stdout.write("\033[F")
-        print("loading." + "." * (pos % 3) + "\r", end="\r")
-        pos = pos + 1
-        await asyncio.sleep(1)
-        sys.stdout.write('\033[2K\033[1G')
-        res = file.is_present()
-        if res is True: #Quando trova l'immagine
-            print("immagine presente")
-            time.sleep(3)
-            return 1
-
-
-# Dato un immagine crea una task dove deve riconoscere prova
-async def test1(file, timeout):
-    if file == r"image\fine.png":
-        print("file immagine")
-        prova = asyncio.create_task(s_check(file))
-    else:
-        prova = asyncio.create_task(s_click(file))
-    try:
-        await asyncio.wait_for(prova, timeout=timeout)
-    except Exception:
-        sys.stdout.write('\033[2K\033[1G')
-        cprint(colored("\nThe long operation timed out, probably image not found\n\n ",'red', attrs=['bold']))
-        return -1
-
-
-
-# -------------------------------------------------------------

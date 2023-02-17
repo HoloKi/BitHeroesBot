@@ -40,7 +40,8 @@ def main():
     logging.info("https://discord.gg/h98xsssEpe")
     logging.debug(screensize)
     logging.info(
-        "The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer")
+        "The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report "
+        "it to the developer")
     print(f"BitHeroesBot by Holoki ------ VERSION = {VERSION} ------")
     print("Translate by PastShadie")
     print("All info on latest.log")

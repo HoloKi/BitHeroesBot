@@ -1,0 +1,38 @@
+    '''
+    def search_and_click(self):
+        #print("Debug= "+os.getenv('DEBUG'))
+        # Faccio lo screenshot dell'intero monitor pc
+        screen = pyautogui.screenshot()
+        # lo apro con opencv in bianco e nero
+        img = cv.cvtColor(numpy.array(screen), cv.COLOR_BGR2GRAY)
+        # Faccio il canny + edge del gioco
+        canny_screenshot = cv.Canny(img, 100, 200)
+        img_da_confrontare = cv.imread(self.image, 0)
+        w, h = img_da_confrontare.shape[::-1]
+        canny_img_confronto = cv.Canny(img_da_confrontare, 100, 200)
+
+        # Funzione per confrontare le due immagini
+        res = cv.matchTemplate(canny_screenshot, canny_img_confronto, cv.TM_CCOEFF)
+        logging.debug(f"risultato match= {res}")
+        min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+        top_left = max_loc
+        bottom_right = (top_left[0] + w, top_left[1] + h)
+        # Calcolo il centro dell'immagine
+        x, y = self.center(top_left, bottom_right)
+        logging.debug(f"posizione click  = {x, y}")
+        logging.debug(f"debug  = {self.debug}")
+        if self.debug == '1':
+            print("disegno")
+            # Draw Rectangle
+            cv.rectangle(img, top_left, bottom_right, 255, 1)
+            # cv.circle(screen, (x, y), radius=0, color=(255, 0, 0), thickness=10)
+            print("salvo")
+            im = Image.fromarray(img)
+            test = pathlib.Path(__file__).parent.resolve()
+            im.save(rf"{test}\Debug\{self.count}" + "raid.png")
+            self.count = int(self.count) + 1
+
+        button = pyautogui.click(x, y)
+        logging.debug(f"{self.getImage()} = {button}")
+        time.sleep(2)  # debug purpose
+    '''
