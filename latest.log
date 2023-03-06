@@ -1,9 +1,9 @@
-2023-02-17 15:00:14,560 - main :   VERSION : 7.1.0 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
-2023-02-17 15:00:14,560 - main :   https://discord.gg/h98xsssEpe
-2023-02-17 15:00:14,560 - main :   (1366, 768)
-2023-02-17 15:00:14,560 - main :   The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer
-2023-02-17 15:00:14,575 - Populate :   data.json = True
-2023-02-17 15:00:18,342 - raid :   ---------RAID----------
-2023-02-17 15:00:18,342 - raid :   difficult = image\raid\heroic.png.
-2023-02-17 15:00:18,357 - raid :   run = 2, difficult = heroic
-2023-02-17 15:00:18,357 - __init__ :   Using proactor: IocpProactor
+2023-02-17 15:16:26,242 - main :   VERSION : 7.1.0 - BOT by HoloKi. Info : https://github.com/HoloKi/BitHeroesBot
+2023-02-17 15:16:26,242 - main :   https://discord.gg/h98xsssEpe
+2023-02-17 15:16:26,242 - main :   (1366, 768)
+2023-02-17 15:16:26,242 - main :   The bot is completely free, any sale is prohibited.If someone sold it to you, get your money back and report it to the developer
+2023-02-17 15:16:26,258 - Populate :   data.json = True
+2023-02-17 15:16:28,273 - raid :   ---------RAID----------
+2023-02-17 15:16:28,273 - raid :   difficult = image\raid\heroic.png.
+2023-02-17 15:16:28,866 - raid :   run = 1, difficult = heroic
+2023-02-17 15:16:28,866 - __init__ :   Using proactor: IocpProactor

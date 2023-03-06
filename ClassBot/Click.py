@@ -54,7 +54,7 @@ class immagini:
         w, h = img_da_confrontare.shape[::-1]
         logging.debug(f"dim immagine prima {w, h}")
 
-        #print("mio", monitor_width, monitor_height, "utente", monitor_x, monitor_y)
+        # print("mio", monitor_width, monitor_height, "utente", monitor_x, monitor_y)
         # sottraggo proporzione immagine gioco mio con quello dell'utente per ottenere la differenza di proporzione
         user_x = monitor_x / game_width
         user_y = monitor_y / game_height
@@ -208,7 +208,7 @@ async def s_search(file):
 
 # Dato un immagine crea una task dove deve riconoscere prova
 async def test1(file, timeout, flag):
-    if not flag: #flag == False
+    if not flag:  # flag == False
         prova = asyncio.create_task(s_search(file))
     else:
         prova = asyncio.create_task(s_click(file))
@@ -220,16 +220,17 @@ async def test1(file, timeout, flag):
         cprint(colored("\nThe long operation timed out, probably image not found\n\n ", 'red', attrs=['bold']))
         return -1
 
+
 #  Funzione che fa partirein modo asincrono  i bottoni iniziali
-@staticmethod
+
 def asinc_run(file, timeout, flag):
     # faccio runnare un thread per testare
     error = asyncio.run(test1(file, timeout, flag))
     if error == -1:
         return -1
 
+
 # trova il file, gira finche non trova se c'è l'immagine. se c'è clicca.
-@staticmethod
 async def s_click(file):
     print(file.image)
     pos = 0
@@ -246,7 +247,7 @@ async def s_click(file):
             print("clicked")
             return 1
 
-@staticmethod
+
 async def s_search(file):
     pos = 0
     while True:
@@ -262,8 +263,8 @@ async def s_search(file):
             time.sleep(3)
             return 1
 
+
 # Dato un immagine crea una task dove deve riconoscere prova
-@staticmethod
 async def test1(file, timeout, flag):
     if not flag:  # flag == False
         prova = asyncio.create_task(s_search(file))
@@ -276,4 +277,3 @@ async def test1(file, timeout, flag):
         sys.stdout.write('\033[2K\033[1G')
         cprint(colored("\nThe long operation timed out, probably image not found\n\n ", 'red', attrs=['bold']))
         return -1
-
